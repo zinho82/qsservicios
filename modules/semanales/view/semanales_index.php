@@ -146,23 +146,23 @@ group by concat(tm.ad1,tm.ad2,tm.ad4,tm.ad7,tm.ad21,tm.ad13,tm.ad18) having coun
                       </a>
                   </div>
               </div>
-       <!--       <div class="col-lg-3 col-md-6">
-                  <div class="panel panel-danger">
+             <div class="col-lg-3 col-md-6">
+                  <div class="panel panel-success">
                       <div class="panel-heading">
-                          <div class="row">
+                          <div class="row"> 
                               <div class="col-xs-3">
-                                  <i class="fa fa-calendar-times-o fa-5x"></i>
+                                  <i class="fa fa-check-square fa-5x"></i>
                               </div>
-                              <div class="col-xs-9 text-right">
-                                  <div class="huge">
+                              <div class="col-xs-9 text-right"> 
+                                   <div class="huge"> 
             <?php
             ?>
                                   </div>
-                                  <div>Pleno Fallido</div>
+                                  <div>Sin Duplicados</div>
                               </div>
                           </div>
                       </div>
-                      <a href="<?php echo __BASE_URL__ . __MODULO_SEGUROS__ ?>view/plenofallido.php?mnu=seguro"">
+                      <a href="<?php echo __BASE_URL__ . __MODULO_SEMANALES__ ?>view/sinduplicados.php?mnu=semanal">
                           <div class="panel-footer">
                               <span class="pull-left">Ver Detalles</span>
                               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -170,7 +170,7 @@ group by concat(tm.ad1,tm.ad2,tm.ad4,tm.ad7,tm.ad21,tm.ad13,tm.ad18) having coun
                           </div>
                       </a>
                   </div>
-              </div>-->
+              </div>
           <!--    <div class="col-lg-3 col-md-6">
                   <div class="panel panel-warning">
                       <div class="panel-heading">
