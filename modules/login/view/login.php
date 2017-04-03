@@ -5,6 +5,8 @@ if($_POST['Usr']==null or $_POST['Usr']=="" or $_POST['Pass']==null or $_POST['P
     echo false;
 }
 else{
-    $login->CargarSession($_POST['Usr'], $_POST['Pass'], __BASE_DATOS__, "usuario");
+    if($login->CargarSession($_POST['Usr'], $_POST['Pass'], __BASE_DATOS__, "usuario")){
+          return TRUE;
+    }
 }
 

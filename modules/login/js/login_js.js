@@ -15,13 +15,11 @@ alert("login");
                 datatype: "json",
                 data: archi,
                 url: "login.php",
-                success: function (msg) {
-                if(msg==false){
-                    alert ("Error: Revise Usuario y Contraseña o Contacte a su adeministrador");
-                }
+                success: function (archi) {
+               window.open('../../seguros/view/seguros_index.php','_self');
                 },
-                error: function (msg) {
-                  //  alert ("Error: Revise Usuario y Contraseña o Contacte a su adeministrador");
+                error: function (archi) {
+                    alert ("Error: Revise Usuario y Contraseña o Contacte a su adeministrador");
                 }
             });
 
