@@ -42,50 +42,50 @@
                 $conn = new config();
 
 //   cargando dif autos
-                     $sql = "select * from ".__BASE_DATOS__.".temporal tm 
-inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idproducto=tf.pro and trim(tm.tarifa)!=trim(tf.monto) and tf.version=tm.idversion and tm.descmedio  like '%auto%reemplazo%' group by tm.ordentrab ";
+                $sql = "select * from " . __BASE_DATOS__ . ".temporal tm 
+inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idproducto=tf.pro and trim(tm.tarifa)!=trim(tf.monto) and tf.version=tm.idversion and (tm.descmedio  like '%auto%reemplazo%' or tm.descmedio  like 'vdr%') group by tm.ordentrab ";
 
                 $res = mysql_query($sql, $conn->consulta($sql)) or die(mysql_error());
                 while ($re = mysql_fetch_array($res)) {
                     echo "<tr>";
-                    for ($i = 0; $i <24; $i++) {
+                    for ($i = 0; $i < 24; $i++) {
                         echo "<td>" . $re[$i] . "</td>";
-                        $sumauto+=$re[22];
-                        $summonto+=$re['monto'];
-                         $dif+=$re['monto']-$re[22];
+                        $sumauto += $re[22];
+                        $summonto += $re['monto'];
+                        $dif += $re['monto'] - $re[22];
                     }
-                    echo "<td>".$re['monto']."</td>";
-                    echo "<td>". number_format(($re['monto']-$re[22]),3)."</td>";
+                    echo "<td>" . $re['monto'] . "</td>";
+                    echo "<td>" . number_format(($re['monto'] - $re[22]), 3) . "</td>";
                     echo "</tr>";
                 }
-                 $sql = "select * from ".__BASE_DATOS__.".temporal tm 
-inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idproducto=tf.pro and trim(tm.tarifa)!=trim(tf.monto) and descmedio  not like '%auto%reemplazo%' group by tm.ordentrab ";
+                $sql = "select * from " . __BASE_DATOS__ . ".temporal tm 
+inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idproducto=tf.pro and trim(tm.tarifa)!=trim(tf.monto)   and (tm.descmedio not  like '%auto%reemplazo%' and  tm.descmedio  not like 'vdr%') group by tm.ordentrab ";
 
                 $res = mysql_query($sql, $conn->consulta($sql)) or die(mysql_error());
                 while ($re = mysql_fetch_array($res)) {
                     echo "<tr>";
-                    for ($i = 0; $i <24; $i++) {
+                    for ($i = 0; $i < 24; $i++) {
                         echo "<td>" . $re[$i] . "</td>";
-                        $sumnauto+=$re[22];
-                        $sumnmonto+=$re['monto'];
-                         $dif+=$re['monto']-$re[22];
+                        $sumnauto += $re[22];
+                        $sumnmonto += $re['monto'];
+                        $dif += $re['monto'] - $re[22];
                     }
-                    echo "<td>".$re['monto']."</td>";
-                    echo "<td>". number_format(($re['monto']-$re[22]),3)."</td>";
+                    echo "<td>" . $re['monto'] . "</td>";
+                    echo "<td>" . number_format(($re['monto'] - $re[22]), 3) . "</td>";
                     echo "</tr>";
                 }
                 ?>
             </tbody>
           <!--  <tfoot><th>Totales</th>
-            <?php 
-           // for($i=1;$i<=21;$i++){
+            <?php
+            // for($i=1;$i<=21;$i++){
             //    echo "<th></th>";
-           // }
+            // }
             ?>
-            <th><?php //echo number_format(($sumauto+$sumnauto),3)?></th>
+            <th><?php //echo number_format(($sumauto+$sumnauto),3) ?></th>
             <th></th>
-            <th><?php //echo number_format(($summonto+$sumnmonto),3)?></th>
-            <th><?php //echo number_format(($dif),3)?></th>
+            <th><?php //echo number_format(($summonto+$sumnmonto),3) ?></th>
+            <th><?php //echo number_format(($dif),3) ?></th>
         </tfoot>-->
         </table>
         <?php
