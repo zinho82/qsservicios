@@ -27,6 +27,16 @@ class login_class {
             $this->Error();
         }
     }
+    public function sessionactiva() {
+        // session_destroy();
+        if ($_SESSION['islog'] == FALSE) {
+             header("Location: ".__BASE_URL__);
+             return false;
+
+        } else{
+            
+        return TRUE;}
+    }
 
     function CargarSession($usr, $pass, $bd, $tbl) {
         $conn = new config();

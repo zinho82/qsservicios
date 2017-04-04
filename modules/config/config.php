@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 define("__ROOT__", "/var/www/html/seguros/");
 define("__BASE_URL__", "http://190.100.117.172/seguros/");
@@ -11,7 +12,7 @@ define("__MODULO_PAGOS__", "modules/pagos/");
 define("__MODULO_TARIFAS__", "modules/tarifas/");
 define("__MODULO_SEMANALES__", "modules/semanales/");
 define("__MODULO_LOGIN__", "modules/login/");
- 
+
 class config {
 
     function consulta($sql) {
@@ -35,5 +36,5 @@ class config {
 }
 
 //require_once MODULO_SEGUROS.'core/seguros_class.php';
-require_once __MODULO_LOGIN__.'core/login_class.php';
+require_once __ROOT__ . __MODULO_LOGIN__ . 'core/login_class.php';
 ?>
