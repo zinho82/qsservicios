@@ -13,6 +13,11 @@
  */
 class login_class {
 
+    function logout() {
+        session_destroy();
+        header("Location: " . __BASE_URL__);
+    }
+
     private function Error() {
         header('HTTP/1.1 500 Internal Server Booboo');
         header('Content-Type: application/json; charset=UTF-8');
@@ -27,15 +32,16 @@ class login_class {
             $this->Error();
         }
     }
+
     public function sessionactiva() {
         // session_destroy();
         if ($_SESSION['islog'] == FALSE) {
-             header("Location: ".__BASE_URL__);
-             return false;
+            header("Location: " . __BASE_URL__);
+            return false;
+        } else {
 
-        } else{
-            
-        return TRUE;}
+            return TRUE;
+        }
     }
 
     function CargarSession($usr, $pass, $bd, $tbl) {
@@ -50,7 +56,6 @@ class login_class {
             $_SESSION['usuario']['nombre'] = $usuario['usuario'];
             $_SESSION['usuario']['id'] = $usuario['idusuario'];
             $_SESSION['usuario']['rut'] = $usuario['rut'];
-           
         }
     }
 

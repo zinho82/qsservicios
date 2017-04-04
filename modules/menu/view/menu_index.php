@@ -44,7 +44,7 @@ case "tarifas":$m5='active';    break;
         </li>-->
       </ul>
         
-        <!--
+        
       <form class="navbar-form navbar-left">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
@@ -63,7 +63,7 @@ case "tarifas":$m5='active';    break;
             <li><a href="#">Separated link</a></li>
           </ul>
         </li>
-      </ul>-->
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

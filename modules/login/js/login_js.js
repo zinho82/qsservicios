@@ -1,5 +1,4 @@
 $(document).ready(function () {
-alert("login");
     /******************************
      * BtnIngresar
      * Llama al verificador de datos para
