@@ -39,17 +39,28 @@
             <tbody>
                 <?php
                 $conn = new config();
-                $sql = "select * from qsservicios.temporal tm 
-inner join qsservicios.tarifas tf on tf.id_prestacion=tm.ad19 
-and tm.ad12=tf.pro
-and trim(tm.ad23)!=trim(tf.monto)
-group by tm.ad1";
 
-                $res = mysql_query($sql, $conn->consulta($sql));
-                while ($re = mysql_fetch_assoc($res)) {
+//   cargando dif autos
+                     $sql = "select * from ".__BASE_DATOS__.".temporal tm 
+inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idproducto=tf.pro and trim(tm.tarifa)!=trim(tf.monto) and tf.version=tm.idversion and descmedio  like '%auto%reemplazo%' group by tm.expediente";
+
+                $res = mysql_query($sql, $conn->consulta($sql)) or die(mysql_error());
+                while ($re = mysql_fetch_array($res)) {
                     echo "<tr>";
-                    for ($i = 1; $i < 25; $i++) {
-                        echo "<td>" . $re['ad' . $i] . "</td>";
+                    for ($i = 0; $i <24; $i++) {
+                        echo "<td>" . $re[$i] . "</td>";
+                    }
+                    echo "<td>".$re['monto']."</td>";
+                    echo "</tr>";
+                }
+                 $sql = "select * from ".__BASE_DATOS__.".temporal tm 
+inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idproducto=tf.pro and trim(tm.tarifa)!=trim(tf.monto) and tf.version=tm.idversion and descmedio  not like '%auto%reemplazo%' group by tm.expediente";
+
+                $res = mysql_query($sql, $conn->consulta($sql)) or die(mysql_error());
+                while ($re = mysql_fetch_array($res)) {
+                    echo "<tr>";
+                    for ($i = 0; $i <24; $i++) {
+                        echo "<td>" . $re[$i] . "</td>";
                     }
                     echo "<td>".$re['monto']."</td>";
                     echo "</tr>";

@@ -2,7 +2,7 @@
 switch ($_GET['mnu']){
 case "carga":$m1='active';    break;
 case "seguro":$m2='active';    break;
-case "semanales":$m4='active';    break;
+case "mensual":$m4='active';    break;
 case "tarifas":$m5='active';    break;
 
 }
@@ -26,8 +26,8 @@ case "tarifas":$m5='active';    break;
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="<?php echo $m1?>"><a href="<?php echo __BASE_URL__.__MODULO_CARGAR__.'view/cargas_index.php?mnu=carga'?> ">Centro de Archivos</a></li>
-        <li class="<?php echo $m2?>"><a href="<?php echo __BASE_URL__.__MODULO_SEGUROS__.'view/seguros_index.php?mnu=seguro'?> ">Procesar Carga Seguros </a></li>
-        <li class="<?php echo $m4?>"><a href="<?php echo __BASE_URL__.__MODULO_SEMANALES__.'view/semanales_index.php?mnu=semanales'?> ">Procesar Carga X Semana </a></li>
+        <li class="<?php echo $m2?>"><a href="<?php echo __BASE_URL__.__MODULO_SEGUROS__.'view/seguros_index.php?mnu=seguro'?> ">Procesar Carga X Semana </a></li>
+        <li class="<?php echo $m4?>"><a href="<?php echo __BASE_URL__.__MODULO_SEMANALES__.'view/semanales_index.php?mnu=mensual'?> ">Procesar Carga X Mes </a></li>
         <li class="<?php echo $m5?>"><a href="<?php echo __BASE_URL__.__MODULO_TARIFAS__.'view/tarifas_index.php?mnu=tarifas'?> ">Listado Tarifas </a></li>
      <!--   <li><a href="#">Link</a></li>
         <li class="dropdown">
