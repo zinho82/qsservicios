@@ -7,7 +7,7 @@ define("__MODULO_ACCESORIOS__", "archivos/");
 define("__MODULO_MENU__", "modules/menu/");
 define("__MODULO_CARGAR__", "modules/cargas/");
 define("__MODULO_SEGUROS__", "modules/seguros/");
-define("__MODULO_PAGOS__", "modules/pagos/");
+define("__MODULO_PAGOS__", "modules/pagos/"); 
 define("__MODULO_TARIFAS__", "modules/tarifas/");
 define("__MODULO_SEMANALES__", "modules/semanales/");
  
@@ -32,6 +32,6 @@ class config {
     }
 
 }
-
-//require_once MODULO_SEGUROS.'core/seguros_class.php';
+ 
+//require_once   __ROOT__.__MODULO_LOGIN__."core/login_class.php";
 ?>
