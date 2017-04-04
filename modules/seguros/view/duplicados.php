@@ -40,14 +40,13 @@
                 <?php
                 $conn = new config();
                 $sql = "select count(*) as cant,tm.* from " . __BASE_DATOS__ . ".temporal tm
-group by concat(tm.ad21,tm.ad22,tm.ad19,tm.ad14,tm.ad12,tm.ad7) having count(*)>1;"; 
-
+group by timestamp(tm.fechaot),trim(tm.nomcliente),trim(tm.defproducto),trim(ordentrab),trim(tm.defprest),trim(tm.matricula),trim(tm.fechaprestacion),trim(tm.descmedio) having count(*)>1"; 
                 $res = mysql_query($sql, $conn->consulta($sql));
-                while ($re = mysql_fetch_assoc($res)) {
+                while ($re = mysql_fetch_array($res)) {
                     echo "<tr>"
                     . "<td>" . $re['cant'] . "</td>";
                     for ($i = 1; $i < 25; $i++) {
-                        echo "<td>" . $re['ad' . $i] . "</td>";
+                        echo "<td>" . $re[$i] . "</td>";
                     }
                     echo "</tr>";
                 }

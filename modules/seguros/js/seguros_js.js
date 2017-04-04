@@ -47,7 +47,7 @@ $(document).ready(function() {
                 data: archi,
                 url: "proccarga.php",
                 success: function (archi) {
-                    location.reload();
+                   // location.reload();
 
                 },
                 error: function () {
