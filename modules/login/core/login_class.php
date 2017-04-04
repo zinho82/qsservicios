@@ -52,7 +52,7 @@ class login_class {
         if ($usuario == FALSE) {
             $this->Error();
         } else {
-            $_SESSION['usuario']['islog'] = TRUE;
+            $_SESSION['usuario']['islog'] = 1;
             $_SESSION['usuario']['nombre'] = $usuario['usuario'];
             $_SESSION['usuario']['id'] = $usuario['idusuario'];
             $_SESSION['usuario']['rut'] = $usuario['rut'];

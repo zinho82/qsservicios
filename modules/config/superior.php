@@ -21,16 +21,16 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     </head>
     <body style="background-color: #000;" >
-        <?php
-        //var_dump($_SESSION);
-        if ((!$_SERVER['HTTP_REFERER'] !==__BASE_URL__ . __MODULO_LOGIN__ . "view/login_index.php") and  ( $_SESSION['usuario']['islog']==TRUE)) {
+        <?php 
+         $reque="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        if (( $reque !==__BASE_URL__ . __MODULO_LOGIN__ . "view/login_index.php") and  ( $_SESSION['usuario']['islog']==1)) {
             require_once __ROOT__ . __MODULO_MENU__ . 'view/menu_index.php';
         } else {
             if ($_SERVER['revision'] == 1) {
                 header("Location: " . __BASE_URL__);
             } else {
                 $_SESSION['revision'] = 1;
-                $_SESSION['usuario']['islog'] = TRUE;
+                $_SESSION['usuario']['islog']=1; 
             }
         }
         ?>
