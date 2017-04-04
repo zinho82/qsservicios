@@ -20,7 +20,7 @@ class config {
     function conectar($query) {
         $link = mysql_connect('localhost', 'root', 'zinho1982')
                 or die('No se pudo conectar: ' . mysql_error());
-        mysql_select_db('qsservicios');
+        mysql_select_db(__BASE_DATOS__);
 //echo 'Connected successfully'; 
         return $link;
     }

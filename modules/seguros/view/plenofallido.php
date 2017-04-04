@@ -42,10 +42,10 @@
                 $conn = new config();
  $sql2="select *,tf.monto as tarifa_convenio,tf.monto/2 as tarifa_final from qsservicios.temporal tm 
 
-inner join qsservicios.tarifas tf on  tf.id_prestacion=tm.ad19 
-and tm.ad12=tf.pro
+inner join qsservicios.tarifas tf on  tf.id_prestacion=tm.idprest 
+and tm.idproducto=tf.pro
 
-where tm.ad17 like 'fallido'";
+where tm.pleno like 'fallido'";
                 $res = mysql_query($sql2, $conn->conectar()) or die(mysql_error());
                 while ($re = mysql_fetch_array($res)) {
                     echo "<tr>";
