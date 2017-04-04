@@ -50,6 +50,9 @@ inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idprodu
                     echo "<tr>";
                     for ($i = 0; $i <24; $i++) {
                         echo "<td>" . $re[$i] . "</td>";
+                        $sumauto+=$re[22];
+                        $summonto+=$re['monto'];
+                         $dif+=$re['monto']-$re[22];
                     }
                     echo "<td>".$re['monto']."</td>";
                     echo "<td>". number_format(($re['monto']-$re[22]),3)."</td>";
@@ -63,6 +66,9 @@ inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idprodu
                     echo "<tr>";
                     for ($i = 0; $i <24; $i++) {
                         echo "<td>" . $re[$i] . "</td>";
+                        $sumnauto+=$re[22];
+                        $sumnmonto+=$re['monto'];
+                         $dif+=$re['monto']-$re[22];
                     }
                     echo "<td>".$re['monto']."</td>";
                     echo "<td>". number_format(($re['monto']-$re[22]),3)."</td>";
@@ -70,6 +76,17 @@ inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idprodu
                 }
                 ?>
             </tbody>
+            <tfoot><th>Totales</th>
+            <?php 
+            for($i=1;$i<=21;$i++){
+                echo "<th></th>";
+            }
+            ?>
+            <th><?php echo number_format(($sumauto+$sumnauto),3)?></th>
+            <th></th>
+            <th><?php echo number_format(($summonto+$sumnmonto),3)?></th>
+            <th><?php echo number_format(($dif),3)?></th>
+        </tfoot>
         </table>
         <?php
         ?>
