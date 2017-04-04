@@ -26,9 +26,10 @@
         if (( $reque !==__BASE_URL__ . __MODULO_LOGIN__ . "view/login_index.php") and  ( $_SESSION['usuario']['islog']==1)) {
             require_once __ROOT__ . __MODULO_MENU__ . 'view/menu_index.php';
         } else {
-            if ($_SERVER['revision'] == 1) {
+            if (($_SERVER['revision'] == 1  ) and ($_SESSION['usuario']['id']==false)) {
                 header("Location: " . __BASE_URL__);
             } else {
+                session_destroy();
                 $_SESSION['revision'] = 1;
                 $_SESSION['usuario']['islog']=1; 
             }

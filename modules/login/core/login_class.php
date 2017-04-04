@@ -46,17 +46,23 @@ class login_class {
 
     function CargarSession($usr, $pass, $bd, $tbl) {
         $conn = new config();
+        try{
         $sql = "select * from $bd.$tbl where usuario='$usr' and clave='$pass' and estado=14 ";
         $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
-        $usuario = mysql_fetch_array($res);
-        if ($usuario == FALSE) {
+        var_dump($usuario = mysql_fetch_array($res));
+        if ($usuario['idusuario'] == FALSE) {
             $this->Error();
         } else {
             $_SESSION['usuario']['islog'] = 1;
             $_SESSION['usuario']['nombre'] = $usuario['usuario'];
             $_SESSION['usuario']['id'] = $usuario['idusuario'];
             $_SESSION['usuario']['rut'] = $usuario['rut'];
+            return TRUE;
         }
+    } catch (Exception $e){
+        return FALSE;
     }
+    }
+    
 
 }
