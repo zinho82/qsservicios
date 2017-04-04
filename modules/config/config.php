@@ -1,8 +1,8 @@
 <?php
 
-define("__ROOT__", "/var/www/html/qsservicios/");
-define("__BASE_URL__", "http://190.100.117.172/qsservicios/");
-define("__BASE_DATOS__", "qsservicios");
+define("__ROOT__", "/var/www/html/seguros/");
+define("__BASE_URL__", "http://190.100.117.172/seguros/");
+define("__BASE_DATOS__", "qsservicios2");
 define("__MODULO_ACCESORIOS__", "archivos/");
 define("__MODULO_MENU__", "modules/menu/");
 define("__MODULO_CARGAR__", "modules/cargas/");

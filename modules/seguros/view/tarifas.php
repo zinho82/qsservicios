@@ -42,7 +42,7 @@
 
 //   cargando dif autos
                      $sql = "select * from ".__BASE_DATOS__.".temporal tm 
-inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idproducto=tf.pro and trim(tm.tarifa)!=trim(tf.monto) and tf.version=tm.idversion and descmedio  like '%auto%reemplazo%' group by tm.expediente";
+inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idproducto=tf.pro and trim(tm.tarifa)!=trim(tf.monto) and tf.version=tm.idversion and tm.descmedio  like '%auto%reemplazo%' group by tm.ordentrab ";
 
                 $res = mysql_query($sql, $conn->consulta($sql)) or die(mysql_error());
                 while ($re = mysql_fetch_array($res)) {
@@ -54,7 +54,7 @@ inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idprodu
                     echo "</tr>";
                 }
                  $sql = "select * from ".__BASE_DATOS__.".temporal tm 
-inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idproducto=tf.pro and trim(tm.tarifa)!=trim(tf.monto) and tf.version=tm.idversion and descmedio  not like '%auto%reemplazo%' group by tm.expediente";
+inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idproducto=tf.pro and trim(tm.tarifa)!=trim(tf.monto) and descmedio  not like '%auto%reemplazo%' group by tm.ordentrab ";
 
                 $res = mysql_query($sql, $conn->consulta($sql)) or die(mysql_error());
                 while ($re = mysql_fetch_array($res)) {
