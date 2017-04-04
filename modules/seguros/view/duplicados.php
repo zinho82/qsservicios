@@ -1,6 +1,6 @@
 <?php require_once '../../config/superior.php'; ?>
 <div class="panel panel-primary">
-    <div class="panel-heading">Seguros</div>
+    <div class="panel-heading">Seguros</div> 
 </div>
 <div class="panel panel-success">
     <div class="panel-heading">Registros Duplicados</div>
