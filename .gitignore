@@ -1,6 +1,6 @@
 /Document
 /base
-/modules/config/
+/modules/config/config*
 *config* 
 *_BK*
 *_bk*
