@@ -33,6 +33,7 @@
                     <th>Tarifa Cobrada</th>
                     <th>Conductor</th>
                     <td>Tarifa Convenio</td>
+                    <td>Diferencia</td>
 
                 </tr>
             </thead>
@@ -51,6 +52,7 @@ inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idprodu
                         echo "<td>" . $re[$i] . "</td>";
                     }
                     echo "<td>".$re['monto']."</td>";
+                    echo "<td>". number_format(($re['monto']-$re[22]),3)."</td>";
                     echo "</tr>";
                 }
                  $sql = "select * from ".__BASE_DATOS__.".temporal tm 
@@ -63,6 +65,7 @@ inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idprodu
                         echo "<td>" . $re[$i] . "</td>";
                     }
                     echo "<td>".$re['monto']."</td>";
+                    echo "<td>". number_format(($re['monto']-$re[22]),3)."</td>";
                     echo "</tr>";
                 }
                 ?>
