@@ -76,17 +76,17 @@ inner join qsservicios2.tarifas tf on tf.id_prestacion=tm.idprest and tm.idprodu
                 }
                 ?>
             </tbody>
-            <tfoot><th>Totales</th>
+          <!--  <tfoot><th>Totales</th>
             <?php 
-            for($i=1;$i<=21;$i++){
-                echo "<th></th>";
-            }
+           // for($i=1;$i<=21;$i++){
+            //    echo "<th></th>";
+           // }
             ?>
-            <th><?php echo number_format(($sumauto+$sumnauto),3)?></th>
+            <th><?php //echo number_format(($sumauto+$sumnauto),3)?></th>
             <th></th>
-            <th><?php echo number_format(($summonto+$sumnmonto),3)?></th>
-            <th><?php echo number_format(($dif),3)?></th>
-        </tfoot>
+            <th><?php //echo number_format(($summonto+$sumnmonto),3)?></th>
+            <th><?php //echo number_format(($dif),3)?></th>
+        </tfoot>-->
         </table>
         <?php
         ?>
