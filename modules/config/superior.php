@@ -22,7 +22,8 @@
     </head>
     <body style="background-color: #000;" >
         <?php
-        if ((!$_SERVER['HTTP_REFERER'] != __BASE_URL__ . __MODULO_LOGIN__ . "view/login_index.php") and  ( $_SESSION['usuario']['islog']==TRUE)) {
+        var_dump($_SESSION);
+        if ((!$_SERVER['HTTP_REFERER'] !==__BASE_URL__ . __MODULO_LOGIN__ . "view/login_index.php") and  ( $_SESSION['usuario']['islog']==TRUE)) {
             require_once __ROOT__ . __MODULO_MENU__ . 'view/menu_index.php';
         } else {
             if ($_SERVER['revision'] == 1) {
