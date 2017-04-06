@@ -16,6 +16,7 @@ class login_class {
     function logout() {
         session_destroy();
         header("Location: " . __BASE_URL__);
+        return;
     }
 
     private function Error() {

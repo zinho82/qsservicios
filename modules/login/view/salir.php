@@ -1,5 +1,6 @@
 <?php
-require_once 'modules/config/superior.php';
+require_once '../../config/config.php';
+
+
 $login=new login_class();
 $login->logout();
-    echo "salir"; 

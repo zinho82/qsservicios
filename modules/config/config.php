@@ -1,8 +1,9 @@
 <?php
 session_start();
-
+define("__SERVIDOR_DATOS__", "201.239.170.83");
+//define("__SERVIDOR_DATOS__", "190.100.117.172");
 define("__ROOT__", "/var/www/html/qsservicios/");
-define("__BASE_URL__", "http://201.239.170.83/qsservicios/");
+define("__BASE_URL__", "http://".__SERVIDOR_DATOS__."/qsservicios/");
 define("__BASE_DATOS__", "qsservicios");
 define("__MODULO_ACCESORIOS__", "archivos/");
 define("__MODULO_MENU__", "modules/menu/");
