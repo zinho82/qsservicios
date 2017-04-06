@@ -52,12 +52,13 @@ case "tarifas":$m5='active';    break;
         <button type="submit" class="btn btn-default">Submit</button>
       </form>-->
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
+        <li class="dropdown"> 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user">  <?php echo $_SESSION['usuario']['nombre'] ?></i> <span class="caret"></span></a>
           <ul class="dropdown-menu">
            <!-- <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>-->
+           <li><a href="<?php echo __BASE_URL__.__MODULO_PANEL__ ?>view/panel_index.php"><i class="fa fa-home"></i> Home </a></li>
             <li role="separator" class="divider"></li>
             <li><a href="<?php echo __BASE_URL__.__MODULO_LOGIN__ ?>view/salir.php"><i class="fa fa-sign-out"></i> Salir </a></li>
           </ul>
