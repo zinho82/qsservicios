@@ -13,7 +13,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
             //comprobamos si el archivo ha subido
             
             if (move_uploaded_file($_FILES['archivo']['tmp_name'], __ROOT__ . __MODULO_ACCESORIOS__ .$file)) {
-                    $sql = "insert into " . __BASE_DATOS__ . ".archivos values(null,'$file','" . $_FILES['archivo']['name'] . "','" . date('Y-m-d G:i:s') . "',".$_POST['TipoArchivo'].",'".$_POST['TipoCarga']."')";
+                     $sql = "insert into " . __BASE_DATOS__ . ".archivos values(null,'$file','" . $_FILES['archivo']['name'] . "','" . date('Y-m-d G:i:s') . "',".$_POST['TipoArchivo'].",'".$_POST['TipoCarga']."')";
                
                 sleep(3); //retrasamos la petición 3 segundos
                   $file; //devolvemos el nombre del archivo para pintar la imagen
