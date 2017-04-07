@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    alert("mplaza");
        /***************************************
      * Deshabilita campos del formulario
      * 
@@ -61,7 +62,7 @@ $(document).ready(function() {
      * para los registros seleccionados
      * 
      ****************************************/
-    $('#example').DataTable({
+    $('#calificacion').DataTable({
         dom: 'Bfrtip',
          buttons: [
             {

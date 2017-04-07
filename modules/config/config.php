@@ -21,7 +21,7 @@ class config {
         return $this->conectar($sql);
     }
 
-    function conectar($query) {
+    function conectar() {
         $link = mysql_connect('localhost', 'root', 'zinho1982')
                 or die('No se pudo conectar: ' . mysql_error());
         mysql_select_db(__BASE_DATOS__);
@@ -34,9 +34,26 @@ class config {
         $res = mysql_query($sql, $this->conectar());
         return mysql_result($res, 0);
     }
-
+    function CargaCampanaSession($idCampana) {
+       echo  $sql="select * from ".__BASE_DATOS__.".campana where idcampana=$idCampana";
+        $res=mysql_query($sql, $this->conectar());
+        $sesscam=mysql_fetch_array($res);
+        $_SESSION['campana']['bd']=$sesscam['bd'];
+        $_SESSION['campana']['id']=$sesscam['idcampana'];
+        $_SESSION['campana']['nombre']=$sesscam['nombre'];
+    }
+    function ListaCampanas() {
+        $selec="<option value='-1' selected=''>Seleccion Una Campaña</option>";
+         $sql="select * from ".__BASE_DATOS__.".campana where sponsor=1";
+        $res=mysql_query($sql, $this->conectar()) or die(mysql_error());
+       while($opc=mysql_fetch_array($res)){
+            $selec.= "<option value=".$opc['idcampana'].">".$opc['nombre']."</option>";
+        }
+        return $selec;
+    }
 }
 
 //require_once MODULO_SEGUROS.'core/seguros_class.php';
 require_once __ROOT__ . __MODULO_LOGIN__ . 'core/login_class.php';
+require_once __ROOT__ . __MODULO_MALLPLAZA__ . 'core/mallplaza_class.php';
 ?>

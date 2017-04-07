@@ -30,8 +30,8 @@ case "procesar":$m6='active';    break;
         <li class="<?php echo $m2?>"><a href="<?php echo __BASE_URL__.__MODULO_SEGUROS__.'view/seguros_index.php?mnu=seguro'?> ">Procesar Carga X Semana </a></li>
         <li class="<?php echo $m4?>"><a href="<?php echo __BASE_URL__.__MODULO_SEMANALES__.'view/semanales_index.php?mnu=mensual'?> ">Procesar Carga X Mes </a></li>
         <li class="<?php echo $m5?>"><a href="<?php echo __BASE_URL__.__MODULO_TARIFAS__.'view/tarifas_index.php?mnu=tarifas'?> ">Listado Tarifas </a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle  <?php echo $m6?>" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Procesar <span class="caret"></span></a>
+        <li class="dropdown <?php echo $m6?>">
+          <a href="#" class="dropdown-toggle  " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Procesar <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li ><a href="<?php echo __BASE_URL__.__MODULO_MALLPLAZA__.'view/mallplaza_index.php?mnu=procesar'?> ">Mall Plaza </a></li>
           </ul>

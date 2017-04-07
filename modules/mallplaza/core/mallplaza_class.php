@@ -12,5 +12,18 @@
  * @author Analista 01
  */
 class mallplaza_class {
-    //put your code here
+
+    public function CargarNPS($fecha, $bd, $tbl) {
+        $conn = new config();
+         $sql = "select * from $bd.$tbl where month(numcarga)=" . date('m');
+        $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
+        while ($np = mysql_fetch_array($res)) {
+            echo "<tr>"
+            . "<td>".$np['rut']."</td>"
+            . "<td>".$np['nombre'].' '.$np['app']."</td>"
+            . "<td>".$np['mall']."</td>"
+                    . "<td><a href='".__BASE_URL__.__MODULO_MALLPLAZA__."view/calificar.php?ru=".$np['rut']."&nom=".$np['nombre']."'><i class='fa fa-search fa-2x'></i></a></td>"
+            . "</tr>";
+        }
+    }
 }
