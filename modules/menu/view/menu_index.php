@@ -4,6 +4,7 @@ case "carga":$m1='active';    break;
 case "seguro":$m2='active';    break;
 case "mensual":$m4='active';    break;
 case "tarifas":$m5='active';    break;
+case "procesar":$m6='active';    break;
 
 }
 ?>
@@ -29,19 +30,12 @@ case "tarifas":$m5='active';    break;
         <li class="<?php echo $m2?>"><a href="<?php echo __BASE_URL__.__MODULO_SEGUROS__.'view/seguros_index.php?mnu=seguro'?> ">Procesar Carga X Semana </a></li>
         <li class="<?php echo $m4?>"><a href="<?php echo __BASE_URL__.__MODULO_SEMANALES__.'view/semanales_index.php?mnu=mensual'?> ">Procesar Carga X Mes </a></li>
         <li class="<?php echo $m5?>"><a href="<?php echo __BASE_URL__.__MODULO_TARIFAS__.'view/tarifas_index.php?mnu=tarifas'?> ">Listado Tarifas </a></li>
-     <!--   <li><a href="#">Link</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Procesar <span class="caret"></span></a>
+          <ul class="dropdown-menu <?php echo $m6?>">
+            <li ><a href="<?php echo __BASE_URL__.__MODULO_MALLPLAZA__.'view/mallplaza_index.php?mnu=procesar'?> ">Mall Plaza </a></li>
           </ul>
-        </li>-->
+        </li>
       </ul>
         
         

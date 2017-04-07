@@ -13,6 +13,7 @@ define("__MODULO_PAGOS__", "modules/pagos/");
 define("__MODULO_TARIFAS__", "modules/tarifas/");
 define("__MODULO_SEMANALES__", "modules/semanales/");
 define("__MODULO_LOGIN__", "modules/login/");
+define("__MODULO_MALLPLAZA__", "modules/mallplaza/");
 
 class config {
 
