@@ -15,11 +15,15 @@ class sponsor_class {
 
     function GetEmpresa() {
         $conn = new config();
-        echo $sql = "select * from " . __BASE_DATOS__.".sponsor order by nombre asc";
+         $sql = "select * from " . __BASE_DATOS__.".sponsor order by nombre asc";
         $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
         while ($spon = mysql_fetch_assoc($res)) {
           echo "<tr>"
                     . "<td>" . $spon['nombre'] . "</td>"
+                  . "<td>" . $spon['rut'] . "</td>"
+                  . "<td>" . $spon['direccion'] . "</td>"
+                  . "<td>" . $spon['comuna'] . "</td>"
+                  . "<td>" . $spon['region'] . "</td>"
                     . "</tr>"; 
         }
         return $tbl;
