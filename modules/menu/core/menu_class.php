@@ -32,16 +32,16 @@ inner join $bd.acceso_menu acm on acm.idusuario=$usuario and acm.idmenu=mnu.idme
     }
 
     private function MenuSinSub($link, $item) {
-        echo "<li><a href='" .__BASE_URL__."modules/". $link . "'>" . $item . "</a></li>";
+        echo "<li><a href='" . __BASE_URL__ . "modules/" . $link . "'>" . $item . "</a></li>";
     }
 
     private function MenuConSub($bd, $nivel, $usuario, $mnuPadre) {
         $conn = new config();
-         $sql = "select * from $bd.menu mnu
+        $sql = "select * from $bd.menu mnu
 inner join $bd.acceso_menu acm on acm.idusuario=$usuario and acm.idmenu=mnu.idmenu and mnu.nivel=$nivel and mnu.pertenece=$mnuPadre order by item asc";
         $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
         while ($mnu = mysql_fetch_array($res)) {
-            echo "<li><a href='" .__BASE_URL__."modules/".$mnu['link'] . "'>" . $mnu['item'] . "</a></li>";
+            echo "<li><a href='" . __BASE_URL__ . "modules/" . $mnu['link'] . "'>" . $mnu['item'] . "</a></li>";
         }
     }
 
@@ -51,6 +51,17 @@ inner join $bd.acceso_menu acm on acm.idusuario=$usuario and acm.idmenu=mnu.idme
 inner join $bd.acceso_menu acm on acm.idusuario=$usuario and acm.idmenu=mnu.idmenu and mnu.nivel=$nivel and mnu.pertenece=$menuPadre order by mnu.idmenu asc";
         $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
         return mysql_result($res, 0);
+    }
+
+    public function ListaAcceso($bd, $tabla) {
+        $conn = new config();
+        $sql = "select * from $bd.$tabla where idusuario!=1";
+        $res = mysql_query($sql, $conn->conectar());
+        while ($acc = mysql_fetch_array($res)) {
+            echo "<tr><td>".$conn->BuscaDatos("usuario",  $acc['idusuario'],"idusuario", "usuario")."</td>"
+                    . "<td>".$conn->BuscaDatos("menu",  $acc['idmenu'],"idmenu", "item")."</td>"
+                    . "</tr>";
+        }
     }
 
 }

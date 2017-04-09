@@ -30,17 +30,16 @@ $mnu=new menu_class();
     ?>
     </ul>
     
-    </div>
     
     
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <!--  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="<?php echo $m1?>"><a href="<?php echo __BASE_URL__.__MODULO_CARGAR__.'view/cargas_index.php?mnu=carga'?> ">Centro de Archivos</a></li>
         <li class="<?php echo $m2?>"><a href="<?php echo __BASE_URL__.__MODULO_SEGUROS__.'view/seguros_index.php?mnu=seguro'?> ">Procesar Carga X Semana </a></li>
         <li class="<?php echo $m4?>"><a href="<?php echo __BASE_URL__.__MODULO_SEMANALES__.'view/semanales_index.php?mnu=mensual'?> ">Procesar Carga X Mes </a></li>
         <li class="<?php echo $m5?>"><a href="<?php echo __BASE_URL__.__MODULO_TARIFAS__.'view/tarifas_index.php?mnu=tarifas'?> ">Listado Tarifas </a></li>
-     <!--   <li><a href="#">Link</a></li>-->
+     <!--   <li><a href="#">Link</a></li>
         <li class="dropdown <?php echo $m7?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -50,11 +49,11 @@ $mnu=new menu_class();
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>-->
-          </ul>
+            <li><a href="#">One more separated link</a></li>
+            </ul>
         </li>
       </ul>
-        
+        -->
         
      <!-- <form class="navbar-form navbar-left">
         <div class="form-group">
