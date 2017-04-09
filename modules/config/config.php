@@ -13,7 +13,9 @@ define("__MODULO_PAGOS__", "modules/pagos/");
 define("__MODULO_TARIFAS__", "modules/tarifas/");
 define("__MODULO_SEMANALES__", "modules/semanales/");
 define("__MODULO_LOGIN__", "modules/login/");
-define("__MODULO_PANEL__", "modules/panel/");
+define("__MODULO_SPONSOR__", "modules/sponsor/");
+define("__MODULO_CAMPANA__", "modules/campana/");
+
 
 class config {
 
@@ -30,7 +32,7 @@ class config {
     }
 
     function BuscaDatos($Tabla, $DatoBuscar, $CampoComparar, $CampoMostrar) {
-        $sql = "select $CampoMostrar as dato from " . __BASE_DATOS__ . ".$Tabla where $CampoComparar='$DatoBuscar'";
+         $sql = "select $CampoMostrar as dato from " . __BASE_DATOS__ . ".$Tabla where $CampoComparar='$DatoBuscar'";
         $res = mysql_query($sql, $this->conectar());
         return mysql_result($res, 0);
     }
@@ -39,5 +41,7 @@ class config {
 
 //require_once MODULO_SEGUROS.'core/seguros_class.php';
 require_once __ROOT__ . __MODULO_LOGIN__ . 'core/login_class.php';
-require_once __ROOT__ . __MODULO_PANEL__ . 'core/panel_class.php';
+require_once __ROOT__ . __MODULO_SPONSOR__ . 'core/sponsor_class.php';
+require_once __ROOT__ . __MODULO_CAMPANA__ . 'core/campana_class.php';
+require_once __ROOT__ . __MODULO_MENU__ . 'core/menu_class.php';
 ?>

@@ -4,8 +4,9 @@ case "carga":$m1='active';    break;
 case "seguro":$m2='active';    break;
 case "mensual":$m4='active';    break;
 case "tarifas":$m5='active';    break;
-
+case "admin":$m7='active';    break;
 }
+$mnu=new menu_class();
 ?>
  
 
@@ -22,28 +23,37 @@ case "tarifas":$m5='active';    break;
       <a class="navbar-brand" href="<?php echo __BASE_URL__ ?>">Qsservicios</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+    <?php
+    $mnu->CrearMenu(__BASE_DATOS__, 1, $_SESSION['usuario']['id']);
+    ?>
+    </ul>
+    
+    
+    
+    <!-- Collect the nav links, forms, and other content for toggling -->
+  <!--  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="<?php echo $m1?>"><a href="<?php echo __BASE_URL__.__MODULO_CARGAR__.'view/cargas_index.php?mnu=carga'?> ">Centro de Archivos</a></li>
         <li class="<?php echo $m2?>"><a href="<?php echo __BASE_URL__.__MODULO_SEGUROS__.'view/seguros_index.php?mnu=seguro'?> ">Procesar Carga X Semana </a></li>
         <li class="<?php echo $m4?>"><a href="<?php echo __BASE_URL__.__MODULO_SEMANALES__.'view/semanales_index.php?mnu=mensual'?> ">Procesar Carga X Mes </a></li>
         <li class="<?php echo $m5?>"><a href="<?php echo __BASE_URL__.__MODULO_TARIFAS__.'view/tarifas_index.php?mnu=tarifas'?> ">Listado Tarifas </a></li>
      <!--   <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+        <li class="dropdown <?php echo $m7?>">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="<?php echo __BASE_URL__.__MODULO_SPONSOR__ ?>view/sponsor_index.php?mnu=admin">Sponsor</a></li>
+            <li><a href="<?php echo __BASE_URL__.__MODULO_CAMPANA__ ?>view/campana_index.php?mnu=admin">Campañas</a></li>
+            <!--<li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>-->
+            </ul>
+        </li>
       </ul>
-        
+        -->
         
      <!-- <form class="navbar-form navbar-left">
         <div class="form-group">
