@@ -40,11 +40,10 @@
                 <?php
                 $conn = new config();
                 mysql_query("truncate ".__BASE_DATOS__.".duplicados", $conn->conectar());
-                  $sql = " insert into ".__BASE_DATOS__.".duplicados select tm.ad1,tm.ad25 from ".__BASE_DATOS__.".temporal tm 
-inner join ".__BASE_DATOS__.".historico hi on hi.numexpediente=tm.ad1 and tm.ad2=hi.fechaot and tm.ad4=hi.ordentrab and tm.ad7=hi.ruttitular and tm.ad21=hi.nummat and tm.ad13=hi.definicionproducto and tm.ad18=hi.descmedio 
-group by concat(tm.ad21,tm.ad22,tm.ad19,tm.ad14,tm.ad12,tm.ad7) having count(*)>1;
-";
-                mysql_query($sql, $conn->conectar());
+                  $sql = " insert into ".__BASE_DATOS__.".duplicados select tm.expediente,tm.fcarga from ".__BASE_DATOS__.".temporal tm 
+inner join ".__BASE_DATOS__.".historico hi on hi.nomcliente=tm.nomcliente and hi.numexpediente=tm.expediente
+group by timestamp(tm.fechaot),trim(tm.nomcliente),trim(tm.defproducto),trim(tm.ordentrab),trim(tm.defprest),trim(tm.matricula),trim(tm.fechaprestacion),trim(tm.descmedio) having count(*)>1"; 
+                mysql_query($sql, $conn->conectar()) or die(mysql_error());
  $sql2="select hi.* from ".__BASE_DATOS__.".historico hi inner join  ".__BASE_DATOS__.".duplicados du on du.expediente=hi.numexpediente";
                 $res = mysql_query($sql2, $conn->conectar()) or die(mysql_error());
                 while ($re = mysql_fetch_array($res)) {

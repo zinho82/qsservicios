@@ -42,7 +42,7 @@
                 <?php
                 $conn = new config();
                 mysql_query("truncate ".__BASE_DATOS__.".duplicados",$conn->conectar());
-                $sql = "insert into ".__BASE_DATOS__.".duplicados select expediente,null from ".__BASE_DATOS__.".semanales_temporal stm
+                 $sql = "insert into ".__BASE_DATOS__.".duplicados select expediente,null from ".__BASE_DATOS__.".semanales_temporal stm
 group by concat(stm.patente,stm.fecservicio,stm.codservicio,stm.cod_colectivo,stm.cod_contrato,stm.clasif) having count(*)>1;"; 
 
                 $res = mysql_query($sql, $conn->consulta($sql)) or die(mysql_error());
