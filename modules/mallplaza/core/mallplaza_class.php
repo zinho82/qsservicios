@@ -26,4 +26,20 @@ class mallplaza_class {
             . "</tr>";
         }
     }
+    public function CargaPersona($rut) {
+        $conn=new config();
+         $sql="select * from ".$_SESSION['campana']['bd'].".cliente_dato where rut='$rut'";
+        $res=mysql_query($sql,$conn->conectar());
+        return mysql_fetch_assoc($res);
+    }
+    function CargaDimemsion() {
+        $conn=new config();
+      echo   $sql="select * from ".$_SESSION['campana']['bd'].".causas";
+        $res=mysql_query($sql,$conn->conectar());
+        while($cau=mysql_fetch_array($res)){
+            echo "<option values=".$cau['CodCausa'].">".$cau['Causa']."</option>";
+        }
+                
+        
+    }
 }

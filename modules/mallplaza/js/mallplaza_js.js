@@ -33,6 +33,29 @@ $(document).ready(function() {
                 }
             });
     });
+        /***************************************
+     * campana
+     * carga la session para la campaña seleccioonada
+     * 
+     ****************************************/
+    $("#campana").change(function(){
+        var archi=$("#BuscarArchivo").serialize();
+        
+            $.ajax({
+                type: "post",
+                datatype: "json",
+                data: archi,
+                url: "genera-session.php",
+                success: function (archi) {
+                    $("#archivo").attr("disabled", false);
+                    $("#archivo").html(archi);
+
+                },
+                error: function () {
+                    alert(" error no se puedo obtener informacion");
+                }
+            });
+    });
     /***************************************
      * PROCESAR CARGA
      * Realiza la carga al temporal, historico y unico de los registros

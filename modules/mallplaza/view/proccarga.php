@@ -41,9 +41,9 @@ fclose ($fp);
 mysql_query("truncate " . $_SESSION['campana']['bd'] . ".cliente_dato", $conn->conectar());
 $sql="insert into ".$_SESSION['campana']['bd'].".cliente_dato select * from ".$_SESSION['campana']['bd'].".temporal ";
 mysql_query($sql,$conn->conectar()) or die(mysql_error());
-$npndetra="update ".$_SESSION['campana']['bd'].".cliente_dato set npsdrtactor=npspromotor where npspromotor!='' ";
+$npndetra="update ".$_SESSION['campana']['bd'].".cliente_dato set npsdtractor=npspromotor where npspromotor!='' ";
 mysql_query($npndetra,$conn->conectar());
-$npndetra="update ".$_SESSION['campana']['bd'].".cliente_dato set npsdrtactor=npspasivo where npspasivo!='' ";
+$npndetra="update ".$_SESSION['campana']['bd'].".cliente_dato set npsdtractor=npspasivo where npspasivo!='' ";
 mysql_query($npndetra,$conn->conectar());
 
 //echo (shell_exec ('mysql -uroot -pzinho1982 -e "load data local infile ' . "'" . $ruta . $_POST['archivo'] . "'" . ' into table ' . $_SESSION['campana']['bd'] . '.temporal fields terminated by ' . "';'" .' escaped by ' . "'\n%%\r'" .' ignore 3 lines )"'));

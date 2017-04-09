@@ -52,7 +52,9 @@ $mplaza=new mallplaza_class();
             </thead>
             <tbody>
                <?php
+               if($_SESSION['campana']['bd']){
                 echo $mplaza->CargarNPS('', $_SESSION['campana']['bd'], "cliente_dato");
+               }
                 ?>
             </tbody>
             </table>
