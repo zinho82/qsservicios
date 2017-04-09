@@ -43,4 +43,5 @@ class config {
 require_once __ROOT__ . __MODULO_LOGIN__ . 'core/login_class.php';
 require_once __ROOT__ . __MODULO_SPONSOR__ . 'core/sponsor_class.php';
 require_once __ROOT__ . __MODULO_CAMPANA__ . 'core/campana_class.php';
+require_once __ROOT__ . __MODULO_MENU__ . 'core/menu_class.php';
 ?>

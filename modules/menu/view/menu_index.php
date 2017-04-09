@@ -5,8 +5,8 @@ case "seguro":$m2='active';    break;
 case "mensual":$m4='active';    break;
 case "tarifas":$m5='active';    break;
 case "admin":$m7='active';    break;
-
 }
+$mnu=new menu_class();
 ?>
  
 
@@ -23,6 +23,16 @@ case "admin":$m7='active';    break;
       <a class="navbar-brand" href="<?php echo __BASE_URL__ ?>">Qsservicios</a>
     </div>
 
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+    <?php
+    $mnu->CrearMenu(__BASE_DATOS__, 1, $_SESSION['usuario']['id']);
+    ?>
+    </ul>
+    
+    </div>
+    
+    
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
