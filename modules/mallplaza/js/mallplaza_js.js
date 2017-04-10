@@ -185,6 +185,7 @@ $(document).ready(function () {
             data: archi,
             url: "guardacarga.php",
             success: function (archi) {
+                alert(archi);
                 // location.reload();
 
             },
