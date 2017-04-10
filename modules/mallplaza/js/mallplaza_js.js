@@ -1,60 +1,131 @@
-$(document).ready(function() {
+$(document).ready(function () {
     alert("mplaza");
-       /***************************************
+    /***************************************
      * Deshabilita campos del formulario
      * 
      ****************************************/
-    $("#ano").attr("disabled",true);
-    $("#archivo").attr("disabled",true);
-    $("#mes").change(function(){
-        $("#ano").attr("disabled",false);
+    $("#ano").attr("disabled", true);
+    $("#archivo").attr("disabled", true);
+    $("#Dim2").attr("disabled", true);
+    $("#Dim3").attr("disabled", true);
+    $("#Area2").attr("disabled", true);
+    $("#Area3").attr("disabled", true);
+
+    /***************************************
+     * MES
+     * Activa la opcion del año al ser
+     * selecionada una opc
+     * 
+     ****************************************/
+    $("#mes").change(function () {
+        $("#ano").attr("disabled", false);
     });
-       /***************************************
+    /***************************************
      * Ano
      * muestra la lista de los archivos cargados segun
      * los parametros del formulario
      * 
      ****************************************/
-    $("#ano").change(function(){
-        var archi=$("#BuscarArchivo").serialize();
-        
-            $.ajax({
-                type: "post",
-                datatype: "json",
-                data: archi,
-                url: "genera-select.php",
-                success: function (archi) {
-                    $("#archivo").attr("disabled", false);
-                    $("#archivo").html(archi);
+    $("#ano").change(function () {
+        var archi = $("#BuscarArchivo").serialize();
 
-                },
-                error: function () {
-                    alert(" error no se puedo obtener informacion");
-                }
-            });
+        $.ajax({
+            type: "post",
+            datatype: "json",
+            data: archi,
+            url: "genera-select.php",
+            success: function (archi) {
+                $("#archivo").attr("disabled", false);
+                $("#archivo").html(archi);
+
+            },
+            error: function () {
+                alert(" error no se puedo obtener informacion");
+            }
+        });
     });
-        /***************************************
-     * campana
+    /***************************************
+     * DIM(n)
+     * Activa las opciones segun las causas 
+     * (dimensiones), seleccionadas x el 
+     * usuario
+     * 
+     ****************************************/
+    $("#Dim1").change(function () {
+        var archi = $("#FormCalificacion").serialize();
+
+        $.ajax({
+            type: "post",
+            datatype: "json",
+            data: archi,
+            url: "genera-area.php",
+            success: function (archi) {
+                $("#Area1").html(archi);
+                $("#Dim2").attr("disabled", false);
+                $("#Area2").attr("disabled", false);
+            },
+            error: function () {
+                alert(" error no se puedo obtener informacion");
+            }
+        });
+    });
+    $("#Dim2").change(function () {
+        var archi = $("#FormCalificacion").serialize();
+
+        $.ajax({
+            type: "post",
+            datatype: "json",
+            data: archi,
+            url: "genera-area2.php",
+            success: function (archi) {
+                $("#Area2").html(archi);
+                $("#Dim3").attr("disabled", false);
+                $("#Area3").attr("disabled", false);
+            },
+            error: function () {
+                alert(" error no se puedo obtener informacion");
+            }
+        });
+    });
+    $("#Dim3").change(function () {
+        var archi = $("#FormCalificacion").serialize();
+
+        $.ajax({
+            type: "post",
+            datatype: "json",
+            data: archi,
+            url: "genera-area3.php",
+            success: function (archi) {
+                $("#Area3").html(archi);
+
+            },
+            error: function () {
+                alert(" error no se puedo obtener informacion");
+            }
+        });
+    });
+    /***************************************
+     * CAMPOANA
      * carga la session para la campaña seleccioonada
      * 
      ****************************************/
-    $("#campana").change(function(){
-        var archi=$("#BuscarArchivo").serialize();
-        
-            $.ajax({
-                type: "post",
-                datatype: "json",
-                data: archi,
-                url: "genera-session.php",
-                success: function (archi) {
-                    $("#archivo").attr("disabled", false);
-                    $("#archivo").html(archi);
+    $("#campana").change(function () {
+        var archi = $("#BuscarArchivo").serialize();
 
-                },
-                error: function () {
-                    alert(" error no se puedo obtener informacion");
-                }
-            });
+        $.ajax({
+            type: "post",
+            datatype: "json",
+            data: archi,
+            url: "genera-session.php",
+            success: function (archi) {
+                $("#archivo").attr("disabled", false);
+                $("#archivo").html(archi);
+
+            },
+            error: function () {
+                alert(" error no se puedo obtener informacion");
+            }
+        });
     });
     /***************************************
      * PROCESAR CARGA
@@ -62,36 +133,36 @@ $(document).ready(function() {
      * para la comparacion de los envios anteriores
      * 
      ****************************************/
-    $("#Procesar").click(function(){
-         var archi=$("#BuscarArchivo").serialize();
-        
-            $.ajax({
-                type: "post",
-                datatype: "json",
-                data: archi,
-                url: "proccarga.php",
-                success: function (archi) {
-                   // location.reload();
+    $("#Procesar").click(function () {
+        var archi = $("#BuscarArchivo").serialize();
 
-                },
-                error: function () {
-                    alert(" error no se puedo obtener informacion");
-                }
-            });
+        $.ajax({
+            type: "post",
+            datatype: "json",
+            data: archi,
+            url: "proccarga.php",
+            success: function (archi) {
+                // location.reload();
+
+            },
+            error: function () {
+                alert(" error no se puedo obtener informacion");
+            }
+        });
     });
-       /***************************************
-     * EXAMPLE
+    /***************************************
+     * CALIFICACION
      * Carga la DataTable con botones de exportacion
      * para los registros seleccionados
      * 
      ****************************************/
     $('#calificacion').DataTable({
         dom: 'Bfrtip',
-         buttons: [
+        buttons: [
             {
                 extend: 'copyHtml5',
                 exportOptions: {
-                 columns: ':contains("Office")'
+                    columns: ':contains("Office")'
                 }
             },
             'excelHtml5',
@@ -100,6 +171,27 @@ $(document).ready(function() {
         ]
 
     });
-    
-    
-} );
+ /***************************************
+     * Guarda la informacion de la calificacion
+     * de la encuesta
+     * 
+     ****************************************/
+    $("#Guardar").click(function () {
+        var archi = $("#FormCalificacion").serialize();
+
+        $.ajax({
+            type: "post",
+            datatype: "json",
+            data: archi,
+            url: "guardacarga.php",
+            success: function (archi) {
+                // location.reload();
+
+            },
+            error: function () {
+                alert(" error no se puedo obtener informacion");
+            }
+        });
+    });
+
+});

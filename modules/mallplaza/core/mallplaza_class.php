@@ -15,29 +15,30 @@ class mallplaza_class {
 
     public function CargarNPS($fecha, $bd, $tbl) {
         $conn = new config();
-         $sql = "select * from $bd.$tbl where month(numcarga)=" . date('m');
+         $sql = "select * from $bd.$tbl where estado is null and  month(numcarga)=" . date('m');
         $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
         while ($np = mysql_fetch_array($res)) {
             echo "<tr>"
             . "<td>".$np['rut']."</td>"
-            . "<td>".$np['nombre'].' '.$np['app']."</td>"
-            . "<td>".$np['mall']."</td>"
-                    . "<td><a href='".__BASE_URL__.__MODULO_MALLPLAZA__."view/calificar.php?ru=".$np['rut']."&nom=".$np['nombre']."'><i class='fa fa-search fa-2x'></i></a></td>"
+            . "<td>".utf8_encode($np['nombre'].' '.$np['app'])."</td>"
+            . "<td>".utf8_encode($np['mall'])."</td>"
+                    . "<td><a href='".__BASE_URL__.__MODULO_MALLPLAZA__."view/calificar.php?id=".$np['idcliente']."&nom=".$np['nombre']."'><i class='fa fa-search fa-2x'></i></a></td>"
             . "</tr>";
         }
     }
     public function CargaPersona($rut) {
         $conn=new config();
-         $sql="select * from ".$_SESSION['campana']['bd'].".cliente_dato where rut='$rut'";
+         $sql="select * from ".$_SESSION['campana']['bd'].".cliente_dato where idcliente='$rut'";
         $res=mysql_query($sql,$conn->conectar());
         return mysql_fetch_assoc($res);
     }
     function CargaDimemsion() {
         $conn=new config();
-      echo   $sql="select * from ".$_SESSION['campana']['bd'].".causas";
+      echo "<option values='-1' selected=''>Seleccione una dimension</option>";
+        $sql="select * from ".$_SESSION['campana']['bd'].".areas";
         $res=mysql_query($sql,$conn->conectar());
         while($cau=mysql_fetch_array($res)){
-            echo "<option values=".$cau['CodCausa'].">".$cau['Causa']."</option>";
+            echo "<option value=".$cau['CodArea'].">".utf8_encode($cau['Area'])."</option>";
         }
                 
         

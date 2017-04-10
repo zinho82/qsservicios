@@ -2,7 +2,7 @@
 <?php
 $conn = new config();
 $mplaza=new mallplaza_class();
-$baseperso=    $mplaza->CargaPersona($_GET['ru']);
+$baseperso=    $mplaza->CargaPersona($_GET['id']);
 ?>
 <div class="panel panel-primary">
     <div class="panel-heading">Mall Plaza - Calificar Encuesta: <strong> <?php echo $baseperso['nombre'];?>  </strong> </div>
@@ -23,27 +23,29 @@ $baseperso=    $mplaza->CargaPersona($_GET['ru']);
     </div>
 </div>
 </div>
+    <form id="FormCalificacion" name="FormCalificacion">
     <div class="panel panel-info">
         <div class="panel-heading">Calificar Encuesta</div>
         <div class="panel-body">
             <label>Dimension 1</label>
-            <select class="form-control">
+            <select class="form-control" id="Dim1" name="Dim1">
 <?php $mplaza->CargaDimemsion() ?>
             </select>
             <label>Tipo 1</label>
-            <select class="form-control"></select>
+            <select class="form-control" id="Area1" name="Area1"></select>
             <label>Dimension 2</label>
-            <select class="form-control"></select>
-            <label>Tipo 3</label>
-            <select class="form-control"></select>
-            <label>Dimension 3</label>
-            <select class="form-control"></select>
+            <select class="form-control" id="Dim2" name="Dim2"><?php $mplaza->CargaDimemsion() ?></select>
             <label>Tipo 2</label>
-            <select class="form-control"></select>
-            <button class="btn btn-block btn-success">Guardar</button>
+            <select class="form-control"  id="Area2" name="Area2"></select>
+            <label>Dimension 3</label>
+            <select class="form-control" id="Dim3" name="Dim3"><?php $mplaza->CargaDimemsion() ?></select>
+            <label>Tipo 3</label>
+            <select class="form-control"  id="Area3" name="Area3"></select>
+            <input  type="hidden" id="IdCli" name="IdCli" value="<?php echo $_GET['id']?>">
+            <button type="button" class="btn btn-block btn-success" id="Guardar">Guardar</button>
         </div>
     </div>
-    
+    </form>
 </div>
 
 <script src="<?php echo __BASE_URL__ . __MODULO_MALLPLAZA__ . 'js/mallplaza_js.js'; ?>" ></script>
