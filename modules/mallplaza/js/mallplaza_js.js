@@ -10,6 +10,8 @@ $(document).ready(function () {
     $("#Dim3").attr("disabled", true);
     $("#Area2").attr("disabled", true);
     $("#Area3").attr("disabled", true);
+    $("#Clasi2").attr("disabled", true);
+    $("#Clasi3").attr("disabled", true);
 
     /***************************************
      * MES
@@ -63,6 +65,7 @@ $(document).ready(function () {
                 $("#Area1").html(archi);
                 $("#Dim2").attr("disabled", false);
                 $("#Area2").attr("disabled", false);
+                $("#Clasi2").attr("disabled", false);
             },
             error: function () {
                 alert(" error no se puedo obtener informacion");
@@ -81,6 +84,7 @@ $(document).ready(function () {
                 $("#Area2").html(archi);
                 $("#Dim3").attr("disabled", false);
                 $("#Area3").attr("disabled", false);
+                $("#Clasi3").attr("disabled", false);
             },
             error: function () {
                 alert(" error no se puedo obtener informacion");
@@ -190,7 +194,7 @@ $(document).ready(function () {
 
             },
             error: function () {
-                alert(" error no se puedo obtener informacion");
+                alert(" error no se pudo guardar la informacion");
             }
         });
     });

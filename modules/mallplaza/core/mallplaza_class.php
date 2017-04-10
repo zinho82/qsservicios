@@ -40,6 +40,15 @@ class mallplaza_class {
         while($cau=mysql_fetch_array($res)){
             echo "<option value=".$cau['CodArea'].">".utf8_encode($cau['Area'])."</option>";
         }
+    }
+    function CargaClasificacion() {
+        $conn=new config();
+      echo "<option values='-1' selected=''>Seleccione una Clasificacion</option>";
+        $sql="select * from ".__BASE_DATOS__.".config where pertenece=24";
+        $res=mysql_query($sql,$conn->conectar());
+        while($cau=mysql_fetch_array($res)){
+            echo "<option value=".$cau['idconfig'].">".$cau['texto']."</option>";
+        }
                 
         
     }
