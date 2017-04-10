@@ -18,7 +18,7 @@ $(document).ready(function () {
                window.open('../../cargas/view/cargas_index.php','_self');
                 },
                 error: function (archi) {
-                    alert ("Error: Revise Usuario y Contraseña o Contacte a su adeministrador");
+                    alert ("Error: Revise Usuario y Contraseña o Contacte a su administrador");
                 }
             });
 
