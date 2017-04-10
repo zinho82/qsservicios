@@ -131,6 +131,14 @@ $(document).ready(function () {
             }
         });
     });
+     /***************************************
+     * EXPORTAR
+     * Abre la pagina con la tabla competa para ser exportada a diversos formatos
+     * 
+     ****************************************/
+    $("#Exportar").click(function () {
+        window.open("exportar.php","_self");
+    });
     /***************************************
      * PROCESAR CARGA
      * Realiza la carga al temporal, historico y unico de los registros
@@ -146,7 +154,7 @@ $(document).ready(function () {
             data: archi,
             url: "proccarga.php",
             success: function (archi) {
-                // location.reload();
+                 location.reload();
 
             },
             error: function () {

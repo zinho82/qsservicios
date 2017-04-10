@@ -57,6 +57,9 @@ $mplaza=new mallplaza_class();
                }
                 ?>
             </tbody>
+            <tfoot>
+            <th colspan="4"> <button id="Exportar" type="button" class="btn btn-block btn-info"> Exportar</button></th>
+            </tfoot>
             </table>
 
 

@@ -39,7 +39,7 @@ mysql_query($insertar,$conn->conectar()) or die(mysql_error());
 fclose ($fp);
 //Cargando tbl datos
 mysql_query("truncate " . $_SESSION['campana']['bd'] . ".cliente_dato", $conn->conectar());
-$sql="insert into ".$_SESSION['campana']['bd'].".cliente_dato select *,null from ".$_SESSION['campana']['bd'].".temporal ";
+$sql="insert into ".$_SESSION['campana']['bd'].".cliente_dato select *,null,null from ".$_SESSION['campana']['bd'].".temporal ";
 mysql_query($sql,$conn->conectar()) or die(mysql_error());
 $npndetra="update ".$_SESSION['campana']['bd'].".cliente_dato set npsdtractor=npspromotor where npspromotor!='' ";
 mysql_query($npndetra,$conn->conectar());

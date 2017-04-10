@@ -1,7 +1,7 @@
 <?php
 session_start();
-define("__SERVIDOR_DATOS__", "201.239.170.83");
-//define("__SERVIDOR_DATOS__", "190.100.117.172");
+//define("__SERVIDOR_DATOS__", "201.239.170.83");
+define("__SERVIDOR_DATOS__", "190.100.117.172");
 define("__ROOT__", "/var/www/html/qsservicios/");
 define("__BASE_URL__", "http://".__SERVIDOR_DATOS__."/qsservicios/");
 define("__BASE_DATOS__", "qsservicios");
@@ -29,8 +29,8 @@ class config {
         return $link;
     }
 
-    function BuscaDatos($Tabla, $DatoBuscar, $CampoComparar, $CampoMostrar) {
-        $sql = "select $CampoMostrar as dato from " . __BASE_DATOS__ . ".$Tabla where $CampoComparar='$DatoBuscar'";
+    function BuscaDatos($bd,$Tabla, $DatoBuscar, $CampoComparar, $CampoMostrar) {
+        $sql = "select $CampoMostrar as dato from $bd.$Tabla where $CampoComparar='$DatoBuscar'";
         $res = mysql_query($sql, $this->conectar());
         return mysql_result($res, 0);
     }
