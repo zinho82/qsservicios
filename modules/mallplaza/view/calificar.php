@@ -12,13 +12,15 @@ $baseperso = $mplaza->CargaPersona($_GET['id']);
             <div class="panel-body">
                 <table class="table table-hover">
                     <tr>
-                        <td>Rut</td><td><?php echo $baseperso['rut'] ?></td>
-                        <td>MALL</td><td><?php echo $baseperso['mall'] ?></td>
+                        <td>Rut</td>
+                        <td>MALL</td>
                     </tr>
+                    <tr><td><?php echo $baseperso['rut'] ?></td><td><?php echo $baseperso['mall'] ?></td></tr>
                     <tr>
-                        <td>Nota</td><td><?php echo $baseperso['nps'] ?></td>
-                        <td>Comentario</td><td><?php echo utf8_encode($baseperso['npsdtractor']) ?></td>
+                        <td>Nota</td>
+                        <td>Comentario</td>
                     </tr>
+                    <tr><td><?php echo $baseperso['nps'] ?></td><td><?php echo utf8_encode($baseperso['npsdtractor']) ?></td></tr>
                 </table>
             </div>
         </div>

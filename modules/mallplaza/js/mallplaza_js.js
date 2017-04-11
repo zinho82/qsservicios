@@ -199,6 +199,7 @@ $(document).ready(function () {
             url: "guardacarga.php",
             success: function (archi) {
                 alert(archi);
+                $("#Guardar").attr("disabled",true);
                 // location.reload();
 
             },
