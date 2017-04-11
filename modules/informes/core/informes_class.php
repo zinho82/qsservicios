@@ -45,7 +45,7 @@ from $bd.cliente_respuestas cr
 group by month(cr.fechaenc)";
         $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
         while($mall=mysql_fetch_array($res)){
-            echo "['".$conn->MesResortado($mall['Mes']).'-'.date('y')."',-".$mall['qneg'].",".$mall['qneu'].",".$mall['qpos']."],";
+            echo "['".$conn->MesRecortado($mall['Mes']).'-'.date('y')."',-".$mall['qneg'].",".$mall['qneu'].",".$mall['qpos']."],";
             
         }
         

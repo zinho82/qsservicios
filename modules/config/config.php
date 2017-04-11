@@ -1,15 +1,16 @@
 <?php
+
 session_start();
-//define("__SERVIDOR_DATOS__", "201.239.170.83");
-define("__SERVIDOR_DATOS__", "190.100.117.172"); 
+define("__SERVIDOR_DATOS__", "201.239.170.83");
+//define("__SERVIDOR_DATOS__", "190.100.117.172"); 
 define("__ROOT__", "/var/www/html/qsservicios/");
-define("__BASE_URL__", "http://".__SERVIDOR_DATOS__."/qsservicios/");
+define("__BASE_URL__", "http://" . __SERVIDOR_DATOS__ . "/qsservicios/");
 define("__BASE_DATOS__", "qsservicios");
 define("__MODULO_ACCESORIOS__", "archivos/");
 define("__MODULO_MENU__", "modules/menu/");
 define("__MODULO_CARGAR__", "modules/cargas/");
 define("__MODULO_SEGUROS__", "modules/seguros/");
-define("__MODULO_PAGOS__", "modules/pagos/"); 
+define("__MODULO_PAGOS__", "modules/pagos/");
 define("__MODULO_TARIFAS__", "modules/tarifas/");
 define("__MODULO_SEMANALES__", "modules/semanales/");
 define("__MODULO_LOGIN__", "modules/login/");
@@ -18,7 +19,6 @@ define("__MODULO_SPONSOR__", "modules/sponsor/");
 define("__MODULO_CAMPANA__", "modules/campana/");
 define("__MODULO_IMAGENES__", "images/");
 define("__MODULO_informes__", "modules/informes/");
-
 
 class config {
 
@@ -34,45 +34,61 @@ class config {
         return $link;
     }
 
-    function BuscaDatos($bd,$Tabla, $DatoBuscar, $CampoComparar, $CampoMostrar) {
+    function BuscaDatos($bd, $Tabla, $DatoBuscar, $CampoComparar, $CampoMostrar) {
         $sql = "select $CampoMostrar as dato from $bd.$Tabla where $CampoComparar='$DatoBuscar'";
         $res = mysql_query($sql, $this->conectar());
         return mysql_result($res, 0);
     }
+
     function CargaCampanaSession($idCampana) {
-       echo  $sql="select * from ".__BASE_DATOS__.".campana where idcampana=$idCampana";
-        $res=mysql_query($sql, $this->conectar());
-        $sesscam=mysql_fetch_array($res);
-        $_SESSION['campana']['bd']=$sesscam['bd'];
-        $_SESSION['campana']['id']=$sesscam['idcampana'];
-        $_SESSION['campana']['nombre']=$sesscam['nombre'];
+        $sql = "select * from " . __BASE_DATOS__ . ".campana where idcampana=$idCampana";
+        $res = mysql_query($sql, $this->conectar());
+        $sesscam = mysql_fetch_array($res);
+        $_SESSION['campana']['bd'] = $sesscam['bd'];
+        $_SESSION['campana']['id'] = $sesscam['idcampana'];
+        $_SESSION['campana']['nombre'] = $sesscam['nombre'];
     }
+
     function ListaCampanas() {
-        $selec="<option value='-1' selected=''>Seleccion Una Campaña</option>";
-         $sql="select * from ".__BASE_DATOS__.".campana where sponsor=1";
-        $res=mysql_query($sql, $this->conectar()) or die(mysql_error());
-       while($opc=mysql_fetch_array($res)){
-            $selec.= "<option value=".$opc['idcampana'].">".$opc['nombre']."</option>";
+        $selec = "<option value='-1' selected=''>Seleccion Una Campaña</option>";
+        $sql = "select * from " . __BASE_DATOS__ . ".campana where sponsor=1";
+        $res = mysql_query($sql, $this->conectar()) or die(mysql_error());
+        while ($opc = mysql_fetch_array($res)) {
+            $selec .= "<option value=" . $opc['idcampana'] . ">" . $opc['nombre'] . "</option>";
         }
         return $selec;
     }
-    function MesResortado($nummes){
-        switch ($nummes){
-            case 1:$mes="Ene";                break;
-            case 2:$mes="Feb";                break;
-            case 3:$mes="Mar";                break;
-            case 4:$mes="Abr";                break;
-            case 5:$mes="May";                break;
-            case 6:$mes="Jun";                break;
-            case 7:$mes="Jul";                break;
-            case 8:$mes="Ago";                break;
-            case 9:$mes="Sep";                break;
-            case 10:$mes="Oct";                break;
-            case 11:$mes="Nov";                break;
-            case 12:$mes="Dic";                break;
+
+    function MesRecortado($nummes) {
+        switch ($nummes) {
+            case 1:$mes = "Ene";
+                break;
+            case 2:$mes = "Feb";
+                break;
+            case 3:$mes = "Mar";
+                break;
+            case 4:$mes = "Abr";
+                break;
+            case 5:$mes = "May";
+                break;
+            case 6:$mes = "Jun";
+                break;
+            case 7:$mes = "Jul";
+                break;
+            case 8:$mes = "Ago";
+                break;
+            case 9:$mes = "Sep";
+                break;
+            case 10:$mes = "Oct";
+                break;
+            case 11:$mes = "Nov";
+                break;
+            case 12:$mes = "Dic";
+                break;
         }
         return $mes;
     }
+
 }
 
 //require_once MODULO_SEGUROS.'core/seguros_class.php';

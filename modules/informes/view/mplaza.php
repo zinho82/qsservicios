@@ -1,6 +1,8 @@
 <?php
 require_once '../../config/superior.php';
 $informes = new informes_class();
+$conn=new config();
+$conn->CargaCampanaSession(4);
 ?>
 <div class="panel panel-primary">
     <div class="panel-heading">Informes Mall plaza <img src="<?php echo __BASE_URL__ . __MODULO_IMAGENES__ ?>logo_mplaza2.jpg" width="50"></div>
@@ -16,7 +18,7 @@ $informes = new informes_class();
                         <th>Q Negativo</th>
                         <th>Q Promotor</th>
                         <th>Q Neutro</th>
-                        <th>Q Ecnuestas Realizadas</th>
+                        <th>Q Encuestas Realizadas</th>
                         </thead>
                         <tbody>
                             <?php $informes->EncxMall($_SESSION['campana']['bd'], "cliente_dato", "", "group by mall") ?>
