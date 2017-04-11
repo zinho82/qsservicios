@@ -27,10 +27,10 @@ $informes = new informes_class();
             </div>
         </div>
         <div class="row col-md-6">
-            <div class="panel panel-info">
+            <div class="panel panel-info panel-body-mplaza">
                 <div class="panel-heading">Calificaciones Totales</div>
-                <div class="panel-body panel-body-mplaza">
-                    <div id="containers" class="panel-body-mplaza" ></div>
+                <div class="panel-body">
+                    <div id="containers"  ></div>
                 </div>
             </div>
         </div>
