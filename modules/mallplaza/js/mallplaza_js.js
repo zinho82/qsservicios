@@ -144,7 +144,7 @@ $(document).ready(function () {
      * para la comparacion de los envios anteriores
      * 
      ****************************************/
-    $("#Procesar").click(function () {
+    $("#Procesar").click(function () {   
         var archi = $("#BuscarArchivo").serialize();
 
         $.ajax({
@@ -153,7 +153,9 @@ $(document).ready(function () {
             data: archi,
             url: "proccarga.php",
             success: function (archi) {
-                 location.reload();
+                alert(archi); 
+                location.reload();
+                 
 
             },
             error: function () {

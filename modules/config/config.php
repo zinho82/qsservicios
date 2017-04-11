@@ -1,7 +1,7 @@
 <?php
 session_start();
-define("__SERVIDOR_DATOS__", "201.239.170.83");
-//define("__SERVIDOR_DATOS__", "190.100.117.172"); 
+//define("__SERVIDOR_DATOS__", "201.239.170.83");
+define("__SERVIDOR_DATOS__", "190.100.117.172"); 
 define("__ROOT__", "/var/www/html/qsservicios/");
 define("__BASE_URL__", "http://".__SERVIDOR_DATOS__."/qsservicios/");
 define("__BASE_DATOS__", "qsservicios");
@@ -17,6 +17,7 @@ define("__MODULO_MALLPLAZA__", "modules/mallplaza/");
 define("__MODULO_SPONSOR__", "modules/sponsor/");
 define("__MODULO_CAMPANA__", "modules/campana/");
 define("__MODULO_IMAGENES__", "images/");
+define("__MODULO_informes__", "modules/informes/");
 
 
 class config {
@@ -63,4 +64,5 @@ require_once __ROOT__ . __MODULO_MALLPLAZA__ . 'core/mallplaza_class.php';
 require_once __ROOT__ . __MODULO_SPONSOR__ . 'core/sponsor_class.php';
 require_once __ROOT__ . __MODULO_CAMPANA__ . 'core/campana_class.php';
 require_once __ROOT__ . __MODULO_MENU__ . 'core/menu_class.php';
+require_once __ROOT__ . __MODULO_informes__ . 'core/informes_class.php';
 ?>
