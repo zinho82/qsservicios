@@ -52,16 +52,19 @@ $conn->CargaCampanaSession(4);
     function drawChart() {
         // Define the chart to be drawn.
         var data = google.visualization.arrayToDataTable([
-            ['Mes', 'Negativo', 'Neutro', 'Positivo'],
+            ['Mes', 'Negativo', 'Neutro', 'Positivo','nps'],
 <?php $informes->TotalEncuestasRalizadas($_SESSION['campana']['bd']); ?>
+            
 
         ]);
         var options = {
             title: '',
             width: 550,
             heigth: 400,
-            colors: ['#ff0000', '#EBEF1B', '#00ff00'],
-            isStacked: true
+            colors: ['#ff0000', '#EBEF1B', '#00ff00','#0000ff'],
+            isStacked: true,
+            seriesType:"bars",
+            series:{3:{type:"line"}}
         };
         // Instantiate and draw the chart.
         var chart = new google.visualization.ColumnChart(document.getElementById('containers'));
