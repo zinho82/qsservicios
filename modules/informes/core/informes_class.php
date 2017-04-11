@@ -48,11 +48,18 @@ from $bd.cliente_respuestas cr
 group by month(cr.fechaenc)";
         $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
         while($mall=mysql_fetch_array($res)){
-            $nps=(($mall['npsp']/$mall['npst'])-($mall['nps-']/$mall['npst']));
+            $npspt+=$mall['npsp'];
+            $npst+=$mall['npst'];
+            $npsn+=$mall['npsn'];
+            $qtott+=$mall['qneg']+$mall['qpos']+$mall['qneu'];
+            $neg+=$mall['qneg'];
+            $neu+=$mall['qneu'];
+            $pos+=$mall['qpos'];
+            $nps=(($mall['npsp']/$mall['npst'])-($mall['npsn']/$mall['npst']));
             $qtot=$mall['qneg']+$mall['qpos']+$mall['qneu']; 
+            $npst=(($npspt/$npst)-($npsn/$npst));
             echo "['".$conn->MesRecortado($mall['Mes']).'-'.date('y')."',-".(($mall['qneg']/$qtot)*100).",".(($mall['qneu']/$qtot)*100).",".(($mall['qpos']/$qtot)*100).",".($nps*100)."],";
-            
         }
-        
+        echo "['Acum',-".(($neg/$qtott)*100).",".(($neu/$qtott)*100).",".(($pos/$qtott)*100).",".($npst*100)."]";
     }
 }
