@@ -64,4 +64,5 @@ require_once __ROOT__ . __MODULO_MALLPLAZA__ . 'core/mallplaza_class.php';
 require_once __ROOT__ . __MODULO_SPONSOR__ . 'core/sponsor_class.php';
 require_once __ROOT__ . __MODULO_CAMPANA__ . 'core/campana_class.php';
 require_once __ROOT__ . __MODULO_MENU__ . 'core/menu_class.php';
+require_once __ROOT__ . __MODULO_informes__ . 'core/informes_class.php';
 ?>
