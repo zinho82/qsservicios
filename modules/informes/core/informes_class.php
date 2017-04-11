@@ -23,13 +23,29 @@ from $bd.cliente_dato cda group by cda.mall";
         $res=mysql_query($sql,$conn->conectar());
         while($mall=mysql_fetch_array($res)){
             echo "<tr>"
-            . "<td class='warning'>".utf8_encode($mall['mall'])."</td>"
+            . "<td class='warning'><strong>".utf8_encode($mall['mall'])."</strong></td>"
                     . "<td >".$mall['Q']."</td>"
                     . "<td>".$mall['qneg']."</td>"
                     . "<td>".$mall['qpos']."</td>"
                     . "<td>".$mall['qneu']."</td>"
                     . "<td class='info text-center'>".$mall['qto']."</td>"
             . "</tr>";
+            
+        }
+        
+    }
+    function TotalEncuestasRalizadas($bd) {
+        $conn=new config();
+         $sql="select 
+month(cr.fechaenc) as Mes
+,(select count(*) from $bd.cliente_respuestas crs where crs.sen1=25 and month(crs.fechaenc)=month(cr.fechaenc)) as qpos
+,(select count(*) from $bd.cliente_respuestas crs where crs.sen1=26 and month(crs.fechaenc)=month(cr.fechaenc)) as qneg
+,(select count(*) from $bd.cliente_respuestas crs where crs.sen1=27 and month(crs.fechaenc)=month(cr.fechaenc)) as qneu
+from $bd.cliente_respuestas cr
+group by month(cr.fechaenc)";
+        $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
+        while($mall=mysql_fetch_array($res)){
+            echo "['".$conn->MesResortado($mall['Mes']).'-'.date('y')."',-".$mall['qneg'].",".$mall['qneu'].",".$mall['qpos']."],";
             
         }
         

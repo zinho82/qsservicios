@@ -56,6 +56,23 @@ class config {
         }
         return $selec;
     }
+    function MesResortado($nummes){
+        switch ($nummes){
+            case 1:$mes="Ene";                break;
+            case 2:$mes="Feb";                break;
+            case 3:$mes="Mar";                break;
+            case 4:$mes="Abr";                break;
+            case 5:$mes="May";                break;
+            case 6:$mes="Jun";                break;
+            case 7:$mes="Jul";                break;
+            case 8:$mes="Ago";                break;
+            case 9:$mes="Sep";                break;
+            case 10:$mes="Oct";                break;
+            case 11:$mes="Nov";                break;
+            case 12:$mes="Dic";                break;
+        }
+        return $mes;
+    }
 }
 
 //require_once MODULO_SEGUROS.'core/seguros_class.php';
