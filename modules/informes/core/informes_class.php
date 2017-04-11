@@ -36,16 +36,20 @@ from $bd.cliente_dato cda  where month(cda.fresp)=month(now()) and year(cda.fres
     }
     function TotalEncuestasRalizadas($bd) {
         $conn=new config();
-         $sql="select 
+          $sql="select 
 month(cr.fechaenc) as Mes
 ,(select count(*) from $bd.cliente_respuestas crs where crs.sen1=25 and month(crs.fechaenc)=month(cr.fechaenc)) as qpos
 ,(select count(*) from $bd.cliente_respuestas crs where crs.sen1=26 and month(crs.fechaenc)=month(cr.fechaenc)) as qneg
 ,(select count(*) from $bd.cliente_respuestas crs where crs.sen1=27 and month(crs.fechaenc)=month(cr.fechaenc)) as qneu
+,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where  month(cd.fresp)=month(cr.fechaenc) and cd.nps<7 ) as npsn
+,(select (sum(cd.nps)) from enc_mplaza_cali.cliente_dato cd where  month(cd.fresp)=month(cr.fechaenc) and cd.nps>8 ) as npsp
+,(select (sum(cd.nps)) from enc_mplaza_cali.cliente_dato cd where  month(cd.fresp)=month(cr.fechaenc) and cd.nps>8 or cd.nps<7) as npst
 from $bd.cliente_respuestas cr
 group by month(cr.fechaenc)";
         $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
         while($mall=mysql_fetch_array($res)){
-            echo "['".$conn->MesRecortado($mall['Mes']).'-'.date('y')."',-".$mall['qneg'].",".$mall['qneu'].",".$mall['qpos']."],";
+            $nps=(($mall['npsp']/$mall['npst'])-($mall['nps-']/$mall['npst']));
+            echo "['".$conn->MesRecortado($mall['Mes']).'-'.date('y')."',-".$mall['qneg'].",".$mall['qneu'].",".$mall['qpos'].",".$nps."],";
             
         }
         
