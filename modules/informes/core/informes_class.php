@@ -49,7 +49,8 @@ group by month(cr.fechaenc)";
         $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
         while($mall=mysql_fetch_array($res)){
             $nps=(($mall['npsp']/$mall['npst'])-($mall['nps-']/$mall['npst']));
-            echo "['".$conn->MesRecortado($mall['Mes']).'-'.date('y')."',-".$mall['qneg'].",".$mall['qneu'].",".$mall['qpos'].",".$nps."],";
+            $qtot=$mall['qneg']+$mall['qpos']+$mall['qneu']; 
+            echo "['".$conn->MesRecortado($mall['Mes']).'-'.date('y')."',-".(($mall['qneg']/$qtot)*100).",".(($mall['qneu']/$qtot)*100).",".(($mall['qpos']/$qtot)*100).",".($nps*100)."],";
             
         }
         
