@@ -1,7 +1,7 @@
 <?php
 require_once '../../config/superior.php';
 $informes = new informes_class();
-$conn=new config();
+$conn = new config();
 $conn->CargaCampanaSession(4);
 ?>
 <div class="panel panel-primary">
@@ -37,36 +37,37 @@ $conn->CargaCampanaSession(4);
             </div>
         </div>
     </div>
-    <!--**********************************************
-    *CHARTS 
-    *
-    *************************************************-->
-    <script language="JavaScript">
-        google.charts.load('current', {packages: ['corechart']});
-        /*
-         * GRAFICO TOTAL NPS
-         * @return {undefined}
-         * 
-         */
-        function drawChart() {
-            // Define the chart to be drawn.
-            var data = google.visualization.arrayToDataTable([
-                ['Mes', 'Negativo', 'Neutro', 'Positivo'],
+</div>
+<!--**********************************************
+*CHARTS 
+*
+*************************************************-->
+<script language="JavaScript">
+    google.charts.load('current', {packages: ['corechart']});
+    /*
+     * GRAFICO TOTAL NPS
+     * @return {undefined}
+     * 
+     */
+    function drawChart() {
+        // Define the chart to be drawn.
+        var data = google.visualization.arrayToDataTable([
+            ['Mes', 'Negativo', 'Neutro', 'Positivo'],
 <?php $informes->TotalEncuestasRalizadas($_SESSION['campana']['bd']); ?>
 
-            ]);
-            var options = {
-                title: '',
-                width: 550,
-                heigth: 400,
-                colors: ['#ff0000', '#EBEF1B', '#00ff00'],
-                isStacked: true
-            };
-            // Instantiate and draw the chart.
-            var chart = new google.visualization.ColumnChart(document.getElementById('containers'));
-            chart.draw(data, options);
-        }
-        google.charts.setOnLoadCallback(drawChart);
-    </script>
-    <script src="<?php echo __BASE_URL__ . __MODULO_SPONSOR__ . 'js/sponsor_js.js'; ?>" ></script>
-    <?php require_once '../../config/footer.php'; ?>
+        ]);
+        var options = {
+            title: '',
+            width: 550,
+            heigth: 400,
+            colors: ['#ff0000', '#EBEF1B', '#00ff00'],
+            isStacked: true
+        };
+        // Instantiate and draw the chart.
+        var chart = new google.visualization.ColumnChart(document.getElementById('containers'));
+        chart.draw(data, options);
+    }
+    google.charts.setOnLoadCallback(drawChart);
+</script>
+<script src="<?php echo __BASE_URL__ . __MODULO_SPONSOR__ . 'js/sponsor_js.js'; ?>" ></script>
+<?php require_once '../../config/footer.php'; ?>

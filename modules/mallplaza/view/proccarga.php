@@ -10,13 +10,11 @@ $conn = new config();
 $conn->CargaCampanaSession($_POST['campana']);
 $ruta = __ROOT__ . __MODULO_ACCESORIOS__;
 mysql_query("truncate " . $_SESSION['campana']['bd'] . ".temporal", $conn->conectar());
-//CONVIRTIENDO CAMOPOS de FECHA A TEXTO
-/*echo shell_exec('mysql -uroot -pzinho1982 -e "ALTER TABLE ' . __BASE_DATOS__ . '.temporal CHANGE COLUMN fechaot fechaot VARCHAR(50) NULL DEFAULT NULL AFTER expediente;'
-        . 'ALTER TABLE ' . __BASE_DATOS__ . '.temporal CHANGE COLUMN fechaprestacion fechaprestacion VARCHAR(50) NULL DEFAULT NULL AFTER matricula;'
-        . ' ALTER TABLE ' . __BASE_DATOS__ . '.temporal CHANGE COLUMN tarifa tarifa VARCHAR(50) NULL DEFAULT NULL AFTER fechaprestacion;"');
 
- * //CARGADO ARCHIVO a TABLA TEMPORAL
- */
+//CONVIRTIENDO CAMOPOS de FECHA A TEXTO
+//secho shell_exec('mysql -uroot -pzinho1982 -e "ALTER TABLE ' . $_SESSION['campana']['bd']  . '.cliente_dato CHANGE COLUMN fencuesta fencuesta VARCHAR(50) NULL DEFAULT NULL AFTER rut;"');
+
+  //CARGADO ARCHIVO a TABLA TEMPORAL
 
 $row = 3;
 $fp = fopen ($ruta.$_POST['archivo'],"r");
@@ -33,6 +31,14 @@ mysql_query($insertar,$conn->conectar()) or die(mysql_error());
 }
 fclose ($fp);
 //Cargando tbl datos
+$npndetra="update ".$_SESSION['campana']['bd'].".temporal set fecha_resp=concat(substring(fecha_resp,7,4),'-',substring(fecha_resp,4,2),'-',substring(fecha_resp,1,2),' ',substring(fecha_resp,-5))  ";
+if(!mysql_query($npndetra,$conn->conectar())){
+    echo "Error al Actualizar <<TEMPORAL FECHA RESPUESTA>>\n".mysql_error();
+}
+    $npndetra="update ".$_SESSION['campana']['bd'].".temporal set fencuesta=concat(substring(fencuesta,7,4),'-',substring(fencuesta,4,2),'-',substring(fencuesta,1,2)) ";
+if(!mysql_query($npndetra,$conn->conectar())){
+    echo "Error al Actualizar <<TEMPORAL FECHA ENCUESTA>>";
+}
 $sql="insert into ".$_SESSION['campana']['bd'].".cliente_dato select *,null,null from ".$_SESSION['campana']['bd'].".temporal ";
 if(!mysql_query($sql,$conn->conectar()) ){
     echo "Error al Cargar <<clientes>>";

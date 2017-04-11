@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    alert("ACTUALIZAR TABLAS EN \n enc_mplaza_cali \n Cliente Dato");
     /***************************************
      * Deshabilita campos del formulario
      * 
