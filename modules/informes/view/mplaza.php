@@ -29,41 +29,42 @@ $informes = new informes_class();
         <div class="row col-md-6">
             <div class="panel panel-info">
                 <div class="panel-heading">Calificaciones Totales</div>
-                <div id="containers" ></div>
+                <div class="panel-body panel-body-mplaza">
+                    <div id="containers" class="panel-body-mplaza" ></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!--**********************************************
-*CHARTS 
-*
-*************************************************-->
-<script language="JavaScript">
-                    google.charts.load('current', {packages: ['corechart']});
-                    /*
-                     * GRAFICO TOTAL NPS
-                     * @return {undefined}
-                     * 
-                     */
-                    function drawChart() {
-                        // Define the chart to be drawn.
-                        var data = google.visualization.arrayToDataTable([
-                            ['Mes', 'Negativo', 'Neutro', 'Positivo'],
-                             <?php $informes->TotalEncuestasRalizadas($_SESSION['campana']['bd']);?>
+    <!--**********************************************
+    *CHARTS 
+    *
+    *************************************************-->
+    <script language="JavaScript">
+        google.charts.load('current', {packages: ['corechart']});
+        /*
+         * GRAFICO TOTAL NPS
+         * @return {undefined}
+         * 
+         */
+        function drawChart() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable([
+                ['Mes', 'Negativo', 'Neutro', 'Positivo'],
+<?php $informes->TotalEncuestasRalizadas($_SESSION['campana']['bd']); ?>
 
-                        ]);
-                        var options = {
-                            title: '',
-                            width: 550,
-                            heigth: 400,
-                            colors:['#ff0000','#EBEF1B','#00ff00'],
-                            isStacked: true
-                        };
-                        // Instantiate and draw the chart.
-                        var chart = new google.visualization.ColumnChart(document.getElementById('containers'));
-                        chart.draw(data, options);
-                    }
-                    google.charts.setOnLoadCallback(drawChart);
-                </script>
-<script src="<?php echo __BASE_URL__ . __MODULO_SPONSOR__ . 'js/sponsor_js.js'; ?>" ></script>
-<?php require_once '../../config/footer.php'; ?>
+            ]);
+            var options = {
+                title: '',
+                width: 550,
+                heigth: 400,
+                colors: ['#ff0000', '#EBEF1B', '#00ff00'],
+                isStacked: true
+            };
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.ColumnChart(document.getElementById('containers'));
+            chart.draw(data, options);
+        }
+        google.charts.setOnLoadCallback(drawChart);
+    </script>
+    <script src="<?php echo __BASE_URL__ . __MODULO_SPONSOR__ . 'js/sponsor_js.js'; ?>" ></script>
+    <?php require_once '../../config/footer.php'; ?>
