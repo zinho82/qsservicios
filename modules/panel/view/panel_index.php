@@ -1,9 +1,10 @@
-<?php require_once '../../config/superior.php';?>
+<?php require_once '../../config/superior.php';
+$panel=new panel_class();?>
 <div class="panel panel-primary">
     <div class="panel-heading">Panen Administrador</div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-3 col-md-6">
+            <!--<div class="col-lg-3 col-md-6">
                 <div class="panel panel-warning">
                     <div class="panel-heading">
                         <div class="row">
@@ -29,6 +30,29 @@ group by concat(tm.ad1,tm.ad2,tm.ad4,tm.ad7,tm.ad21,tm.ad13,tm.ad18) having coun
                             <div class="clearfix"></div>
                         </div>
                     </a>
+                </div>
+            </div>-->
+            <div class="col-lg-12 col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Encuestas Realizadas</div>
+                    <div class="panel-body">
+                        <table class=" table">
+                            <thead>
+                                <tr>
+                                    <th rowspan="3">Ejecutivos</th>
+                                    <th class="text-center">Mall Plaza</th>
+                                </tr>
+                                <tr>
+                                    <th  class="text-center">c1</th><th class="text-center">c2</th>
+                            <?php //$panel->CampanasActivasTH(__BASE_DATOS__) ?>
+                                </tr>
+                                <tr><th>QAsig</th><th>Qrealiz</th><th>QAsig</th><th>Qrealiz</th><th>TAsig</th><th>TReal</th></tr>
+                        </thead>
+                        <tbody> 
+                            <?php $panel->Obtenerejecutivos(__BASE_DATOS__)  ?>
+                        </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
            <!-- <div class="col-lg-3 col-md-6">

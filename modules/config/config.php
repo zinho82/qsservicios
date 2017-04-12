@@ -15,6 +15,7 @@ define("__MODULO_SEMANALES__", "modules/semanales/");
 define("__MODULO_LOGIN__", "modules/login/");
 define("__MODULO_SPONSOR__", "modules/sponsor/");
 define("__MODULO_CAMPANA__", "modules/campana/");
+define("__MODULO_PANEL__", "modules/panel/");
 
 
 class config {
@@ -44,4 +45,5 @@ require_once __ROOT__ . __MODULO_LOGIN__ . 'core/login_class.php';
 require_once __ROOT__ . __MODULO_SPONSOR__ . 'core/sponsor_class.php';
 require_once __ROOT__ . __MODULO_CAMPANA__ . 'core/campana_class.php';
 require_once __ROOT__ . __MODULO_MENU__ . 'core/menu_class.php';
+require_once __ROOT__ . __MODULO_PANEL__ . 'core/panel_class.php';
 ?>
