@@ -49,7 +49,7 @@ $conn->CargaCampanaSession(4);
             </div>
             <div class="col-lg-6">
                 <div class="panel panel-info panel-body-mplaza">
-                    <div class="panel-heading">Items Calificados Positivos</div>
+                    <div class="panel-heading">NPS Calificados Positivos</div>
                     <div class="panel-body">
                         <div id="xDimension"  ></div>
                     </div>
@@ -59,7 +59,7 @@ $conn->CargaCampanaSession(4);
         <div class="row col-md-12">
             <div class="col-lg-6">
                 <div class="panel panel-info panel-body-mplaza">
-                    <div class="panel-heading">Items Calificados Negativos</div>
+                    <div class="panel-heading">NPS Calificados Negativos</div>
                     <div class="panel-body">
                         <div id="xDimensionNeg"  ></div>
                     </div>
@@ -67,7 +67,7 @@ $conn->CargaCampanaSession(4);
             </div>
             <div class="col-lg-6">
                 <div class="panel panel-info panel-body-mplaza">
-                    <div class="panel-heading">Items Calificados Neutral</div>
+                    <div class="panel-heading">NPS Calificados Neutral</div>
                     <div class="panel-body">
                         <div id="xDimensionNeu"  ></div>
                     </div>
@@ -130,8 +130,10 @@ $conn->CargaCampanaSession(4);
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
         data.addRows([
-            <?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'],25);?>
-                    ]);
+<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "dim1", 'sen1'); ?>
+<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "dim2", 'sen2'); ?>
+<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "dim3", 'sen3'); ?>
+        ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimension'));
         chart.draw(data, {
             width: 700,
@@ -144,8 +146,10 @@ $conn->CargaCampanaSession(4);
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
         data.addRows([
-            <?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'],27);?>
-                    ]);
+<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 27, "dim1", 'sen1'); ?>
+<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 27, "dim2", 'sen2'); ?>
+<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 27, "dim3", 'sen3'); ?>
+        ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeu'));
         chart.draw(data, {
             width: 700,
@@ -158,8 +162,10 @@ $conn->CargaCampanaSession(4);
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
         data.addRows([
-            <?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'],26);?>
-                    ]);
+<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim1", 'sen1'); ?>
+<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim2", 'sen2'); ?>
+<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim3", 'sen3'); ?>
+        ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeg'));
         chart.draw(data, {
             width: 700,
