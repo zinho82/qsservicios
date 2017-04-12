@@ -23,7 +23,6 @@ $baseperso = $mplaza->CargaPersona($_GET['id']);
                         <td><strong>Journey</strong></td><td><?php echo utf8_encode($baseperso['encuesta'])  ?></td>
                         <td><strong>Medio Transporte</strong></td><?php echo $baseperso['medotransp']  ?><td></td>
                     </tr>
-                    <tr><td><?php echo $baseperso['nps'] ?></td><td><?php echo utf8_encode($baseperso['npsdtractor']) ?></td></tr>
                 </table>
             </div>
         </div>
