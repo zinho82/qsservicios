@@ -71,18 +71,27 @@ group by month(cda.fresp) ";
         }
        // echo "['Acum',-".(($neg/$qtott)*100).",".(($neu/$qtott)*100).",".(($pos/$qtott)*100).",".($npst*100)."]";
     }
-    function TotalencuestasxDimension($bd,$SentidoID,$NomDimension,$nomSentido) {
+    function TotalencuestasxDimension($bd,$SentidoID,$NomDimension,$nomSentido,$orden) {
         $conn=new config();
-            $sql="select con.texto,di.Area,count(*) as cant from $bd.cliente_dato cda
+            $sql="select di.Area, count(*)as cant from $bd.cliente_dato cda
 inner join $bd.cliente_respuestas cr on cr.cliente_idcliente=cda.idcliente
 inner join $bd.areas di on di.CodArea=cr.$NomDimension
     inner join ".__BASE_DATOS__.".config con on con.idconfig=cr.$nomSentido and cr.$nomSentido=$SentidoID
- group by cr.$nomSentido,cr.$NomDimension";
+ group by cr.$nomSentido,cr.$NomDimension order by count(*) $orden ";
         $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
-        while($mall=mysql_fetch_array($res)){
+        return mysql_fetch_array($res);
+      /*  while($mall=mysql_fetch_array($res)){
             
             echo "['".utf8_encode($mall['Area'])."',".$mall['cant']."],";
-        }
+        }*/
        // echo "['Acum',-".(($neg/$qtott)*100).",".(($neu/$qtott)*100).",".(($pos/$qtott)*100).",".($npst*100)."]";
+    }
+    function TotalencuestasxDimensionOrden($bd,$SentidoID,$orden) {
+         $arr1=$this->TotalencuestasxDimension($bd, $SentidoID, "dim1", "sen1" ,$orden);
+         $arr2=$this->TotalencuestasxDimension($bd, $SentidoID, "dim2", "sen2" ,$orden);
+         $arr3=$this->TotalencuestasxDimension($bd, $SentidoID, "dim3", "sen3" ,$orden);
+         $arr= array_merge($arr1,$arr2,$arr3);
+         print_r($arr);
+       
     }
 }

@@ -51,6 +51,9 @@ $conn->CargaCampanaSession(4);
                 <div class="panel panel-info panel-body-mplaza">
                     <div class="panel-heading">NPS Calificados Positivos</div>
                     <div class="panel-body">
+                        <?php 
+                        $informes->TotalencuestasxDimensionOrden($_SESSION['campana']['bd'], 25, "desc")
+                        ?>
                         <div id="xDimension"  ></div>
                     </div>
                 </div>
@@ -130,9 +133,13 @@ $conn->CargaCampanaSession(4);
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
         data.addRows([
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "dim1", 'sen1'); ?>
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "dim2", 'sen2'); ?>
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "dim3", 'sen3'); ?>
+<?php
+//$informes->TotalencuestasxDimensionOrden($_SESSION['campana']['bd'], 25, "desc")
+/*
+$informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "dim1", 'sen1');
+$informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "dim2", 'sen2');
+$informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "dim3", 'sen3');*/
+?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimension'));
         chart.draw(data, {
@@ -162,9 +169,11 @@ $conn->CargaCampanaSession(4);
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
         data.addRows([
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim1", 'sen1'); ?>
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim2", 'sen2'); ?>
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim3", 'sen3'); ?>
+<?php
+/* $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim1", 'sen1');
+  $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim2", 'sen2');
+  $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim3", 'sen3'); */
+?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeg'));
         chart.draw(data, {
