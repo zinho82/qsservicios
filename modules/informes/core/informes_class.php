@@ -36,30 +36,53 @@ from $bd.cliente_dato cda  where month(cda.fresp)=month(now()) and year(cda.fres
     }
     function TotalEncuestasRalizadas($bd) {
         $conn=new config();
-          $sql="select 
-month(cr.fechaenc) as Mes
-,(select count(*) from $bd.cliente_respuestas crs where crs.sen1=25 and month(crs.fechaenc)=month(cr.fechaenc)) as qpos
-,(select count(*) from $bd.cliente_respuestas crs where crs.sen1=26 and month(crs.fechaenc)=month(cr.fechaenc)) as qneg
-,(select count(*) from $bd.cliente_respuestas crs where crs.sen1=27 and month(crs.fechaenc)=month(cr.fechaenc)) as qneu
-,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where  month(cd.fresp)=month(cr.fechaenc) and cd.nps<7 ) as npsn
-,(select (sum(cd.nps)) from enc_mplaza_cali.cliente_dato cd where  month(cd.fresp)=month(cr.fechaenc) and cd.nps>8 ) as npsp
-,(select (sum(cd.nps)) from enc_mplaza_cali.cliente_dato cd where  month(cd.fresp)=month(cr.fechaenc) and cd.nps>8 or cd.nps<7) as npst
-from $bd.cliente_respuestas cr
-group by month(cr.fechaenc)";
+        $sql="select 
+month(cda.fresp) as Mes
+,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where cd.nps between 0 and 6  and month(cd.fresp)=month(cda.fresp) and year(cd.fresp)=year(cda.fresp) ) as qneg
+,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where cd.nps between 9 and 10 and month(cd.fresp)=month(cda.fresp) and year(cd.fresp)=year(cda.fresp) ) as qpos
+,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where cd.nps between 7 and 8  and month(cd.fresp)=month(cda.fresp) and year(cd.fresp)=year(cda.fresp)) as qneu
+,sum(cda.nps) as npst
+from enc_mplaza_cali.cliente_dato cda 
+group by month(cda.fresp) ";
         $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
         while($mall=mysql_fetch_array($res)){
-            $npspt+=$mall['npsp'];
-            $npst+=$mall['npst'];
-            $npsn+=$mall['npsn'];
-            $qtott+=$mall['qneg']+$mall['qpos']+$mall['qneu'];
+        $npspt+=$mall['qpos'];
+        $npsn+=$mall['qpneg'];
+       $npst +=$mall['npst'];
+            $qtott+=$mall['npst'];
             $neg+=$mall['qneg'];
             $neu+=$mall['qneu'];
             $pos+=$mall['qpos'];
-            $nps=(($mall['npsp']/$mall['npst'])-($mall['npsn']/$mall['npst']));
+            //$nps=(($mall['qpos']/$mall['npst'])-($mall['qpos']/$mall['npst']));
+            $nps=(($mall['qpos']/$mall['npst'])-($mall['qneg']/$mall['npst']));
             $qtot=$mall['qneg']+$mall['qpos']+$mall['qneu']; 
             $npst=(($npspt/$npst)-($npsn/$npst));
             echo "['".$conn->MesRecortado($mall['Mes']).'-'.date('y')."',-".(($mall['qneg']/$qtot)*100).",".(($mall['qneu']/$qtot)*100).",".(($mall['qpos']/$qtot)*100).",".($nps*100)."],";
         }
         echo "['Acum',-".(($neg/$qtott)*100).",".(($neu/$qtott)*100).",".(($pos/$qtott)*100).",".($npst*100)."]";
+    }
+    function TotalencuestasxItem($bd) {
+        $conn=new config();
+          $sql="select cda.encuesta,count(*) as cant,(select count(*) from $bd.cliente_dato) from $bd.cliente_dato cda group by cda.encuesta";
+        $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
+        while($mall=mysql_fetch_array($res)){
+            
+            echo "['".utf8_encode($mall['encuesta'])."',".$mall['cant']."],";
+        }
+       // echo "['Acum',-".(($neg/$qtott)*100).",".(($neu/$qtott)*100).",".(($pos/$qtott)*100).",".($npst*100)."]";
+    }
+    function TotalencuestasxDimension($bd,$DimensionId) {
+        $conn=new config();
+          $sql="select con.texto,di.Area,count(*) as cant from $bd.cliente_dato cda
+inner join $bd.cliente_respuestas cr on cr.cliente_idcliente=cda.idcliente
+inner join $bd.areas di on di.CodArea=cr.dim1
+    inner join ".__BASE_DATOS__.".config con on con.idconfig=cr.sen1 and cr.sen1=$DimensionId
+ group by cr.sen1,cr.dim1";
+        $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
+        while($mall=mysql_fetch_array($res)){
+            
+            echo "['".utf8_encode($mall['Area'])."',".$mall['cant']."],";
+        }
+       // echo "['Acum',-".(($neg/$qtott)*100).",".(($neu/$qtott)*100).",".(($pos/$qtott)*100).",".($npst*100)."]";
     }
 }
