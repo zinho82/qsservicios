@@ -11,6 +11,7 @@ $(document).ready(function () {
     $("#Area3").attr("disabled", true);
     $("#Clasi2").attr("disabled", true);
     $("#Clasi3").attr("disabled", true);
+    $("#Procesar").attr("disabled", true);
 
     /***************************************
      * MES
@@ -44,6 +45,9 @@ $(document).ready(function () {
                 alert(" error no se puedo obtener informacion");
             }
         });
+    });
+    $("#archivo").change(function () {
+         $("#Procesar").attr("disabled", false);
     });
     /***************************************
      * DIM(n)
@@ -154,6 +158,7 @@ $(document).ready(function () {
             url: "proccarga.php",
             success: function (archi) {
                 alert(archi); 
+                 $("#Procesar").attr("disabled", true);
                 location.reload();
                  
 
