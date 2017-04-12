@@ -199,7 +199,7 @@ $(document).ready(function () {
             url: "guardacarga.php",
             success: function (archi) {
                 alert(archi);
-                // location.reload();
+                window.open('mallplaza_index.php','_self');
 
             },
             error: function () {

@@ -11,13 +11,17 @@ $baseperso = $mplaza->CargaPersona($_GET['id']);
             <div class="panel-heading">Datos Encuesta</div>
             <div class="panel-body">
                 <table class="table table-hover">
-                    <tr>
-                        <td>Rut</td><td><?php echo $baseperso['rut'] ?></td>
-                        <td>MALL</td><td><?php echo $baseperso['mall'] ?></td>
+                    <tr class="info" >
+                        <td><strong>Rut</strong></td><td><?php echo $baseperso['rut'] ?></td>
+                        <td><strong>MALL</strong></td><td><?php echo $baseperso['mall'] ?></td>
                     </tr>
-                    <tr>
-                        <td>Nota</td><td><?php echo $baseperso['nps'] ?></td>
-                        <td>Comentario</td><td><?php echo utf8_encode($baseperso['npsdtractor']) ?></td>
+                    <tr class="danger">
+                        <td><strong>Nota</strong></td><td><?php echo $baseperso['nps'] ?></td>
+                        <td><strong>Comentario</strong></td><td><?php echo utf8_encode($baseperso['npsdtractor']) ?></td>
+                    </tr>
+                    <tr class="info">
+                        <td><strong>Journey</strong></td><td><?php echo utf8_encode($baseperso['encuesta'])  ?></td>
+                        <td><strong>Medio Transporte</strong></td><?php echo $baseperso['medotransp']  ?><td></td>
                     </tr>
                 </table>
             </div>
