@@ -130,9 +130,10 @@ $conn->CargaCampanaSession(4);
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
         data.addRows([
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "dim1", 'sen1'); ?>
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "dim2", 'sen2'); ?>
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "dim3", 'sen3'); ?>
+            ['Variedad de Tiendas y Productos',33],
+<?php
+$informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "desc");
+?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimension'));
         chart.draw(data, {
@@ -146,9 +147,7 @@ $conn->CargaCampanaSession(4);
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
         data.addRows([
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 27, "dim1", 'sen1'); ?>
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 27, "dim2", 'sen2'); ?>
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 27, "dim3", 'sen3'); ?>
+<?php  $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 27, "dim1", 'sen1'); ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeu'));
         chart.draw(data, {
@@ -162,9 +161,9 @@ $conn->CargaCampanaSession(4);
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
         data.addRows([
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim1", 'sen1'); ?>
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim2", 'sen2'); ?>
-<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim3", 'sen3'); ?>
+<?php
+ $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim1", 'sen1');
+?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeg'));
         chart.draw(data, {
