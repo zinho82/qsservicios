@@ -87,7 +87,7 @@ inner join enc_mplaza_cali.cliente_respuestas cre on cre.cliente_idcliente=cda.i
                     . "<td>".$conn->BuscaDatos($_SESSION['campana']['bd'],"causas", $expo['area3'], "CodCausa", "Causa")."</td>"
                     . "<td>".$conn->BuscaDatos(__BASE_DATOS__, "config", $expo['sen3'], "idconfig", "texto")."</td>"
                     . "<td>".$expo['mediotransp']."</td>"
-                    . "<td>".$expo['motivo']."</td>"
+                    . "<td>".$expo['encuesta']."</td>"
                     . "<td>".$expo['obs']."</td>"
                     . "<td>".$conn->BuscaDatos(__BASE_DATOS__, "usuario", $expo['ejecutivo'], "idusuario", "usuario")."</td>"
                     . "<td>".$expo['nombre']."</td>"
