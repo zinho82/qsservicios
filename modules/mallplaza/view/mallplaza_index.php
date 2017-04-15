@@ -2,6 +2,9 @@
 <?php
 $conn = new config();
 $mplaza=new mallplaza_class();
+if(!$_SESSION['campana']['id']){
+$conn->CargaCampanaSession(4);
+}
 ?>
 <div class="panel panel-primary">
     <div class="panel-heading">Mall Plaza    </div>
