@@ -27,7 +27,6 @@ $mplaza=new mallplaza_class();
             <th>Area 3</th>
             <th>Sentido 3</th>
             <th>Transporte</th>
-            <th>Motivo</th>
             <th>Observacion</th>
             <th>Quien llamo</th>
             <th>Nombre</th>
