@@ -71,7 +71,7 @@ inner join enc_mplaza_cali.cliente_respuestas cre on cre.cliente_idcliente=cda.i
             . "<td>".$expo['idcliente']."</td>"
                     . "<td>".$encuesta[0]."</td>"
                     . "<td>".$encuesta[1]."</td>"
-                    . "<td>".$expo['mall']."</td>"
+                    . "<td>".utf8_encode($expo['mall'])."</td>"
                     . "<td>".$expo['origen']."</td>"
                     . "<td>".$expo['fencuesta']."</td>"
                     . "<td>".$expo['hencuesta']."</td>"
