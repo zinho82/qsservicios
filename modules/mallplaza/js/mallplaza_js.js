@@ -12,7 +12,10 @@ $(document).ready(function () {
     $("#Clasi2").attr("disabled", true);
     $("#Clasi3").attr("disabled", true);
     $("#Procesar").attr("disabled", true);
-
+    $("#CargarEncuesta").css("display", 'none');
+    $("#CargarEncuestas").click(function () {
+        $("#CargarEncuesta").css("display", 'block');
+    });
     /***************************************
      * MES
      * Activa la opcion del año al ser
@@ -47,7 +50,7 @@ $(document).ready(function () {
         });
     });
     $("#archivo").change(function () {
-         $("#Procesar").attr("disabled", false);
+        $("#Procesar").attr("disabled", false);
     });
     /***************************************
      * DIM(n)
@@ -134,13 +137,13 @@ $(document).ready(function () {
             }
         });
     });
-     /***************************************
+    /***************************************
      * EXPORTAR
      * Abre la pagina con la tabla competa para ser exportada a diversos formatos
      * 
      ****************************************/
     $("#Exportar").click(function () {
-        window.open("exportar.php","_self");
+        window.open("exportar.php", "_self");
     });
     /***************************************
      * PROCESAR CARGA
@@ -148,7 +151,7 @@ $(document).ready(function () {
      * para la comparacion de los envios anteriores
      * 
      ****************************************/
-    $("#Procesar").click(function () {   
+    $("#Procesar").click(function () {
         var archi = $("#BuscarArchivo").serialize();
 
         $.ajax({
@@ -157,10 +160,10 @@ $(document).ready(function () {
             data: archi,
             url: "proccarga.php",
             success: function (archi) {
-                alert(archi); 
-                 $("#Procesar").attr("disabled", true);
+                alert(archi);
+                $("#Procesar").attr("disabled", true);
                 location.reload();
-                 
+
 
             },
             error: function () {
@@ -189,7 +192,7 @@ $(document).ready(function () {
         ]
 
     });
- /***************************************
+    /***************************************
      * Guarda la informacion de la calificacion
      * de la encuesta
      * 
@@ -204,7 +207,7 @@ $(document).ready(function () {
             url: "guardacarga.php",
             success: function (archi) {
                 alert(archi);
-                window.open('mallplaza_index.php','_self');
+                window.open('mallplaza_index.php', '_self');
 
             },
             error: function () {
