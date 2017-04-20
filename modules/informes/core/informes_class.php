@@ -48,24 +48,24 @@ month(cda.fresp) as Mes
 ,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where cd.nps between 9 and 10 and month(cd.fresp)=month(cda.fresp) and year(cd.fresp)=year(cda.fresp) ) as qpos
 ,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where cd.nps between 7 and 8  and month(cd.fresp)=month(cda.fresp) and year(cd.fresp)=year(cda.fresp)) as qneu
 ,sum(cda.nps) as npst
-from enc_mplaza_cali.cliente_dato cda 
+from enc_mplaza_cali.cliente_dato cda  
 group by month(cda.fresp) ";
         $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
         while ($mall = mysql_fetch_array($res)) {
             $npspt += $mall['qpos'];
-            $npsn += $mall['qpneg'];
+            $npsn += $mall['qpneg']; 
             $npst += $mall['npst'];
             $qtott += $mall['npst'];
             $neg += $mall['qneg'];
             $neu += $mall['qneu'];
             $pos += $mall['qpos'];
 //$nps=(($mall['qpos']/$mall['npst'])-($mall['qpos']/$mall['npst']));
-            $nps = (($mall['qpos'] / $mall['34npst']) - ($mall['qneg'] / $mall['npst']));
+            $nps = (($mall['qpos'] / $mall['npst']) - ($mall['qneg'] / $mall['npst']));
             $qtot = $mall['qneg'] + $mall['qpos'] + $mall['qneu'];
-            $npst = (($npspt / $npst) - ($npsn / $npst));
+            $npsto = (($npspt / $npst) - ($npsn / $npst));
             echo "['" . $conn->MesRecortado($mall['Mes']) . '-' . date('y') . "',-" . (($mall['qneg'] / $qtot) * 100) . "," . (($mall['qneu'] / $qtot) * 100) . "," . (($mall['qpos'] / $qtot) * 100) . "," . ($nps * 100) . "],";
         }
-        echo "['Acum',-" . (($neg / $qtott) * 100) . "," . (($neu / $qtott) * 100) . "," . (($pos / $qtott) * 100) . "," . ($npst * 100) . "]";
+        echo "['Acum',-" . (($neg / $qtott) * 100) . "," . (($neu / $qtott) * 100) . "," . (($pos / $qtott) * 100) . "," . ($npsto * 100) . "]";
     }
 
     function TotalencuestasxItem($bd) {
