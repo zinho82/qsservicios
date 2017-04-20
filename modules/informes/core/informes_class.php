@@ -14,14 +14,14 @@
 class informes_class {
 
     function EncxMall($bd, $tbl, $condicion, $grupo) {
-        $conn = new config();
-        $sql = "select mall, count(*) as Q
-,(select count(*) from $bd.cliente_dato cd inner join $bd.cliente_respuestas cr on cr.cliente_idcliente=cd.idcliente where cd.mall=cda.mall and cr.sen1=26 group by cr.sen1)   as qneg
-,(select count(*) from $bd.cliente_dato cd inner join $bd.cliente_respuestas cr on cr.cliente_idcliente=cd.idcliente where cd.mall=cda.mall and cr.sen1=25 group by cr.sen1)   as qpos
-,(select count(*) from $bd.cliente_dato cd inner join $bd.cliente_respuestas cr on cr.cliente_idcliente=cd.idcliente where cd.mall=cda.mall and cr.sen1=27 group by cr.sen1)   as qneu
-,(select count(*) from enc_mplaza_cali.cliente_dato cd inner join enc_mplaza_cali.cliente_respuestas cr on cr.cliente_idcliente=cd.idcliente where cd.mall=cda.mall   group by cd.mall)   as qto
-from $bd.cliente_dato cda  where month(cda.fresp)=month(now()) and year(cda.fresp)=year(now()) group by cda.mall";
-        $res = mysql_query($sql, $conn->conectar());
+        $conn = new config();  
+        echo "<tbody>";
+         $sql="select  mall,count(*) as Q,
+(select count(*) from $bd.cliente_dato cdne where  cdne.nps between 0 and 6 and  cdne.mall=cd.mall) as qneg
+,(select count(*) from $bd.cliente_dato cdne where  cdne.nps between 9 and 10 and  cdne.mall=cd.mall) as qpos
+,(select count(*) from $bd.cliente_dato cdne where  cdne.nps between 7 and 8 and  cdne.mall=cd.mall) as qneu
+from $bd.cliente_dato cd group by mall"; 
+        $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
         while ($mall = mysql_fetch_array($res)) {
             echo "<tr>"
             . "<td class='warning'><strong>" . utf8_encode($mall['mall']) . "</strong></td>"
@@ -29,9 +29,15 @@ from $bd.cliente_dato cda  where month(cda.fresp)=month(now()) and year(cda.fres
             . "<td>" . $mall['qneg'] . "</td>"
             . "<td>" . $mall['qpos'] . "</td>"
             . "<td>" . $mall['qneu'] . "</td>"
-            . "<td class='info text-center'>" . $mall['qto'] . "</td>"
+            . "<td class='info text-center'>" . ($mall['qneg']+$mall['qpos']+$mall['qneu']) . "</td>"
             . "</tr>";
+            $tQ+=$mall['Q'];
+            $tQN+=$mall['qneg'];
+            $tQP+=$mall['qpos'];
+            $tQNE+=$mall['qneu'];
         }
+        echo "</tbody>
+              <tfoot class='text-center'><tr class=' danger text-center'><th>Total</th><th>$tQ</th><th>$tQN</th><th>$tQP</th><th>$tQNE</th><th>$tQ</th></tr></tfoot>";
     }
 
     function TotalEncuestasRalizadas($bd) {
@@ -54,7 +60,7 @@ group by month(cda.fresp) ";
             $neu += $mall['qneu'];
             $pos += $mall['qpos'];
 //$nps=(($mall['qpos']/$mall['npst'])-($mall['qpos']/$mall['npst']));
-            $nps = (($mall['qpos'] / $mall['npst']) - ($mall['qneg'] / $mall['npst']));
+            $nps = (($mall['qpos'] / $mall['34npst']) - ($mall['qneg'] / $mall['npst']));
             $qtot = $mall['qneg'] + $mall['qpos'] + $mall['qneu'];
             $npst = (($npspt / $npst) - ($npsn / $npst));
             echo "['" . $conn->MesRecortado($mall['Mes']) . '-' . date('y') . "',-" . (($mall['qneg'] / $qtot) * 100) . "," . (($mall['qneu'] / $qtot) * 100) . "," . (($mall['qpos'] / $qtot) * 100) . "," . ($nps * 100) . "],";
@@ -74,7 +80,8 @@ group by month(cda.fresp) ";
 
     function TotalencuestasxDimension($bd, $SentidoID, $NomDimension, $nomSentido, $orden) {
         $conn = new config();
-         $sql1 = "drop temporary table IF EXISTS tmp1 ;";
+   
+        $sql1 = "drop temporary table IF EXISTS tmp1 ;";
 $sql2="create temporary table ".__BASE_DATOS__.".tmp1 (total int, dim int);";
 $sql3="insert into tmp1 SELECT COUNT(dim1), dim1
 	FROM enc_mplaza_cali.cliente_respuestas cr 

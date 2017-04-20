@@ -21,9 +21,8 @@ $conn->CargaCampanaSession(4);
                             <th>Q Neutro</th>
                             <th>Q Encuestas Realizadas</th>
                             </thead>
-                            <tbody>
                                 <?php $informes->EncxMall($_SESSION['campana']['bd'], "cliente_dato", "", "group by mall") ?>
-                            </tbody>
+                            
                         </table>
 
                     </div>
@@ -169,7 +168,7 @@ $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "desc");
         chart.draw(data, {
             width: 700,
             height: 350,
-            legend: 'none'
+            legend: 'none' 
         });
     }
     google.charts.setOnLoadCallback(xDimension);
