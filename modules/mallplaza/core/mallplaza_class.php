@@ -52,7 +52,7 @@ class mallplaza_class {
     }
      function ExportarDatos($mesDesde,$AnoDesde,$MesHasta,$AHasta){
         $conn=new config();
-     echo    $sql="select *,substring(fencuesta,4,2) as mes from enc_mplaza_cali.cliente_dato cda
+         $sql="select *,substring(fencuesta,4,2) as mes from enc_mplaza_cali.cliente_dato cda
 inner join enc_mplaza_cali.cliente_respuestas cre on cre.cliente_idcliente=cda.idcliente and month(cda.fencuesta) between $mesDesde and $MesHasta and year(cda.fencuesta) between $AnoDesde and $AHasta ";
         $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
        // var_dump($expo=mysql_fetch_assoc($res));
