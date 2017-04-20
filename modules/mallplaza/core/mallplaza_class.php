@@ -50,11 +50,11 @@ class mallplaza_class {
             echo "<option value=".$cau['idconfig'].">".$cau['texto']."</option>";
         }
     }
-    function ExportarDatos(){
+     function ExportarDatos($mesDesde,$AnoDesde,$MesHasta,$AHasta){
         $conn=new config();
-        $sql="select *,substring(fencuesta,4,2) as mes from enc_mplaza_cali.cliente_dato cda
-inner join enc_mplaza_cali.cliente_respuestas cre on cre.cliente_idcliente=cda.idcliente";
-        $res=mysql_query($sql,$conn->conectar());
+     echo    $sql="select *,substring(fencuesta,4,2) as mes from enc_mplaza_cali.cliente_dato cda
+inner join enc_mplaza_cali.cliente_respuestas cre on cre.cliente_idcliente=cda.idcliente and month(cda.fencuesta) between $mesDesde and $MesHasta and year(cda.fencuesta) between $AnoDesde and $AHasta ";
+        $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
        // var_dump($expo=mysql_fetch_assoc($res));
         while($expo=mysql_fetch_assoc($res)){
             $encuesta= explode(" " , $expo['fresp']);
@@ -72,23 +72,24 @@ inner join enc_mplaza_cali.cliente_respuestas cre on cre.cliente_idcliente=cda.i
                     . "<td>".$encuesta[0]."</td>"
                     . "<td>".$encuesta[1]."</td>"
                     . "<td>".utf8_encode($expo['mall'])."</td>"
-                    . "<td>".$expo['origen']."</td>"
+                    . "<td>".utf8_encode($expo['origen'])."</td>"
                     . "<td>".$expo['fencuesta']."</td>"
                     . "<td>".$expo['hencuesta']."</td>"
                     . "<td>".$expo['nps']."</td>"
-                    . "<td>".utf8_encode($expo['encuesta'])."</td>"
-                    . "<td>".$conn->BuscaDatos($_SESSION['campana']['bd'],"areas", $expo['dim1'], "CodArea", "Area")."</td>"
-                    . "<td>".$conn->BuscaDatos($_SESSION['campana']['bd'],"causas", $expo['area1'], "CodCausa", "Causa")."</td>"
-                    . "<td>".$conn->BuscaDatos(__BASE_DATOS__, "config", $expo['sen1'], "idconfig", "texto")."</td>"
-                    . "<td>".$conn->BuscaDatos($_SESSION['campana']['bd'],"areas", $expo['dim2'], "CodArea", "Area")."</td>"
-                    . "<td>".$conn->BuscaDatos($_SESSION['campana']['bd'],"causas", $expo['area2'], "CodCausa", "Causa")."</td>"
-                    . "<td>".$conn->BuscaDatos(__BASE_DATOS__, "config", $expo['sen2'], "idconfig", "texto")."</td>"
-                    . "<td>".$conn->BuscaDatos($_SESSION['campana']['bd'],"areas", $expo['dim3'], "CodArea", "Area")."</td>"
-                    . "<td>".$conn->BuscaDatos($_SESSION['campana']['bd'],"causas", $expo['area3'], "CodCausa", "Causa")."</td>"
-                    . "<td>".$conn->BuscaDatos(__BASE_DATOS__, "config", $expo['sen3'], "idconfig", "texto")."</td>"
-                    . "<td>".$expo['mediotransp']."</td>"
+                    ."<td>".utf8_encode($expo['encuesta'])."</td>"
+                    . "<td>".utf8_encode($expo['npspasivo'])."</td>"
+                    . "<td>".utf8_encode($conn->BuscaDatos($_SESSION['campana']['bd'],"areas", $expo['dim1'], "CodArea", "Area"))."</td>"
+                    . "<td>".utf8_encode($conn->BuscaDatos($_SESSION['campana']['bd'],"causas", $expo['area1'], "CodCausa", "Causa"))."</td>"
+                    . "<td>".utf8_encode($conn->BuscaDatos(__BASE_DATOS__, "config", $expo['sen1'], "idconfig", "texto"))."</td>"
+                    . "<td>".utf8_encode($conn->BuscaDatos($_SESSION['campana']['bd'],"areas", $expo['dim2'], "CodArea", "Area"))."</td>"
+                    . "<td>".utf8_encode($conn->BuscaDatos($_SESSION['campana']['bd'],"causas", $expo['area2'], "CodCausa", "Causa"))."</td>"
+                    . "<td>".utf8_encode($conn->BuscaDatos(__BASE_DATOS__, "config", $expo['sen2'], "idconfig", "texto"))."</td>"
+                    . "<td>".utf8_encode($conn->BuscaDatos($_SESSION['campana']['bd'],"areas", $expo['dim3'], "CodArea", "Area"))."</td>"
+                    . "<td>".utf8_encode($conn->BuscaDatos($_SESSION['campana']['bd'],"causas", $expo['area3'], "CodCausa", "Causa"))."</td>"
+                    . "<td>".utf8_encode($conn->BuscaDatos(__BASE_DATOS__, "config", $expo['sen3'], "idconfig", "texto"))."</td>"
+                    . "<td>".utf8_encode($expo['mediotransp'])."</td>"
                     . "<td>".$expo['obs']."</td>"
-                    . "<td>".$conn->BuscaDatos(__BASE_DATOS__, "usuario", $expo['ejecutivo'], "idusuario", "usuario")."</td>"
+                    . "<td>".utf8_encode($conn->BuscaDatos(__BASE_DATOS__, "usuario", $expo['ejecutivo'], "idusuario", "usuario"))."</td>"
                     . "<td>".$expo['nombre']."</td>"
                     . "<td>".$expo['app']."</td>"
                     . "<td>".$expo['rut']."</td>"
@@ -100,7 +101,7 @@ inner join enc_mplaza_cali.cliente_respuestas cre on cre.cliente_idcliente=cda.i
                     . "<td>".$expo['sexo']."</td>"
                     . "<td>".$expo['edad']."</td>"
                     . "<td>".$expo['dire']."</td>"
-                    . "<td>".$expo['comuna']."</td>"
+                    . "<td>".utf8_encode($expo['comuna'])."</td>"
                     . "<td>".$expo['pais']."</td>"
                     . "<td>".$expo['fono1']."</td>"
                     . "<td>".$expo['fono2']."</td>"
@@ -118,9 +119,9 @@ inner join enc_mplaza_cali.cliente_respuestas cre on cre.cliente_idcliente=cda.i
                     . "<td>".$expo['reco']."</td>"
                     . "<td>".$tipo."</td>"
                     . "<td>".$expo['mes']."</td>"
-                    . "<td>".$expo['mall'].$expo['pais'].$tipo."</td>"
-                    . "<td>".$expo['mall'].$expo['comuna'].$tipo."</td>"
-                    . "<td>".$expo['mall'].$expo['catcliente'].$tipo."</td>"
+                    . "<td>".utf8_encode($expo['mall'].$expo['pais'].$tipo)."</td>"
+                    . "<td>".utf8_encode($expo['mall'].$expo['comuna'].$tipo)."</td>"
+                    . "<td>".utf8_encode($expo['mall'].$expo['catcliente'].$tipo)."</td>"
                     
                     . "</tr>";
         }

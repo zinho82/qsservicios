@@ -145,6 +145,28 @@ $(document).ready(function () {
     $("#Exportar").click(function () {
         window.open("exportar.php", "_self");
     });
+     /***************************************
+     * EXPORTAR selector fecha
+     * Abre la pagina con la tabla competa para ser exportada a diversos formatos
+     * 
+     ****************************************/
+   /* $("#Buscar").click(function () {
+         var archi = $("#FormExportar").serialize();
+
+        $.ajax({
+            type: "post",
+            datatype: "json",
+            data: archi,
+            url: "BuscaLista.php",
+            success: function (archi) {
+                $("#calificacion").html(archi);
+
+            },
+            error: function () {
+                alert(" Error no se puedo obtener informacion");
+            }
+        });
+    });*/
     /***************************************
      * PROCESAR CARGA
      * Realiza la carga al temporal, historico y unico de los registros
@@ -178,7 +200,7 @@ $(document).ready(function () {
      * 
      ****************************************/
     $('#calificacion').DataTable({
-        dom: 'Bfrtip',
+        dom: 'lBfrtip',
         buttons: [
             {
                 extend: 'copyHtml5',
