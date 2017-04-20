@@ -6,6 +6,49 @@ $mplaza=new mallplaza_class();
 <div class="panel panel-primary">
     <div class="panel-heading">Mall Plaza  - Exportar Encuestas  </div>
     <div class="panel-body">
+        <table class="table col-lg-6">
+                            <tr>
+                                <td>
+                                    <form id="FormExportar" method="post">
+                                        
+                                        <select class="form-control" id="mesd" name="mesd">
+                                            <option selected="">Mes Desde</option>
+                                            <?php
+                                            for($i=1;$i<13;$i++){
+                                                echo "<option value='$i'>".$conn->MesRecortado($i)."</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                        <select class="form-control" id="anod" name="anod">
+                                            <option selected="">Año Desde</option>
+                                             <?php
+                                            for($i=2015;$i<2025;$i++){
+                                                echo "<option value='$i'>$i</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                        <br>
+                                        <select class="form-control" id="mesh" name="mesh">
+                                             <option selected="">Mes Hasta</option>
+                                              <?php
+                                            for($i=1;$i<13;$i++){
+                                                echo "<option value='$i'>".$conn->MesRecortado($i)."</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                        <select class="form-control" id="anoh" name="anoh">
+                                            <option selected="">Año Hasta</option>
+                                            <?php
+                                            for($i=2015;$i<2025;$i++){
+                                                echo "<option value='$i'>$i</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                        <input class="btn btn-block btn-success" type="submit" value="Buscar" id="Buscar">
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
         <table id="calificacion">
             <thead>
             <th>ID</th>
@@ -68,7 +111,9 @@ $mplaza=new mallplaza_class();
                 
             </thead>
             <tbody>
-                <?php $mplaza->ExportarDatos();?>
+                <?php
+                if(!$_POST){}else{$mplaza->ExportarDatos($_POST['mesd'],$_POST['anod'],$_POST['mesh'],$_POST['anoh']);}
+                ?>
             </tbody>
             
         </table>

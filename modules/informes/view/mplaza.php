@@ -22,7 +22,6 @@ $conn->CargaCampanaSession(4);
                             <th>Q Encuestas Realizadas</th>
                             </thead>
                                 <?php $informes->EncxMall($_SESSION['campana']['bd'], "cliente_dato", "", "group by mall") ?>
-                            
                         </table>
 
                     </div>
