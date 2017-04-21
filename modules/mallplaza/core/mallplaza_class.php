@@ -50,10 +50,10 @@ class mallplaza_class {
             echo "<option value=".$cau['idconfig'].">".$cau['texto']."</option>";
         }
     }
-     function ExportarDatos($mesDesde,$AnoDesde,$MesHasta,$AHasta){
+     function ExportarDatos($FechaDesde,$FechaHasta){
         $conn=new config();
-         $sql="select *,substring(fencuesta,4,2) as mes from enc_mplaza_cali.cliente_dato cda
-inner join enc_mplaza_cali.cliente_respuestas cre on cre.cliente_idcliente=cda.idcliente and month(cda.fencuesta) between $mesDesde and $MesHasta and year(cda.fencuesta) between $AnoDesde and $AHasta ";
+          $sql="select *,substring(fencuesta,4,2) as mes from enc_mplaza_cali.cliente_dato cda
+inner join enc_mplaza_cali.cliente_respuestas cre on cre.cliente_idcliente=cda.idcliente and date(cda.fencuesta) between '$FechaDesde' and '$FechaHasta'";
         $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
        // var_dump($expo=mysql_fetch_assoc($res));
         while($expo=mysql_fetch_assoc($res)){

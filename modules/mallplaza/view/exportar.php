@@ -1,54 +1,38 @@
 <?php require_once '../../config/superior.php'; ?>
 <?php
 $conn = new config();
-$mplaza=new mallplaza_class();
+$mplaza = new mallplaza_class();
 ?>
+
+
 <div class="panel panel-primary">
     <div class="panel-heading">Mall Plaza  - Exportar Encuestas  </div>
     <div class="panel-body">
-        <table class="table col-lg-6">
-                            <tr>
-                                <td>
-                                    <form id="FormExportar" method="post">
-                                        
-                                        <select class="form-control" id="mesd" name="mesd">
-                                            <option selected="">Mes Desde</option>
-                                            <?php
-                                            for($i=1;$i<13;$i++){
-                                                echo "<option value='$i'>".$conn->MesRecortado($i)."</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                        <select class="form-control" id="anod" name="anod">
-                                            <option selected="">Año Desde</option>
-                                             <?php
-                                            for($i=2015;$i<2025;$i++){
-                                                echo "<option value='$i'>$i</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                        <br>
-                                        <select class="form-control" id="mesh" name="mesh">
-                                             <option selected="">Mes Hasta</option>
-                                              <?php
-                                            for($i=1;$i<13;$i++){
-                                                echo "<option value='$i'>".$conn->MesRecortado($i)."</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                        <select class="form-control" id="anoh" name="anoh">
-                                            <option selected="">Año Hasta</option>
-                                            <?php
-                                            for($i=2015;$i<2025;$i++){
-                                                echo "<option value='$i'>$i</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                        <input class="btn btn-block btn-success" type="submit" value="Buscar" id="Buscar">
-                                    </form>
-                                </td>
-                            </tr>
-                        </table>
+        <form method="post">
+            <div class="container">
+                <div class='col-md-5'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker6'>
+                            <input type='text' placeholder="Fecha Inicio" name="Fdesde" class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-md-5'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker7'>
+                            <input name="Fhasta" placeholder="Fecha Termino" type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Buscar" class="btn-block btn btn-success">
+            </div>
+        </form>
         <table id="calificacion">
             <thead>
             <th>ID</th>
@@ -60,6 +44,7 @@ $mplaza=new mallplaza_class();
             <th>Hora Compra</th>
             <th>Nota</th>
             <th>Motivo</th>
+            <th>Comentario</th>
             <th>Dimension 1</th>
             <th>Area 1</th>
             <th>Sentido 1</th>
@@ -104,17 +89,19 @@ $mplaza=new mallplaza_class();
             <th>ID1</th>
             <th>ID2</th>
             <th>ID3</th>
-            
-                
-                
-                
+
+
+
+
             </thead>
             <tbody>
                 <?php
-                if(!$_POST){}else{$mplaza->ExportarDatos($_POST['mesd'],$_POST['anod'],$_POST['mesh'],$_POST['anoh']);}
+                if ($_POST) {
+                    $mplaza->ExportarDatos($_POST['Fdesde'], $_POST['Fhasta']);
+                }
                 ?>
             </tbody>
-            
+
         </table>
     </div>
 </div>
