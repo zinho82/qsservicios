@@ -12,7 +12,7 @@ $conn = new config();
     <table class="table">
         <tbody>
             <?php
-            echo $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=".$_SESSION['usuario']['ant']." and estado in (1,2) and id_encuesta!=0";
+            echo $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=".$_SESSION['usuario']['ant']." and estado in (1) and id_encuesta!=0";
             $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
             while ($enc = mysql_fetch_assoc($res)) {
                 echo "<tr><td>" . $enc['cod_carga'] . "</td>"
