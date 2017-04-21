@@ -59,6 +59,7 @@ class login_class {
             $_SESSION['usuario']['id'] = $usuario['idusuario'];
             $_SESSION['usuario']['rut'] = $usuario['rut'];
             $_SESSION['usuario']['perfil'] = $usuario['perfil'];
+            $_SESSION['usuario']['ant'] = $usuario['ejeant'];
             return TRUE;
         }
     } catch (Exception $e){

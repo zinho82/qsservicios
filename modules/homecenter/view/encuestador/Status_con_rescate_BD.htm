@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Documento sin t&iacute;tulo</title>
+</head>
+
+<body>
+
+				<td>
+				<select name="status1_llamada" size="15">
+					<option value="1. Contacto" <?PHP if ($row['status1_llamada'] == '1. Contacto') echo 'selected';?>>1. Contacto</option>
+					<option value="2. No Contacto" <?PHP if ($row['status1_llamada'] == '2. No Contacto') echo 'selected';?>>2. No Contacto</option>
+				</select>
+				</td>
+				<td>
+				<select name="status2_llamada" size="15">
+					<option value="1.a. Efectivo" <?PHP if ($row['status2_llamada'] == '1.a. Efectivo') echo 'selected';?>>1.a. Efectivo</option>
+					<option value="1.b. No Efectivo" <?PHP if ($row['status2_llamada'] == '1.b. No Efectivo') echo 'selected';?>>1.b. No Efectivo</option>
+				</select>
+				</td>
+				<td>
+				<select name="status3_llamada" size="15" >
+					<option value="1.a.i. Aún NO ingresa a Taller" <?PHP if ($row['status3_llamada'] == '1.a.i. Aún NO ingresa a Taller') echo 'selected';?>>1.a.i. Aún NO ingresa a Taller</option>
+					<option value="1.a.ii. Cliente Molesto" <?PHP if ($row['status3_llamada'] == '1.a.ii. Cliente Molesto') echo 'selected';?>>1.a.ii. Cliente Molesto</option>
+					<option value="1.a.iii. Contesta encuesta" <?PHP if ($row['status3_llamada'] == '1.a.iii. Contesta encuesta') echo 'selected';?>>1.a.iii. Contesta encuesta</option>
+					<option value="1.a.iv. Desiste de siniestro / servicio" <?PHP if ($row['status3_llamada'] == '1.a.iv. Desiste de siniestro / servicio') echo 'selected';?>>1.a.iv. Desiste de siniestro / servicio</option>
+					<option value="1.a.vi. NO contesta encuesta" <?PHP if ($row['status3_llamada'] == '1.a.vi. NO contesta encuesta') echo 'selected';?>>1.a.vi. NO contesta encuesta</option>
+					<option value="1.a.vii. No recuerda haber tenido siniestro/ servicio" <?PHP if ($row['status3_llamada'] == '1.a.vii. No recuerda haber tenido siniestro/ servicio') echo 'selected';?>>1.a.vii. No recuerda haber tenido siniestro/ servicio</option>
+					<option value="1.a.viii. Renuncio al seguro" <?PHP if ($row['status3_llamada'] == '1.a.viii. Renuncio al seguro') echo 'selected';?>>1.a.viii. Renuncio al seguro</option>
+					<option value="1.a.ix. Cliente molesto con Corredor" <?PHP if ($row['status3_llamada'] == '1.a.ix. Cliente molesto con Corredor') echo 'selected';?>>1.a.ix. Cliente molesto con Corredor</option>
+				</select>
+				</td>
+				<td>
+				<select name="status4_llamada" size="15">
+					<option value="1.b.i. Número equivocado" <?PHP if ($row['status4_llamada'] == '1.b.i. Número equivocado') echo 'selected';?>>1.b.i. Número equivocado</option>
+					<option value="1.b.ii. Inubicable por Horario" <?PHP if ($row['status4_llamada'] == '1.b.ii. Inubicable por Horario') echo 'selected';?>>1.b.ii. Inubicable por Horario</option>
+					<option value="1.b.iii. Cliente de Viaje" <?PHP if ($row['status4_llamada'] == '1.b.iii. Cliente de Viaje') echo 'selected';?>>1.b.iii. Cliente de Viaje</option>
+				</select>
+				</td>
+				<td>
+				<select name="status5_llamada" size="15">
+  					<option value="2.a. Congestionado" <?PHP if ($row['status5_llamada'] == '2.a. Congestionado') echo 'selected';?>>2.a. Congestionado</option>
+					<option value="2.b. Sin teléfono" <?PHP if ($row['status5_llamada'] == '2.b. Sin teléfono') echo 'selected';?>>2.b. Sin teléfono</option>
+					<option value="2.c. Ocupado" <?PHP if ($row['status5_llamada'] == '2.c. Ocupado') echo 'selected';?>>2.c. Ocupado</option>
+					<option value="2.d. Fuera de servicio" <?PHP if ($row['status5_llamada'] == '2.d. Fuera de servicio') echo 'selected';?>>2.d. Fuera de servicio</option>
+					<option value="2.e. Conectado a Fax" <?PHP if ($row['status5_llamada'] == '2.e. Conectado a Fax') echo 'selected';?>>2.e. Conectado a Fax</option>
+					<option value="2.f. Grabadora o buzón de voz" <?PHP if ($row['status5_llamada'] == '2.f. Grabadora o buzón de voz') echo 'selected';?>>2.f. Grabadora o buzón de voz</option>
+					<option value="2.g. Fuera de área o apagado (celular)" <?PHP if ($row['status5_llamada'] == '2.g. Fuera de área o apagado (celular)') echo 'selected';?>>2.g. Fuera de área o apagado (celular)</option>
+					<option value="2.h. No contesta" <?PHP if ($row['status5_llamada'] == '2.h. No contesta') echo 'selected';?>>2.h. No contesta</option>
+					<option value="2.i. Número no válido" <?PHP if ($row['status5_llamada'] == '2.i. Número no válido') echo 'selected';?>>2.i. Número no válido</option>
+					<option value="2.j. Cliente Fallecido" <?PHP if ($row['status5_llamada'] == '2.j. Cliente Fallecido') echo 'selected';?>>2.j. Cliente Fallecido</option>
+ 				</select>
+				</td>
+
+
+</body>
+</html>

@@ -13,7 +13,7 @@ $mplaza = new mallplaza_class();
                 <div class='col-md-5'>
                     <div class="form-group">
                         <div class='input-group date' id='datetimepicker6'>
-                            <input type='text' placeholder="Fecha Inicio" name="Fdesde" class="form-control" />
+                            <input type='text' placeholder="Fecha Inicio Busqueda" name="Fdesde" class="form-control" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -23,7 +23,7 @@ $mplaza = new mallplaza_class();
                 <div class='col-md-5'>
                     <div class="form-group">
                         <div class='input-group date' id='datetimepicker7'>
-                            <input name="Fhasta" placeholder="Fecha Termino" type='text' class="form-control" />
+                            <input name="Fhasta" placeholder="Fecha Termino Busqueda" type='text' class="form-control" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
