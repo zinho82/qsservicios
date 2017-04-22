@@ -6,13 +6,23 @@ require_once '../../config/superior.php';
  * and open the template in the editor.
  */
 $conn = new config();
+$_SESSION['campana']['bd']='qsschile_qs_encuestas';
 ?>
 <div class="panel panel-primary">
     <div class="panel-heading">Encuestas Homcenter Empresas</div>
-    <table class="table">
-        <tbody>
+    <table class="table" id='ListaEncuestas'>
+        <thead>
+        <th>Cod_carga</th>
+        <th>IDEncuesta</th>
+        <th>Rut</th>
+        <th>Nombre</th>
+        <th>Estado</th>
+        <th>Ultima Llamada</th>
+        <th></th>
+        </thead>
+        <tbody >
             <?php
-            echo $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=".$_SESSION['usuario']['ant']." and estado in (1) and id_encuesta!=0";
+            echo $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=101 and estado in (1) and id_encuesta!=0";
             $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
             while ($enc = mysql_fetch_assoc($res)) {
                 echo "<tr><td>" . $enc['cod_carga'] . "</td>"
@@ -20,7 +30,7 @@ $conn = new config();
                         . "<td>" . $enc['rut'] . "</td>"
                 . "<td>" . $enc['Cliente'] . "</td>"
                 . "<td>" . $enc['estado'] . "</td>"
-                . "<td><a href='" . __BASE_URL__ . "modules/homecenter/view/encuestador/EditarEncuestaSODI_EMP.php?id_encuesta=" . $enc['id_encuesta'] . "&id_formato=12&estado=2' target='_new'><i class='fa fa-search'></i></a></td>"
+                . "<td><a href='" . __BASE_URL__ . "modules/encuestas/view/Enc_hc_emp.php?id_encuesta=" . $enc['id_encuesta'] . "&id_formato=12&estado=2' target='_new'><i class='fa fa-search'></i></a></td>"
                 . "</tr>";
             }
             ?>
@@ -28,5 +38,5 @@ $conn = new config();
     </table>
 </div>
 
-
+<script src="<?php echo __BASE_URL__.__MODULO_Encuestas__ ?>js/hcenter_js.js"></script>
 <?php require_once '../../config/superior.php'; ?>
