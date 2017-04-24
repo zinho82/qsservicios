@@ -7,16 +7,30 @@ $conn=new config();
  * and open the template in the editor.
  */
 var_dump($_POST);
+switch($_POST['num_post'])
+{
+    case 0:$CampoStatus='status1_llamada';break;
+    case 1:$CampoStatus='status2_llamada';break;
+    case 2:$CampoStatus='status3_llamada';break;
+    case 3:$CampoStatus='status4_llamada';break;
+    case 4:$CampoStatus='status5_llamada';break;
+    default:$CampoStatus='status5_llamada';break;
+
+}
 //ACTUALIZANDO ENCUESTA CLIENTE
  echo $sql="update ".$_SESSION['campana']['bd'].".qs_encuestascli_sodimac_emp set "
          . "num_post=(num_post+1) "
          .",fec_termino='".date("Y-m-d G:i:s")."' "
          .",fec_inicio='".date("Y-m-d G:i:s")."' "
-         . "where id_encuesta=".$_POST['id_encuesta'];
+         .",fec_postergada='".$_POST['FecPosterga']."'"
+         .",estado=".$_POST['Arbol3']." "
+         .",$CampoStatus='".$_POST['Arbol3']."'"
+         . " where id_encuesta=".$_POST['id_encuesta'];
  if(!mysql_query($sql,$conn->conectar())){
      echo "no se Pudo Actualizar <<<CLIENTE>>> ";
      die(mysql_error());
 }
+
 
 //INSERTANDO RESULTADO ENCUESTA
 

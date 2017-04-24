@@ -3,7 +3,7 @@
 session_start();
 //define("__SERVIDOR_DATOS__", "201.239.170.83");
 define("__SERVIDOR_DATOS__", "190.100.117.172"); 
-define("__ROOT__", "/var/www/html/qsservicios/");
+define("__ROOT__", "/var/www/html/seguros/");
 define("__BASE_URL__", "http://" . __SERVIDOR_DATOS__ . "/seguros/");
 define("__BASE_DATOS__", "qsservicios2");
 define("__MODULO_ACCESORIOS__", "archivos/");
@@ -99,4 +99,5 @@ require_once __ROOT__ . __MODULO_SPONSOR__ . 'core/sponsor_class.php';
 require_once __ROOT__ . __MODULO_CAMPANA__ . 'core/campana_class.php';
 require_once __ROOT__ . __MODULO_MENU__ . 'core/menu_class.php';
 require_once __ROOT__ . __MODULO_informes__ . 'core/informes_class.php';
+require_once __ROOT__ . __MODULO_Encuestas__ . 'core/encuestas_class.php';
 ?>
