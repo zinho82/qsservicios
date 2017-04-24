@@ -85,7 +85,7 @@ $(document).ready(function () {
             url: "GuardaEnc.php",
             success: function (archi) {
                alert(archi);
-
+window.open('hcenter_index.php','_self');
             },
             error: function () {
                 alert(" error no se puedo obtener informacion");
