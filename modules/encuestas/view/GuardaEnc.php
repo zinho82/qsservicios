@@ -6,6 +6,7 @@ $conn=new config();
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+$preg1=$_POST['preg1'];
 switch($_POST['num_post'])
 {
     case 0:$CampoStatus='status1_llamada';break;
@@ -56,4 +57,57 @@ if(!mysql_query($sqls,$conn->conectar())){
     mysql_error();
 }else{
     echo "Guardado";
+}
+//Envio mail automatico 
+if (trim($preg1) <> '' and $preg1 >= 0 and $preg1 < 6 and $estado2 == 9 and $status3_llamada=='1.a.iii. Contesta encuesta') {
+
+	//$destinatario="josegonzalez@sodimac.cl";
+    $destinatario="erick@qsservicios.cl";
+
+	$asunto="Nueva Encuesta SODIMAC EMPRESAS - Nota < 6 | ".$rut_dv;
+
+	$fecha=date("Y-m-d H:i:s");
+
+	
+
+	$mensaje="Nota Pregunta 1: " .$preg1. "\r\n" . 
+
+	'Razones de la Nota : ' .$_POST['preg2']. "\r\n\r\n" .
+
+	'Tipo Venta Empresa: ' .$_POST['TIPO_CLIENTE']. "\r\n" .
+
+	'Ejecutivo Venta Empresa: ' .$_POST['ejecutivo']. "\r\n" .
+
+	'Distrito: ' .$_POST['distrito']. "\r\n".
+
+	'Cliente: ' .$_POST['Cliente']. "\r\n".
+
+	'Nombre Contacto en Empresa Cliente: ' .$_POST['preg5_a']. "\r\n" .
+
+	'E-mail Contacto en Empresa Cliente: ' .$_POST['Mail']. "\r\n".
+
+	'Celular Contacto en Empresa Cliente: ' .$_POST['CELULAR_CONTACTO']. "\r\n".
+
+	'Tel�fono Trabajo Contacto en Empresa Cliente: ' .$_POST['TELEFONO_TRABAJO_CONTACTO']. "\r\n".
+
+	'Tel�fono Casa Contacto en Empresa Cliente: ' .$_POST['TELEFONO_CASA_CONTACTO']. "\r\n";
+
+	
+
+	/*$encabezados = 'To: gsobrevia@sodimac.cl' . "\r\n" .
+
+	'From: contacto@qsservicios.cl' . "\r\n" .
+
+	'Cc: fescudero@sodimac.cl, gsamur@sodimac.cl, laraya@Falabella.cl, ajunes@sodimac.cl, carlos.rios@qsservicios.cl' . "\r\n";*/
+$encabezados = 'To: erick.leal@qsservicios.cl' . "\r\n" .
+
+	'From: contacto@qsservicios.cl' . "\r\n" ;
+
+	//'Cc: fescudero@sodimac.cl, gsamur@sodimac.cl, laraya@Falabella.cl, ajunes@sodimac.cl, carlos.rios@qsservicios.cl' . "\r\n";
+
+
+	
+
+	mail($destinatario, $asunto, $mensaje, $encabezados);
+
 }
