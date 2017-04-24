@@ -19,6 +19,11 @@ switch($_POST['num_post'])
 //ACTUALIZANDO ENCUESTA CLIENTE
   $sql="update ".$_SESSION['campana']['bd'].".qs_encuestascli_sodimac_emp set "
          . "num_post=(num_post+1) "
+          . ",TIPO=".$_POST['TIPO_CLIENTE']." "
+          .",CELULAR_CONTACTO='".$_POST['CELULAR_CONTACTO']."'"
+          .",TELEFONO_CASA_CONTACTO='".$_POST['TELEFONO_CASA_CONTACTO']."'"
+          .",FONO_AT4='".$_POST['FONO_AT4']."'"
+          .",FONO_AT5='".$_POST['FONO_AT5']."'"
          .",fec_termino='".date("Y-m-d G:i:s")."' "
          .",fec_inicio='".date("Y-m-d G:i:s")."' "
          .",fec_postergada='".$_POST['FecPosterga']."'"
