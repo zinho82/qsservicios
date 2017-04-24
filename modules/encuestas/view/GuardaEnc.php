@@ -17,7 +17,7 @@ switch($_POST['num_post'])
 
 }
 //ACTUALIZANDO ENCUESTA CLIENTE
- echo $sql="update ".$_SESSION['campana']['bd'].".qs_encuestascli_sodimac_emp set "
+  $sql="update ".$_SESSION['campana']['bd'].".qs_encuestascli_sodimac_emp set "
          . "num_post=(num_post+1) "
          .",fec_termino='".date("Y-m-d G:i:s")."' "
          .",fec_inicio='".date("Y-m-d G:i:s")."' "
