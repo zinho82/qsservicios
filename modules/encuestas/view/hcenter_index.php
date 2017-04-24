@@ -22,7 +22,7 @@ $_SESSION['campana']['bd']='qsschile_qs_encuestas';
         </thead>
         <tbody >
             <?php
-            echo $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=101 and estado in (1) and id_encuesta!=0";
+             $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=".$_SESSION['usuario']['id']." and estado in (1) and id_encuesta!=0";
             $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
             while ($enc = mysql_fetch_assoc($res)) {
                 echo "<tr><td>" . $enc['cod_carga'] . "</td>"
@@ -30,7 +30,8 @@ $_SESSION['campana']['bd']='qsschile_qs_encuestas';
                         . "<td>" . $enc['rut'] . "</td>"
                 . "<td>" . $enc['Cliente'] . "</td>"
                 . "<td>" . $enc['estado'] . "</td>"
-                . "<td><a href='" . __BASE_URL__ . "modules/encuestas/view/Enc_hc_emp.php?id_encuesta=" . $enc['id_encuesta'] . "&id_formato=12&estado=2' target='_new'><i class='fa fa-search'></i></a></td>"
+                        . "<td>" . $enc['fec_termino'] . "</td>"
+                . "<td><a href='" . __BASE_URL__ . "modules/encuestas/view/Enc_hc_emp.php?id_encuesta=" . $enc['id_encuesta'] . "&id_formato=12&estado=2' ><i class='fa fa-search'></i></a></td>"
                 . "</tr>";
             }
             ?>
