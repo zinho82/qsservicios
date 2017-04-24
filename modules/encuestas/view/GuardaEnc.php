@@ -6,7 +6,6 @@ $conn=new config();
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var_dump($_POST);
 switch($_POST['num_post'])
 {
     case 0:$CampoStatus='status1_llamada';break;
@@ -46,8 +45,10 @@ switch($_POST['num_post'])
         . ",null"
         . ")";
 
-/*if(!mysql_query($sqls,$conn->conectar())){
+if(!mysql_query($sqls,$conn->conectar())){
    
     echo "NO GUARDADO RESPUESTAS<br>";
     die(mysql_error());
-}*/
+}else{
+    echo "Guardado";
+}
