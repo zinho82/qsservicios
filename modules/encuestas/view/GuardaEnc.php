@@ -19,7 +19,7 @@ switch($_POST['num_post'])
 //ACTUALIZANDO ENCUESTA CLIENTE
   $sql="update ".$_SESSION['campana']['bd'].".qs_encuestascli_sodimac_emp set "
          . "num_post=(num_post+1) "
-          . ",TIPO=".$_POST['TIPO_CLIENTE']." "
+          . ",TIPO='".$_POST['TIPO_CLIENTE']."' "
           .",CELULAR_CONTACTO='".$_POST['CELULAR_CONTACTO']."'"
           .",TELEFONO_CASA_CONTACTO='".$_POST['TELEFONO_CASA_CONTACTO']."'"
           .",FONO_AT4='".$_POST['FONO_AT4']."'"
@@ -32,7 +32,7 @@ switch($_POST['num_post'])
          . " where id_encuesta=".$_POST['id_encuesta'];
  if(!mysql_query($sql,$conn->conectar())){
      echo "no se Pudo Actualizar <<<CLIENTE>>> ";
-     die(mysql_error());
+     mysql_error();
 }
 
 
@@ -53,7 +53,7 @@ switch($_POST['num_post'])
 if(!mysql_query($sqls,$conn->conectar())){
    
     echo "NO GUARDADO RESPUESTAS<br>";
-    die(mysql_error());
+    mysql_error();
 }else{
     echo "Guardado";
 }
