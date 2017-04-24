@@ -94,16 +94,16 @@ if (trim($preg1) <> '' and $preg1 >= 0 and $preg1 < 6 and $estado2 == 9 and $sta
 
 	
 
-	/*$encabezados = 'To: gsobrevia@sodimac.cl' . "\r\n" .
+	$encabezados = 'To: gsobrevia@sodimac.cl' . "\r\n" .
 
 	'From: contacto@qsservicios.cl' . "\r\n" .
 
-	'Cc: fescudero@sodimac.cl, gsamur@sodimac.cl, laraya@Falabella.cl, ajunes@sodimac.cl, carlos.rios@qsservicios.cl' . "\r\n";*/
+	'Cc: fescudero@sodimac.cl, gsamur@sodimac.cl, laraya@Falabella.cl, ajunes@sodimac.cl, carlos.rios@qsservicios.cl' . "\r\n";
 $encabezados = 'To: erick.leal@qsservicios.cl' . "\r\n" .
 
 	'From: contacto@qsservicios.cl' . "\r\n" ;
 
-	//'Cc: fescudero@sodimac.cl, gsamur@sodimac.cl, laraya@Falabella.cl, ajunes@sodimac.cl, carlos.rios@qsservicios.cl' . "\r\n";
+	'Cc: fescudero@sodimac.cl, gsamur@sodimac.cl, laraya@Falabella.cl, ajunes@sodimac.cl, carlos.rios@qsservicios.cl' . "\r\n";
 
 
 	
