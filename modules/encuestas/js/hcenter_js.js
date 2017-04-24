@@ -76,7 +76,7 @@ $(document).ready(function(){
              data:archi,
             url: "GuardaEnc.php", 
             success: function (archi) {
-                $("#preg2_c3").html(archi);
+                $("#preg2_c3").html(archi);  
 
             },
             error: function () {
