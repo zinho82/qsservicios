@@ -8,7 +8,6 @@
 $(document).ready(function () {
     $("#VerEncuesta").css("display", "none");
     $("#datetimepicker1").css("display", "none");
-    $("#ListaEncuestas").DataTable();
     /*******************************************
      * Preg_axxx
      * busca las causas y areas en los valores 
