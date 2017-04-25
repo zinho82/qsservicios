@@ -6,6 +6,7 @@
 $(document).ready(function () {
     $("#Campana").attr("disabled", true);
     $("#BuscarEncAsignada").attr("disabled", true);
+    $("#Asignados").DataTable();
     $("#Sponsor").change(function () {
         var id = $("#Sponsor").val();
         $.ajax({
