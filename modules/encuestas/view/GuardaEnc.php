@@ -64,10 +64,11 @@ if (!mysql_query($sqls, $conn->conectar())) {
     echo "Guardado";
 }
 //Envio mail automatico 
-if (trim($preg1) <> '' and $preg1 >= 0 and $preg1 < 6 and $estado2 == 9 and $status3_llamada == '1.a.iii. Contesta encuesta') {
+if (trim($preg1) <> '' and $preg1 >= 0 and $preg1 < 6 and $_POST['Arbol3']==7 ) 
+ {
 
-    //$destinatario="josegonzalez@sodimac.cl";
-    $destinatario = "erick@qsservicios.cl";
+    $destinatario="josegonzalez@sodimac.cl";
+    //$destinatario = "erick@qsservicios.cl";
 
     $asunto = "Nueva Encuesta SODIMAC EMPRESAS - Nota < 6 | " . $rut_dv;
 
@@ -84,8 +85,8 @@ if (trim($preg1) <> '' and $preg1 >= 0 and $preg1 < 6 and $estado2 == 9 and $sta
             'Nombre Contacto en Empresa Cliente: ' . $_POST['preg5_a'] . "\r\n" .
             'E-mail Contacto en Empresa Cliente: ' . $_POST['Mail'] . "\r\n" .
             'Celular Contacto en Empresa Cliente: ' . $_POST['CELULAR_CONTACTO'] . "\r\n" .
-            'Tel�fono Trabajo Contacto en Empresa Cliente: ' . $_POST['TELEFONO_TRABAJO_CONTACTO'] . "\r\n" .
-            'Tel�fono Casa Contacto en Empresa Cliente: ' . $_POST['TELEFONO_CASA_CONTACTO'] . "\r\n";
+            'Telefono Trabajo Contacto en Empresa Cliente: ' . $_POST['TELEFONO_TRABAJO_CONTACTO'] . "\r\n" .
+            'Telefono Casa Contacto en Empresa Cliente: ' . $_POST['TELEFONO_CASA_CONTACTO'] . "\r\n";
 
 
 
