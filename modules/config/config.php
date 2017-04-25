@@ -23,7 +23,8 @@ define("__MODULO_Encuestas__", "modules/encuestas/");
 define("__MODULO_SUPERVISOR__", "modules/supervisor/");
 
 class config {
-    function CargaSponsor(){
+
+    function CargaSponsor() {
         $sql = "select * from " . __BASE_DATOS__ . ".sponsor order by nombre asc ";
         $res = mysql_query($sql, $this->conectar()) or die(mysql_error());
         while ($opc = mysql_fetch_array($res)) {
@@ -31,16 +32,18 @@ class config {
         }
         return $selec;
     }
-    function CargaCodCarga($tabla){
-        $selec="<option value=-1 selected=''>Seleccione Codigo de Carga</option>";
-   echo      $sql = "select count(*),cod_carga from " . $_SESSION['campana']['bd'] . ".$tabla group by cod_carga order by cod_carga desc ";
+
+    function CargaCodCarga($tabla) {
+        $selec = "<option value=-1 selected=''>Seleccione Codigo de Carga</option>";
+        echo $sql = "select count(*),cod_carga from " . $_SESSION['campana']['bd'] . ".$tabla group by cod_carga order by cod_carga desc ";
         $res = mysql_query($sql, $this->conectar()) or die(mysql_error());
         while ($opc = mysql_fetch_array($res)) {
             $selec .= "<option value=" . $opc['cod_carga'] . ">" . $opc['cod_carga'] . "</option>";
         }
         return $selec;
     }
-            function consulta($sql) {
+
+    function consulta($sql) {
         return $this->conectar($sql);
     }
 

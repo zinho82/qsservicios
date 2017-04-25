@@ -23,24 +23,54 @@ $(document).ready(function () {
             }
         });
     });
-  /*  $("#Campana").change(function () {
-        var id = $("#Campana").val();
+    /*  $("#Campana").change(function () {
+     var id = $("#Campana").val();
+     $.ajax({
+     type: "post",
+     datatype: "json",
+     data: 'id=' + id,
+     url: "Genera_Codcarga.php",
+     success: function (id) {
+     $("#CodCarga").attr("disabled", false);
+     $("#CodCarga").html(id);
+     },
+     error: function () {
+     alert(" error no se puedo obtener informacion");
+     }
+     });
+     });*/
+    $("#Campana").change(function () {
+        $("#BuscarEncAsignada").attr("disabled", false);
+    });
+    $("#AsignarReg").click(function () {
+        var datos=$("#FormAsignar").serialize();
+        alert('Asignando');
         $.ajax({
             type: "post",
             datatype: "json",
-            data: 'id=' + id,
-            url: "Genera_Codcarga.php",
+            data: datos,
+            url: "AsignarRegistros.php",
             success: function (id) {
-                $("#CodCarga").attr("disabled", false);
-                $("#CodCarga").html(id);
+               // $("#Campana").attr("disabled", false);
+               // $("#Campana").html(id);
+               alert(id);
             },
             error: function () {
                 alert(" error no se puedo obtener informacion");
             }
         });
-    });*/
-    $("#Campana").change(function () {
-        $("#BuscarEncAsignada").attr("disabled", false);
     });
+   
 });
+function add(valor) {
+        var dato = valor.split("|");
+        alert(dato);
+       /* $("#TituloVentana").html("Asignar Registros");
+        $("#EjQuita").val(dato[0]);
+        $("#codCamReg").val(dato[1]);
+        $("#AccionReg").val("Asignar");*/
+        
+        
+    };
 
+ 
