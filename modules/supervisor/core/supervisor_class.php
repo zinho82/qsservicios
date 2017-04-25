@@ -20,13 +20,13 @@ class supervisor_class {
 }
         $conn=new config();
         echo $sql="select count(*) as cant,emp.cod_carga,emp.id_acceso  from ".$_SESSION['campana']['bd'].".$tabla  emp group by emp.cod_carga,emp.id_acceso order by emp.cod_carga desc";
-        $res=mysql_query($sql,$conn->conectar());
+        $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
         while($tbl=mysql_fetch_assoc($res)){
-            echo "<tr>"
+            $TblDatos.= "<tr>"
             . "<td>".$tbl['id_acceso']."</td>"
                     . "<td>".$tbl['cod_carga']."</td>"
                     . "</tr>";
         }
-        return;
+        return $TblDatos;
     }
 }

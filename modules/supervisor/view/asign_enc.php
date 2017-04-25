@@ -26,7 +26,7 @@ $supervisor=new supervisor_class();
                     <?php
                     if(isset($_POST['Campana'])){
                         var_dump($_POST);
-                        $supervisor->ObtenerListaencuestas($_POST['Campana'], $_POST['CodCarga']);
+                    echo     $supervisor->ObtenerListaencuestas($_POST['Campana'], $_POST['CodCarga']);
                         
                     }
                     
