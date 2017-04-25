@@ -10,6 +10,7 @@ $conn->CargaCampanaSession($_POST['id']);
 switch ($_POST['id']){
     case 4:$tabla ="cliente_dato";        break;
     case 7:$tabla="qs_encuestascli_sodimac_emp";        break;
+    case 8:$tabla="qs_encuestascli_sodimac_emp";        break;
 }
 echo $conn->CargaCodCarga($tabla);
 

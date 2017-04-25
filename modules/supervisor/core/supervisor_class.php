@@ -16,9 +16,17 @@ class supervisor_class {
         switch ($campana){
     case 4:$tabla ="cliente_dato";        break;
     case 7:$tabla="qs_encuestascli_sodimac_emp";        break;
+    case 8:$tabla="qs_encuestascli_sodimac_emp";        break;
 }
         $conn=new config();
-        echo $sql="select * from ".$_SESSION['campana']['bd'].".$tabla where cod_carga='$codCarga' group by id_acceso";
+        echo $sql="select count(*) as cant,emp.cod_carga,emp.id_acceso  from ".$_SESSION['campana']['bd'].".$tabla  emp group by emp.cod_carga,emp.id_acceso order by emp.cod_carga desc";
+        $res=mysql_query($sql,$conn->conectar());
+        while($tbl=mysql_fetch_assoc($res)){
+            echo "<tr>"
+            . "<td>".$tbl['id_acceso']."</td>"
+                    . "<td>".$tbl['cod_carga']."</td>"
+                    . "</tr>";
+        }
         return;
     }
 }

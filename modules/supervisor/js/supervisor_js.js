@@ -22,7 +22,7 @@ $(document).ready(function () {
             }
         });
     });
-    $("#Campana").change(function () {
+  /*  $("#Campana").change(function () {
         var id = $("#Campana").val();
         $.ajax({
             type: "post",
@@ -37,8 +37,8 @@ $(document).ready(function () {
                 alert(" error no se puedo obtener informacion");
             }
         });
-    });
-    $("#CodCarga").change(function () {
+    });*/
+    $("#Campana").change(function () {
         $("#BuscarEncAsignada").attr("disabled", false);
     });
 });

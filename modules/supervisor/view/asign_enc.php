@@ -14,7 +14,7 @@ $supervisor=new supervisor_class();
                     ?>
                 </select>
                 <select class="form-control" name="Campana" id="Campana"></select>
-                <select class="form-control" name="CodCarga" id="CodCarga"></select>
+                <!--<select class="form-control" name="CodCarga" id="CodCarga"></select>-->
                 <input class="btn btn-block btn-success" id="BuscarEncAsignada" type="submit" value="Buscar">
                 
             </form>
@@ -25,6 +25,7 @@ $supervisor=new supervisor_class();
                 <tbody>
                     <?php
                     if(isset($_POST['Campana'])){
+                        var_dump($_POST);
                         $supervisor->ObtenerListaencuestas($_POST['Campana'], $_POST['CodCarga']);
                         
                     }
