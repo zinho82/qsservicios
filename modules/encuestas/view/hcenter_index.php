@@ -22,7 +22,7 @@ $_SESSION['campana']['bd'] = 'qsschile_qs_encuestas';
         </thead>
         <tbody >
             <?php
-            $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=" . $_SESSION['usuario']['id'] . " and (sm.estado!=30 and  sm.estado!=7) and id_encuesta!=0 and datediff(date(now()),date(sm.fec_termino))>0  and sm.num_post<6";
+       echo      $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=" . $_SESSION['usuario']['id'] . " and (sm.estado!=30 and  sm.estado!=7) and id_encuesta!=0 and datediff(date(now()),date(sm.fec_termino))>0  and sm.num_post<6";
             $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
             while ($enc = mysql_fetch_assoc($res)) {
                 echo "<tr><td>" . $enc['cod_carga'] . "</td>"
