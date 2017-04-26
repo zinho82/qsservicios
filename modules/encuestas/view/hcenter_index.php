@@ -19,19 +19,20 @@ $conn = new config();
         <th>Ultima Llamada</th>
         <th></th>
         </thead>
-        <tbody >
-            <?php
-         echo     $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=".$_SESSION['usuario']['id']." and estado in (1) and id_encuesta!=0";
+        <tbody > 
+            <?php 
+            echo $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=".$_SESSION['usuario']['id']." and (estado!=7 and estado!=30) and id_encuesta!=0";
             $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
             while ($enc = mysql_fetch_assoc($res)) {
-                echo "<tr><td>" . $enc['cod_carga'] . "</td>"
-                . "<td>" . $enc['id_encuesta'] . "</td>"
+                echo "<tr>"
+                        . "<td>" . $enc['cod_carga'] . "</td>"
+                        . "<td>" . $enc['id_encuesta'] . "</td>"
                         . "<td>" . $enc['rut'] . "</td>"
-                . "<td>" . $enc['Cliente'] . "</td>"
-                . "<td>" . $enc['estado'] . "</td>"
+                        . "<td>" . $enc['Cliente'] . "</td>"
+                        . "<td>" . $enc['estado'] . "</td>"
                         . "<td>" . $enc['fec_termino'] . "</td>"
-                . "<td><a href='" . __BASE_URL__ . "modules/encuestas/view/Enc_hc_emp.php?id_encuesta=" . $enc['id_encuesta'] . "&id_formato=12&estado=2' ><i class='fa fa-search'></i></a></td>"
-                . "</tr>";
+                        . "<td><a href='" . __BASE_URL__ . "modules/encuestas/view/Enc_hc_emp.php?id_encuesta=" . $enc['id_encuesta'] . "&id_formato=12&estado=2' ><i class='fa fa-search'></i></a></td>"
+                    . "</tr>";
             }
             ?>
         </tbody>
