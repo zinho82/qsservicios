@@ -64,12 +64,12 @@ if (!mysql_query($sqls, $conn->conectar())) {
     echo "Guardado";
 }
 //Envio mail automatico 
-if (trim($preg1) <> '' and $preg1 >= 0 and $preg1 < 6 and $estado2 == 9 and $status3_llamada == '1.a.iii. Contesta encuesta') {
+if (trim($preg1) <> '' and $preg1 >= 0 and $preg1 < 6 and $_POST['Arbol3'] == 7 ) {
 
-    //$destinatario="josegonzalez@sodimac.cl";
-    $destinatario = "erick@qsservicios.cl";
+    $destinatario="josegonzalez@sodimac.cl";
+    //$destinatario = "erick@qsservicios.cl";
 
-    $asunto = "Nueva Encuesta SODIMAC EMPRESAS - Nota < 6 | " . $rut_dv;
+    $asunto = "Nueva Encuesta SODIMAC EMPRESAS - Nota < 6 | " . $_POST['rut_dv'];
 
     $fecha = date("Y-m-d H:i:s");
 
@@ -91,7 +91,7 @@ if (trim($preg1) <> '' and $preg1 >= 0 and $preg1 < 6 and $estado2 == 9 and $sta
 
     $encabezados = 'To: gsobrevia@sodimac.cl' . "\r\n" .
             'From: contacto@qsservicios.cl' . "\r\n" .
-            'Cc: fescudero@sodimac.cl, gsamur@sodimac.cl, laraya@Falabella.cl, ajunes@sodimac.cl, carlos.rios@qsservicios.cl' . "\r\n";
+            'Cc: fescudero@sodimac.cl, gsamur@sodimac.cl, laraya@Falabella.cl, ajunes@sodimac.cl, carlos.rios@qsservicios.cl,erick.leal@qsservicios.cl' . "\r\n";
     /*$encabezados = 'To: erick.leal@qsservicios.cl' . "\r\n" .
             'From: contacto@qsservicios.cl' . "\r\n";
 
