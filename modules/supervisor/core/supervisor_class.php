@@ -23,23 +23,22 @@ class supervisor_class {
                 break;
         }
         $conn = new config();
-        $sql = "select count(*) as cant,emp.cod_carga,emp.id_acceso,(select count(*) from " . $_SESSION['campana']['bd'] . ".$tabla em where em.estado!=1 and em.cod_carga=emp.cod_carga and em.id_acceso=emp.id_acceso) as recorrido  from " . $_SESSION['campana']['bd'] . ".$tabla  emp group by emp.cod_carga,emp.id_acceso order by emp.cod_carga desc";
+        //$sql = "select count(*) as cant,emp.cod_carga,emp.id_acceso,(select count(*) from " . $_SESSION['campana']['bd'] . ".$tabla em where em.estado!=1 and em.cod_carga=emp.cod_carga and em.id_acceso=emp.id_acceso) as recorrido  from " . $_SESSION['campana']['bd'] . ".$tabla  emp group by emp.cod_carga,emp.id_acceso order by emp.cod_carga desc";
+        $sql = "select count(*) as cant,emp.cod_carga,emp.id_acceso  from " . $_SESSION['campana']['bd'] . ".$tabla  emp group by emp.cod_carga,emp.id_acceso order by emp.cod_carga desc";
         $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
         while ($tbl = mysql_fetch_assoc($res)) {
             $TblDatos .= "<tr>"
                     . "<td>" . $conn->BuscaDatos(__BASE_DATOS__, 'usuario', $tbl['id_acceso'], 'idusuario', 'usuario')
-                    . "<input type='hidden' name='EjecutivoTxt' id='EjecutivoTxt' value='" . $tbl['id_acceso'] . "'>"
                     . "</td>"
                     . "<td>"
                     . $tbl['cod_carga']
-                    . "<input type='hidden' name='CodCargaTxt' id='CodCargaTxt' value='" . $tbl['cod_carga'] . "'>"
                     . "</td>"
                     . "<td>" . $tbl['cant'] . "</td>"
                     . "<td>" . $tbl['recorrido'] . "</td>"
                     . "<td>" . $conn->BuscaDatos(__BASE_DATOS__, 'campana', $campana, 'idcampana', 'nombre') . "</td>"
                     . "<td>"
                     . "<button type='button' onclick='window.open(".'"cambiarReg.php?c='.$campana.'&id='.$tbl['id_acceso'].'&cod='.$tbl['cod_carga'].'&reg='.$tbl['cant'].'&acc=asignar","_self"'.")'  class='btn btn-success' ><i title='Asignar' class='fa fa-plus-circle fa-1x'></i></button>"
-                    . "<button type='button' class='btn btn-danger' id='Qui'><i title='Quitar' class='fa fa-minus-circle fa-1x'></i></button>"
+                    . "<button type='button' class='btn btn-danger' id='Qui'><i title='Quitar' onclick='window.open(".'"cambiarReg.php?c='.$campana.'&id='.$tbl['id_acceso'].'&cod='.$tbl['cod_carga'].'&reg='.$tbl['cant'].'&acc=Quitar","_self"'.")'   class='fa fa-minus-circle fa-1x'></i></button>"
                     . "</td>"
                     . "</tr>";
         }

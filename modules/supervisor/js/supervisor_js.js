@@ -44,6 +44,7 @@ $(document).ready(function () {
     });
     $("#AsignarReg").click(function () {
         var datos=$("#FormAsignar").serialize();
+        var vuelta=$("#Vuelta").val();
         alert('Asignando');
         $.ajax({
             type: "post",
@@ -54,6 +55,7 @@ $(document).ready(function () {
                // $("#Campana").attr("disabled", false);
                // $("#Campana").html(id);
                alert(id);
+               window.open(vuelta,"_self");
             },
             error: function () {
                 alert(" error no se puedo obtener informacion");
