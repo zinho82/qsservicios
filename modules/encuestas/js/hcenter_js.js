@@ -6,9 +6,9 @@
 
 
 $(document).ready(function () {
+    alert("HC");
     $("#VerEncuesta").css("display", "none");
     $("#datetimepicker1").css("display", "none");
-    $("#ListaEncuestas").DataTable();
     /*******************************************
      * Preg_axxx
      * busca las causas y areas en los valores 
@@ -135,8 +135,8 @@ window.open('hcenter_index.php','_self');
             }
         });
     });
+    $("#ListaEncuestas").DataTable();
     $("#Arbol2").change(function () {
-        var archi = $("#ingreso").serialize();
         var id = $("#Arbol2").val();
 
         $.ajax({

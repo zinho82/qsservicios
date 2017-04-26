@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-define("__SERVIDOR_DATOS__", "201.239.170.83");
-//define("__SERVIDOR_DATOS__", "190.100.117.172"); 
+//define("__SERVIDOR_DATOS__", "201.239.170.83");
+define("__SERVIDOR_DATOS__", "190.100.117.172"); 
 define("__ROOT__", "/var/www/html/qsservicios/");
 define("__BASE_URL__", "http://" . __SERVIDOR_DATOS__ . "/qsservicios/");
 define("__BASE_DATOS__", "qsservicios");
@@ -31,6 +31,28 @@ class config {
             $selec .= "<option value=" . $opc['idsponsor'] . ">" . $opc['nombre'] . "</option>";
         }
         return $selec;
+    }
+
+    function CargaTablaSession($campana) {
+        switch ($campana) {
+            case 4:$_SESSION['campana']['tabla'] = "cliente_dato";
+                break;
+            case 7:$_SESSION['campana']['tabla'] = "qs_encuestascli_sodimac_emp";
+                break;
+            case 8:$_SESSION['campana']['tabla'] = "qs_encuestascli_sodimac_emp";
+                break;
+            
+        }
+    }
+
+    function CargarCodCargaSession($usuario) {
+        $conn = new config();
+         $sql = "select * from " . __BASE_DATOS__ . ".ejecutivocampana where ejecutivo=$usuario";
+        $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
+        $dato = mysql_fetch_assoc($res);
+        $_SESSION['campana']['codcarga'] = $dato['codcarga'];
+        $this->CargaTablaSession($dato['campana']);
+        $this->CargaCampanaSession($dato['campana']);
     }
 
     function CargaCodCarga($tabla) {
