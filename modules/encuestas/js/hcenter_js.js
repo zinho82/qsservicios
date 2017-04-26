@@ -31,7 +31,7 @@ $(document).ready(function () {
                 alert(" error no se puedo obtener informacion");
             }
         });
-    });
+    }); 
     $("#preg2_a2").change(function () {
         var archi = $("#ingreso").serialize();
         var id = $("#preg2_a2").val();
