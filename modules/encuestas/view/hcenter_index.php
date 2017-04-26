@@ -1,12 +1,6 @@
 <?php
 require_once '../../config/superior.php';
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 $conn = new config();
-$_SESSION['campana']['bd'] = 'qsschile_qs_encuestas';
 ?>
 <div class="panel panel-primary">
     <div class="panel-heading">Encuestas Homcenter Empresas</div>
@@ -22,9 +16,19 @@ $_SESSION['campana']['bd'] = 'qsschile_qs_encuestas';
         </thead>
         <tbody >
             <?php
-       echo      $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=" . $_SESSION['usuario']['id'] . " and (sm.estado!=30 and  sm.estado!=7) and id_encuesta!=0 and datediff(date(now()),date(sm.fec_termino))>0  and sm.num_post<6";
+               $conn->CargarCodCargaSession($_SESSION['usuario']['id']);
+             $sql = "select * from ".$_SESSION['campana']['bd'].".".$_SESSION['campana']['tabla']."  sm where sm.id_acceso=" . $_SESSION['usuario']['id'] . "  and (sm.estado!=30 and  sm.estado!=7) and id_encuesta!=0 and  sm.cod_carga='".$_SESSION['campana']['codcarga']."' and datediff(date(now()),date(fec_termino))>0 and sm.num_post<6";
             $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
-            while ($enc = mysql_fetch_assoc($res)) {
+            if( mysql_num_rows($res)==0){
+                 $SQL="UPDATE ".$_SESSION['campana']['bd'].".".$_SESSION['campana']['tabla']." set estado=33 where estado!=30 and id_acceso=" . $_SESSION['usuario']['id'] . " and estado!=7 and datediff(date(now()),date(fec_termino))>0 and cod_carga='".$_SESSION['campana']['codcarga']."'" ;
+                mysql_query($SQL,$conn->conectar()) or die(mysql_error());
+                echo $sql = "select * from ".$_SESSION['campana']['bd'].".".$_SESSION['campana']['tabla']."  sm where sm.id_acceso=" . $_SESSION['usuario']['id'] . " and sm.estado=33 and id_encuesta!=0 and  sm.cod_carga='".$_SESSION['campana']['codcarga']."'  and sm.num_post<6";
+                $resi = mysql_query($sql, $conn->conectar()) or die(mysql_error());
+            } else {
+$resi = mysql_query($sql, $conn->conectar()) or die(mysql_error());                
+}
+            
+            while ($enc = mysql_fetch_assoc($resi)) {
                 echo "<tr><td>" . $enc['cod_carga'] . "</td>"
                 . "<td>" . $enc['id_encuesta'] . "</td>"
                 . "<td>" . $enc['rut'] . "</td>"
@@ -40,4 +44,4 @@ $_SESSION['campana']['bd'] = 'qsschile_qs_encuestas';
 </div>
 
 <script src="<?php echo __BASE_URL__ . __MODULO_Encuestas__ ?>js/hcenter_js.js"></script>
-<?php require_once '../../config/superior.php'; ?>
+<?php require_once '../../config/footer.php'; ?>

@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-//define("__SERVIDOR_DATOS__", "201.239.170.83"); 
-define("__SERVIDOR_DATOS__", "190.100.117.172"); 
+define("__SERVIDOR_DATOS__", "201.239.170.83");
+//define("__SERVIDOR_DATOS__", "190.100.117.172"); 
 define("__ROOT__", "/var/www/html/qsservicios/");
 define("__BASE_URL__", "http://" . __SERVIDOR_DATOS__ . "/qsservicios/");
 define("__BASE_DATOS__", "qsservicios");
@@ -20,8 +20,50 @@ define("__MODULO_CAMPANA__", "modules/campana/");
 define("__MODULO_IMAGENES__", "images/");
 define("__MODULO_informes__", "modules/informes/");
 define("__MODULO_Encuestas__", "modules/encuestas/");
+define("__MODULO_SUPERVISOR__", "modules/supervisor/");
 
 class config {
+
+    function CargaSponsor() {
+        $sql = "select * from " . __BASE_DATOS__ . ".sponsor order by nombre asc ";
+        $res = mysql_query($sql, $this->conectar()) or die(mysql_error());
+        while ($opc = mysql_fetch_array($res)) {
+            $selec .= "<option value=" . $opc['idsponsor'] . ">" . $opc['nombre'] . "</option>";
+        }
+        return $selec;
+    }
+
+    function CargaTablaSession($campana) {
+        switch ($campana) {
+            case 4:$_SESSION['campana']['tabla'] = "cliente_dato";
+                break;
+            case 7:$_SESSION['campana']['tabla'] = "qs_encuestascli_sodimac_emp";
+                break;
+            case 8:$_SESSION['campana']['tabla'] = "qs_encuestascli_sodimac_emp";
+                break;
+            
+        }
+    }
+
+    function CargarCodCargaSession($usuario) {
+        $conn = new config();
+         $sql = "select * from " . __BASE_DATOS__ . ".ejecutivocampana where ejecutivo=$usuario";
+        $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
+        $dato = mysql_fetch_assoc($res);
+        $_SESSION['campana']['codcarga'] = $dato['codcarga'];
+        $this->CargaTablaSession($dato['campana']);
+        $this->CargaCampanaSession($dato['campana']);
+    }
+
+    function CargaCodCarga($tabla) {
+        $selec = "<option value=-1 selected=''>Seleccione Codigo de Carga</option>";
+        echo $sql = "select count(*),cod_carga from " . $_SESSION['campana']['bd'] . ".$tabla group by cod_carga order by cod_carga desc ";
+        $res = mysql_query($sql, $this->conectar()) or die(mysql_error());
+        while ($opc = mysql_fetch_array($res)) {
+            $selec .= "<option value='" . $opc['cod_carga'] . "'>" . $opc['cod_carga'] . "</option>";
+        }
+        return $selec;
+    }
 
     function consulta($sql) {
         return $this->conectar($sql);
@@ -50,9 +92,9 @@ class config {
         $_SESSION['campana']['nombre'] = $sesscam['nombre'];
     }
 
-    function ListaCampanas() {
+    function ListaCampanas($Sponsor) {
         $selec = "<option value='-1' selected=''>Seleccion Una Campaña</option>";
-        $sql = "select * from " . __BASE_DATOS__ . ".campana where sponsor=1";
+        $sql = "select * from " . __BASE_DATOS__ . ".campana where sponsor=$Sponsor and estado=14";
         $res = mysql_query($sql, $this->conectar()) or die(mysql_error());
         while ($opc = mysql_fetch_array($res)) {
             $selec .= "<option value=" . $opc['idcampana'] . ">" . $opc['nombre'] . "</option>";
@@ -100,4 +142,5 @@ require_once __ROOT__ . __MODULO_CAMPANA__ . 'core/campana_class.php';
 require_once __ROOT__ . __MODULO_MENU__ . 'core/menu_class.php';
 require_once __ROOT__ . __MODULO_informes__ . 'core/informes_class.php';
 require_once __ROOT__ . __MODULO_Encuestas__ . 'core/encuestas_class.php';
+require_once __ROOT__ . __MODULO_SUPERVISOR__ . 'core/supervisor_class.php';
 ?>

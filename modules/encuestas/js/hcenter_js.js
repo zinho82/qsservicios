@@ -31,7 +31,7 @@ $(document).ready(function () {
                 alert(" error no se puedo obtener informacion");
             }
         });
-    });
+    }); 
     $("#preg2_a2").change(function () {
         var archi = $("#ingreso").serialize();
         var id = $("#preg2_a2").val();
@@ -134,8 +134,8 @@ window.open('hcenter_index.php','_self');
             }
         });
     });
+    $("#ListaEncuestas").DataTable();
     $("#Arbol2").change(function () {
-        var archi = $("#ingreso").serialize();
         var id = $("#Arbol2").val();
 
         $.ajax({

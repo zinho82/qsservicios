@@ -70,7 +70,7 @@ if (trim($preg1) <> '' and $preg1 >= 0 and $preg1 < 6 and $_POST['Arbol3']==7 )
     $destinatario="josegonzalez@sodimac.cl";
     //$destinatario = "erick@qsservicios.cl";
 
-    $asunto = "Nueva Encuesta SODIMAC EMPRESAS - Nota < 6 | " . $rut_dv;
+    $asunto = "Nueva Encuesta SODIMAC EMPRESAS - Nota < 6 | " . $_POST['rut_dv'];
 
     $fecha = date("Y-m-d H:i:s");
 
@@ -92,7 +92,7 @@ if (trim($preg1) <> '' and $preg1 >= 0 and $preg1 < 6 and $_POST['Arbol3']==7 )
 
     $encabezados = 'To: gsobrevia@sodimac.cl' . "\r\n" .
             'From: contacto@qsservicios.cl' . "\r\n" .
-            'Cc: fescudero@sodimac.cl, gsamur@sodimac.cl, laraya@Falabella.cl, ajunes@sodimac.cl, carlos.rios@qsservicios.cl' . "\r\n";
+            'Cc: fescudero@sodimac.cl, gsamur@sodimac.cl, laraya@Falabella.cl, ajunes@sodimac.cl, carlos.rios@qsservicios.cl,erick.leal@qsservicios.cl' . "\r\n";
     /*$encabezados = 'To: erick.leal@qsservicios.cl' . "\r\n" .
             'From: contacto@qsservicios.cl' . "\r\n";
 
