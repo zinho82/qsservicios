@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+session_start(); 
 //define("__SERVIDOR_DATOS__", "201.239.170.83");
 define("__SERVIDOR_DATOS__", "190.100.117.172"); 
 define("__ROOT__", "/var/www/html/qsservicios/");

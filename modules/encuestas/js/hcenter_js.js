@@ -5,7 +5,10 @@
  */
 
 
-$(document).ready(function () {
+$(document).ready(function () { 
+    $("#Agenda").click(function(){
+        window.open('Agenda.php'); 
+    });
     $("#VerEncuesta").css("display", "none");
     $("#datetimepicker1").css("display", "none");
     /*******************************************
