@@ -15,7 +15,7 @@ $conn = new config();
         <th></th>
         </thead>
         <tbody >
-            <?php
+            <?php 
                $conn->CargarCodCargaSession($_SESSION['usuario']['id']);
              $sql = "select * from ".$_SESSION['campana']['bd'].".".$_SESSION['campana']['tabla']."  sm where sm.id_acceso=" . $_SESSION['usuario']['id'] . "  and (sm.estado!=30 and  sm.estado!=7) and id_encuesta!=0 and  sm.cod_carga='".$_SESSION['campana']['codcarga']."' and datediff(date(now()),date(fec_termino))>0 and sm.num_post<6";
             $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
