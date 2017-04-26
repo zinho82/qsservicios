@@ -7,6 +7,9 @@ $conn = new config();
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+if($_POST['Arbol3']==-1){
+   $_POST['Arbol3']=$_POST['Arbol2'];
+}
 $preg1 = $_POST['preg1'];
 switch ($_POST['num_post']) {
     case 0:$CampoStatus = 'status1_llamada';
