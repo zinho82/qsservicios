@@ -70,7 +70,7 @@ if (trim($preg1) <> '' and $preg1 >= 0 and $preg1 < 6 and $_POST['Arbol3']==7 )
     $destinatario="josegonzalez@sodimac.cl";
     //$destinatario = "erick@qsservicios.cl";
 
-    $asunto = "Nueva Encuesta SODIMAC EMPRESAS - Nota < 6 | " . $rut_dv;
+    $asunto = "Nueva Encuesta SODIMAC EMPRESAS - Nota < 6 | " . $_POST['rut_dv'];
 
     $fecha = date("Y-m-d H:i:s");
 
