@@ -6,7 +6,6 @@
 
 
 $(document).ready(function () {
-    alert("HC");
     $("#VerEncuesta").css("display", "none");
     $("#datetimepicker1").css("display", "none");
     /*******************************************
