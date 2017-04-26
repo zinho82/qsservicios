@@ -3,7 +3,6 @@ require_once '../../config/superior.php';
 $conn = new config();
 $supervisor = new supervisor_class();
 $conn->CargaCampanaSession($_POST['Campana']);
-var_dump($_SESSION);
 ?>
 <div class="panel panel-primary">
     <div class="panel-heading">Asignar Encuestas</div>

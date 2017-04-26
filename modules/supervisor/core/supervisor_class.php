@@ -59,5 +59,20 @@ class supervisor_class {
         }
         return $opcs;
     }
+    
+    function ObtenerListaEjeCam(){
+        $conn=new config();
+         $sql="select * from ".__BASE_DATOS__.".ejecutivocampana order by ejecutivo asc";
+        $rs=mysql_query($sql,$conn->conectar()) or die(mysql_error());
+        while($lista=mysql_fetch_assoc($rs)){
+            $resp.="<tr>"
+                    . "<td>".$conn->BuscaDatos(__BASE_DATOS__, "usuario", $lista['ejecutivo'], "idusuario", "usuario")."</td>"
+                    . "<td>".$conn->BuscaDatos(__BASE_DATOS__, "campana", $lista['campana'], "idcampana", "nombre")."</td>"
+                    . "<td>".$lista['codcarga']."</td>"
+                    ."<td><a href='borra.php?i=".$lista['idejecutivocampana']."'><i title='Borrar' class='btn btn-danger fa fa-trash fa-1x'></i></a></td>"
+                    . "</tr>";
+        }
+        return $resp;
+    }
 
 }

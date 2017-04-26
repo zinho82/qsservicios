@@ -38,7 +38,7 @@ class config {
         echo $sql = "select count(*),cod_carga from " . $_SESSION['campana']['bd'] . ".$tabla group by cod_carga order by cod_carga desc ";
         $res = mysql_query($sql, $this->conectar()) or die(mysql_error());
         while ($opc = mysql_fetch_array($res)) {
-            $selec .= "<option value=" . $opc['cod_carga'] . ">" . $opc['cod_carga'] . "</option>";
+            $selec .= "<option value='" . $opc['cod_carga'] . "'>" . $opc['cod_carga'] . "</option>";
         }
         return $selec;
     }

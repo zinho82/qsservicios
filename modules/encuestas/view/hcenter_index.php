@@ -6,7 +6,6 @@ require_once '../../config/superior.php';
  * and open the template in the editor.
  */
 $conn = new config();
-$_SESSION['campana']['bd']='qsschile_qs_encuestas';
 ?>
 <div class="panel panel-primary">
     <div class="panel-heading">Encuestas Homcenter Empresas</div>
@@ -22,7 +21,7 @@ $_SESSION['campana']['bd']='qsschile_qs_encuestas';
         </thead>
         <tbody >
             <?php
-             $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=".$_SESSION['usuario']['id']." and estado in (1) and id_encuesta!=0";
+         echo     $sql = "select * from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp  sm where sm.id_acceso=".$_SESSION['usuario']['id']." and estado in (1) and id_encuesta!=0";
             $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
             while ($enc = mysql_fetch_assoc($res)) {
                 echo "<tr><td>" . $enc['cod_carga'] . "</td>"
