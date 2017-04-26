@@ -6,6 +6,7 @@ require_once '../../config/config.php';
  * and open the template in the editor.
  */
 $conn=new config();
+
 echo $conn->ListaCampanas($_POST['id']);
 
 
