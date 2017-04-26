@@ -22,7 +22,7 @@ $conn = new config();
             if( mysql_num_rows($res)==0){
                  $SQL="UPDATE ".$_SESSION['campana']['bd'].".".$_SESSION['campana']['tabla']." set estado=33 where estado!=30 and id_acceso=" . $_SESSION['usuario']['id'] . " and estado!=7 and datediff(date(now()),date(fec_termino))>0 and cod_carga='".$_SESSION['campana']['codcarga']."'" ;
                 mysql_query($SQL,$conn->conectar()) or die(mysql_error());
-                echo $sql = "select * from ".$_SESSION['campana']['bd'].".".$_SESSION['campana']['tabla']."  sm where sm.id_acceso=" . $_SESSION['usuario']['id'] . " and sm.estado=33 and id_encuesta!=0 and  sm.cod_carga='".$_SESSION['campana']['codcarga']."'  and sm.num_post<6";
+                 $sql = "select * from ".$_SESSION['campana']['bd'].".".$_SESSION['campana']['tabla']."  sm where sm.id_acceso=" . $_SESSION['usuario']['id'] . " and sm.estado=33 and id_encuesta!=0 and  sm.cod_carga='".$_SESSION['campana']['codcarga']."'  and sm.num_post<6";
                 $resi = mysql_query($sql, $conn->conectar()) or die(mysql_error());
             } else {
 $resi = mysql_query($sql, $conn->conectar()) or die(mysql_error());                
