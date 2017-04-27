@@ -4,76 +4,80 @@ $informes = new informes_class();
 $conn = new config();
 $conn->CargaCampanaSession(4);
 ?>
-<div class="panel panel-primary">
-    <div class="panel-heading">Informes Mall plaza <img src="<?php echo __BASE_URL__ . __MODULO_IMAGENES__ ?>logo_mplaza2.jpg" width="50"></div>
-    <div class="panel-body">
-        <div class="row col-md-12">
-            <div class="col-lg-6">
-                <div class="panel panel-info">
-                    <div class="panel-heading">Encuestas por Mall</div>
-                    <div class="panel-body ">
-                        <table  id="EncMall" class="table table-hover">
-                            <thead>
-                            <th>Mall</th>
-                            <th>Q Encuestas</th>
-                            <th>Q Negativo</th>
-                            <th>Q Promotor</th>
-                            <th>Q Neutro</th>
-                            <th>Q Encuestas Realizadas</th>
-                            </thead>
-                                <?php $informes->EncxMall($_SESSION['campana']['bd'], "cliente_dato", "", "group by mall") ?>
-                        </table>
+  
 
+
+
+    <div class="panel panel-primary">
+            <div class="panel-heading">Informes Mall plaza <img src="<?php echo __BASE_URL__ . __MODULO_IMAGENES__ ?>logo_mplaza2.jpg" width="50"></div>
+            <div class="panel-body">
+                <div class="row col-md-12">
+                    <div class="col-lg-6">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Encuestas por Mall</div>
+                            <div class="panel-body ">
+                                <table  id="EncMall" class="table table-hover">
+                                    <thead>
+                                    <th>Mall</th>
+                                    <th>Q Encuestas</th>
+                                    <th>Q Negativo</th>
+                                    <th>Q Promotor</th>
+                                    <th>Q Neutro</th>
+                                    <th>Q Encuestas Realizadas</th>
+                                    </thead>
+                                    <?php $informes->EncxMall($_SESSION['campana']['bd'], "cliente_dato", "", "group by mall") ?>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel panel-info panel-body-mplaza">
+                            <div class="panel-heading">Calificaciones Totales</div>
+                            <div class="panel-body">
+                                <div id="containers"  ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-lg-6">
+                        <div class="panel panel-info panel-body-mplaza">
+                            <div class="panel-heading">Journey</div>
+                            <div class="panel-body">
+                                <div id="xItem"  ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel panel-info panel-body-mplaza">
+                            <div class="panel-heading">NPS Calificados Positivos</div>
+                            <div class="panel-body">
+                                <div id="xDimension"  ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-lg-6">
+                        <div class="panel panel-info panel-body-mplaza">
+                            <div class="panel-heading">NPS Calificados Negativos</div>
+                            <div class="panel-body">
+                                <div id="xDimensionNeg"  ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel panel-info panel-body-mplaza">
+                            <div class="panel-heading">NPS Calificados Neutral</div>
+                            <div class="panel-body">
+                                <div id="xDimensionNeu"  ></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="panel panel-info panel-body-mplaza">
-                    <div class="panel-heading">Calificaciones Totales</div>
-                    <div class="panel-body">
-                        <div id="containers"  ></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row col-md-12">
-            <div class="col-lg-6">
-                <div class="panel panel-info panel-body-mplaza">
-                    <div class="panel-heading">Journey</div>
-                    <div class="panel-body">
-                        <div id="xItem"  ></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="panel panel-info panel-body-mplaza">
-                    <div class="panel-heading">NPS Calificados Positivos</div>
-                    <div class="panel-body">
-                        <div id="xDimension"  ></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row col-md-12">
-            <div class="col-lg-6">
-                <div class="panel panel-info panel-body-mplaza">
-                    <div class="panel-heading">NPS Calificados Negativos</div>
-                    <div class="panel-body">
-                        <div id="xDimensionNeg"  ></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="panel panel-info panel-body-mplaza">
-                    <div class="panel-heading">NPS Calificados Neutral</div>
-                    <div class="panel-body">
-                        <div id="xDimensionNeu"  ></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        </div>-->
 <!--**********************************************
 *CHARTS 
 *
@@ -128,7 +132,7 @@ $conn->CargaCampanaSession(4);
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
         data.addRows([
-            ['Variedad de Tiendas y Productos',33],
+            ['Variedad de Tiendas y Productos', 33],
 <?php
 $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "desc");
 ?>
@@ -145,7 +149,7 @@ $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "desc");
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
         data.addRows([
-<?php  $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 27, "dim1", 'sen1'); ?>
+<?php $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 27, "dim1", 'sen1'); ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeu'));
         chart.draw(data, {
@@ -160,14 +164,14 @@ $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "desc");
         data.addColumn('number', 'Calificados');
         data.addRows([
 <?php
- $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim1", 'sen1');
+$informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim1", 'sen1');
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeg'));
         chart.draw(data, {
             width: 700,
             height: 350,
-            legend: 'none' 
+            legend: 'none'
         });
     }
     google.charts.setOnLoadCallback(xDimension);
