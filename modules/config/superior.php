@@ -22,23 +22,6 @@
         <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
         <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap-transition.js"></script>
         <script src=" https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap-collapse.js"></script>
-<!-- TEMA ADMIN-->
-
-    <link rel="stylesheet" type="text/css" href="<?php echo __BASE_URL__.__MODULO_ACCESORIOS__?>assets/Panel/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo __BASE_URL__.__MODULO_ACCESORIOS__?>assets/Panel/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo __BASE_URL__.__MODULO_ACCESORIOS__?>assets/Panel/css/local.css" />
-
-    <script type="text/javascript" src="<?php echo __BASE_URL__.__MODULO_ACCESORIOS__?>assets/Panel/js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="<?php echo __BASE_URL__.__MODULO_ACCESORIOS__?>assets/Panel/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- you need to include the shieldui css and js assets in order for the charts to work -->
-    <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
-    <link id="gridcss" rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/dark-bootstrap/all.min.css" />
-
-    <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
-    <script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/gridData.js"></script>
-
-<!--FIN TEMA ADMIN-->
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
