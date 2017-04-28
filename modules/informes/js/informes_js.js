@@ -18,4 +18,10 @@ $(document).ready(function () {
         ]
 
     });
+//    $("#Mall").change(function(){
+//        alert("cambio mall");
+//                var FormMall=$("#FormMall").serialize();
+//                FormMall.submit();
+//                
+//    });
 });
