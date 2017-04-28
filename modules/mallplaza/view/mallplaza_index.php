@@ -13,7 +13,7 @@ if (!$_SESSION['campana']['id']) {
         <div id="CargarEncuesta">
             <form id="BuscarArchivo">
                 <select name="campana" class="form-control" id="campana">
-                    <?php echo $conn->ListaCampanas(); ?>
+                    <?php echo $conn->ListaCampanas(1); ?>
                 </select>
                 <select name="mes" id="mes" class="form-control">
                     <option value="-1" selected="" >Seleccione el  mes de carga</option>
