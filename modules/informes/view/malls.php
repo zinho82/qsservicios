@@ -4,6 +4,7 @@ $informes = new informes_class();
 $conn = new config();
 $conn->CargaCampanaSession(4);
 var_dump($_POST);
+$NomMall=$_POST['Mall'];
 ?>    
 <div class="panel panel-primary">
     <div class="panel-heading">Seleccion de Mall</div>
@@ -16,7 +17,7 @@ var_dump($_POST);
     </div>
 </div>
 <div class="panel panel-primary">
-    <div class="panel-heading">Informes Mallplaza </div>
+    <div class="panel-heading">Informes Mallplaza <strong>Mall <?php echo $NomMall?></strong> </div>
     <div class="panel-body">
         <div class="row">
             <div class=" col-lg-12"> 
@@ -30,7 +31,7 @@ var_dump($_POST);
                     </div>
                 </div>
             </div>
-           <!-- <div class=" col-md-12">
+          <div class=" col-md-12">
                 <div class="col-lg-6">
                     <div class="panel panel-info panel-body-mplaza">
                         <div class="panel-heading">Journey</div>
@@ -64,7 +65,7 @@ var_dump($_POST);
                             <div id="xDimensionNeu"  ></div>
                         </div>
                     </div>
-                </div>-->
+                </div>
             </div>
         </div>
     </div>
@@ -122,15 +123,15 @@ var_dump($_POST);
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
-        data.addRows([
-            ['Variedad de Tiendas y Productos', 33],
+        data.addRows([  
+            //['Variedad de Tiendas y Productos', 33],
 <?php
-$informes->TotalencuestasxDimensionxMall($_SESSION['campana']['bd'], 25, "desc",$_POST['Mall']);
+ $informes->TotalencuestasxDimensionxMall($_SESSION['campana']['bd'], 25,'dim1','sen1', "desc",$_POST['Mall']);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimension'));
         chart.draw(data, {
-            width: 700,
+            width: 700, 
             height: 350,
             legend: 'none'
         });
@@ -141,7 +142,7 @@ $informes->TotalencuestasxDimensionxMall($_SESSION['campana']['bd'], 25, "desc",
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
         data.addRows([
-<?php $informes->TotalencuestasxDimensionxMall($_SESSION['campana']['bd'], 27, "dim1", 'sen1',$_POST['Mall']); ?>
+<?php $informes->TotalencuestasxDimensionxMall($_SESSION['campana']['bd'], 27,'dim1','sen1', "desc",$_POST['Mall']); ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeu'));
         chart.draw(data, {
@@ -156,7 +157,7 @@ $informes->TotalencuestasxDimensionxMall($_SESSION['campana']['bd'], 25, "desc",
         data.addColumn('number', 'Calificados');
         data.addRows([
 <?php
-$informes->TotalencuestasxDimensionxMall($_SESSION['campana']['bd'], 26, "dim1", 'sen1',$_POST['Mall']);
+$informes->TotalencuestasxDimensionxMall($_SESSION['campana']['bd'], 26,'dim1','sen1', "desc",$_POST['Mall']);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeg'));
@@ -166,10 +167,10 @@ $informes->TotalencuestasxDimensionxMall($_SESSION['campana']['bd'], 26, "dim1",
             legend: 'none'
         });
     }
-   /* google.charts.setOnLoadCallback(xDimension);
+    google.charts.setOnLoadCallback(xDimension);
     google.charts.setOnLoadCallback(xDimensionNeg);
     google.charts.setOnLoadCallback(xDimensionNeu);
-    google.charts.setOnLoadCallback(xItem);*/
+    google.charts.setOnLoadCallback(xItem);
     google.charts.setOnLoadCallback(drawChart);
 </script>
 <script src="<?php echo __BASE_URL__ . __MODULO_informes__ . 'js/informes_js.js'; ?>" ></script>
