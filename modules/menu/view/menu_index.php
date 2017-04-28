@@ -22,7 +22,7 @@ $mnu=new menu_class();
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<?php echo __BASE_URL__ ?>">Qsservicios</a>
+        <a class="navbar-brand" href="<?php echo __BASE_URL__ ?>"><img src="<?php echo __BASE_URL__.__MODULO_IMAGENES__ ?>logoQs.jpg" title="Quality Servicios" width="100"></a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

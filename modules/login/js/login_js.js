@@ -15,7 +15,7 @@ $(document).ready(function () {
                 data: archi,
                 url: "login.php",
                 success: function (archi) {
-               window.open('../../cargas/view/cargas_index.php','_self');
+               window.open('redireccion.php','_self');
                 },
                 error: function (archi) {
                     alert ("Error: Revise Usuario y Contraseña o Contacte a su administrador");
