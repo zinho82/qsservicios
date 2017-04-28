@@ -1,8 +1,8 @@
 <?php
 
 session_start(); 
-//define("__SERVIDOR_DATOS__", "201.239.170.83");
-define("__SERVIDOR_DATOS__", "190.100.117.172"); 
+define("__SERVIDOR_DATOS__", "201.239.170.83");
+//define("__SERVIDOR_DATOS__", "190.100.117.172"); 
 define("__ROOT__", "/var/www/html/qsservicios/");
 define("__BASE_URL__", "http://" . __SERVIDOR_DATOS__ . "/qsservicios/");
 define("__BASE_DATOS__", "qsservicios");
@@ -91,6 +91,7 @@ class config {
         $_SESSION['campana']['id'] = $sesscam['idcampana'];
         $_SESSION['campana']['nombre'] = $sesscam['nombre'];
     }
+    
 
     function ListaCampanas($Sponsor) {
         $selec = "<option value='-1' selected=''>Seleccion Una Campaña</option>";
