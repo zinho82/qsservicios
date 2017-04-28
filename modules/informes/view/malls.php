@@ -3,7 +3,6 @@ require_once '../../config/superior.php';
 $informes = new informes_class();
 $conn = new config();
 $conn->CargaCampanaSession(4);
-var_dump($_POST);
 $NomMall=$_POST['Mall'];
 ?>    
 <div class="panel panel-primary">
@@ -20,47 +19,42 @@ $NomMall=$_POST['Mall'];
     <div class="panel-heading">Informes Mallplaza <strong>Mall <?php echo $NomMall?></strong> </div>
     <div class="panel-body">
         <div class="row">
-            <div class=" col-lg-12"> 
                 
                 <div class="col-lg-6">
                     <div class="panel panel-info panel-body-mplaza">
-                        <div class="panel-heading">Calificaciones Totales</div>
+                        <div class="panel-heading">Calificaciones Totales <strong>Mall <?php echo $NomMall?></strong></div>
                         <div class="panel-body">
                             <div id="containers"  ></div>
                         </div>
                     </div>
                 </div>
-            </div>
-          <div class=" col-md-12">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="panel panel-info panel-body-mplaza">
-                        <div class="panel-heading">Journey</div>
+                        <div class="panel-heading">Journey <strong>Mall <?php echo $NomMall?></strong></div>
                         <div class="panel-body">
                             <div id="xItem"  ></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="panel panel-info panel-body-mplaza">
-                        <div class="panel-heading">NPS Calificados Positivos</div>
+                        <div class="panel-heading">NPS Calificados Positivos <strong>Mall <?php echo $NomMall?></strong></div>
                         <div class="panel-body">
                             <div id="xDimension"  ></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class=" col-md-12">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="panel panel-info panel-body-mplaza">
-                        <div class="panel-heading">NPS Calificados Negativos</div>
+                        <div class="panel-heading">NPS Calificados Negativos <strong>Mall <?php echo $NomMall?></strong></div>
                         <div class="panel-body">
                             <div id="xDimensionNeg"  ></div>
-                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                </div>
+                <div class="col-lg-4">
                     <div class="panel panel-info panel-body-mplaza">
-                        <div class="panel-heading">NPS Calificados Neutral</div>
+                        <div class="panel-heading">NPS Calificados Neutral <strong>Mall <?php echo $NomMall?></strong></div>
                         <div class="panel-body">
                             <div id="xDimensionNeu"  ></div>
                         </div>
@@ -91,8 +85,7 @@ $NomMall=$_POST['Mall'];
         ]);
         var options = {
             title: '',
-            width: 550,
-            heigth: 400,
+            
             colors: ['#ff0000', '#EBEF1B', '#00ff00', '#0000ff'],
             isStacked: true,
             seriesType: "bars",
@@ -109,8 +102,7 @@ $NomMall=$_POST['Mall'];
 <?php $informes->TotalencuestasxItemxMall($_SESSION['campana']['bd'],$_POST['Mall']) ?>
         ]);
         var options = {
-            width: 600,
-            height: 400,
+          
             bar: {groupWidth: "95%"},
             legend: {position: "none"},
             isStacked: true
@@ -131,8 +123,7 @@ $NomMall=$_POST['Mall'];
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimension'));
         chart.draw(data, {
-            width: 700, 
-            height: 350,
+         
             legend: 'none'
         });
     }
@@ -146,8 +137,7 @@ $NomMall=$_POST['Mall'];
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeu'));
         chart.draw(data, {
-            width: 700,
-            height: 350,
+            
             legend: 'none'
         });
     }
@@ -162,8 +152,7 @@ $informes->TotalencuestasxDimensionxMall($_SESSION['campana']['bd'], 26,'dim1','
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeg'));
         chart.draw(data, {
-            width: 700,
-            height: 350,
+           
             legend: 'none'
         });
     }
