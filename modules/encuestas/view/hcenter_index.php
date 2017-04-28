@@ -13,6 +13,7 @@ $conn = new config();
         <th>IDEncuesta</th>
         <th>Rut</th>  
         <th>Nombre</th>
+        <th>Fono1</th>
         <th>Estado</th>
         <th>Ultima Llamada</th>
         <th></th></tr>
@@ -37,6 +38,7 @@ $resi = mysql_query($sql, $conn->conectar()) or die(mysql_error());
                 . "<td>" . $enc['rut'] . "</td>"
                 . "<td>" . $enc['Cliente'] . "</td>"
                 . "<td>" . $conn->BuscaDatos($_SESSION['campana']['bd'], 'arbol', $enc['estado'], 'idarbol', 'texto') . "</td>"
+                        ."<td>".$enc['CELULAR_CONTACTO']."</td>"
                 . "<td>" . $enc['fec_termino'] . "</td>"
                 . "<td><a href='" . __BASE_URL__ . "modules/encuestas/view/Enc_hc_emp.php?id_encuesta=" . $enc['id_encuesta'] . "&id_formato=12&estado=2' ><i class='fa fa-search'></i></a></td>"
                 . "</tr>";

@@ -32,6 +32,7 @@ class encuestas_class {
             $tabla .= "<tr>"
                     . "<td>".$rs['cod_carga']."</td>"
                     . "<td>".$rs['Cliente']."</td>"
+                      ."<td>".$enc['CELULAR_CONTACTO']."</td>"
                     . "<td>".$rs['fec_postergada']."</td>"
                     . "<td><a href='" . __BASE_URL__ . "modules/encuestas/view/Enc_hc_emp.php?id_encuesta=" . $rs['id_encuesta'] . "&id_formato=12&estado=2' ><i class='fa fa-search'></i></a></td>"
                     . "</tr>";

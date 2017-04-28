@@ -15,6 +15,7 @@ $encuestas=new encuestas_class();
                 <thead>
                 <th>Campaña</th>
                 <th>Nombre</th>
+                <th>Fono1</th>
                 <th>Fecha y Hora Llamar</th>
                 <th></th>
                 </thead>

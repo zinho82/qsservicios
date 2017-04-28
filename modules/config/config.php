@@ -21,6 +21,8 @@ define("__MODULO_IMAGENES__", "images/");
 define("__MODULO_informes__", "modules/informes/");
 define("__MODULO_Encuestas__", "modules/encuestas/");
 define("__MODULO_SUPERVISOR__", "modules/supervisor/");
+define("__MODULO_PANEL__", "modules/panel/");
+define("__MODULO_CLIENTE__", "modules/cliente/");
 
 class config {
 
@@ -91,6 +93,7 @@ class config {
         $_SESSION['campana']['id'] = $sesscam['idcampana'];
         $_SESSION['campana']['nombre'] = $sesscam['nombre'];
     }
+    
 
     function ListaCampanas($Sponsor) {
         $selec = "<option value='-1' selected=''>Seleccion Una Campaña</option>";
