@@ -116,7 +116,7 @@ group by month(cda.fresp) ";
     }
     function TotalencuestasxItemxMall($bd,$mall) {
         $conn = new config();
-     echo     $sql = "select cda.encuesta,count(*) as cant from $bd.cliente_dato cda where cda.mall='$mall' group by cda.encuesta";
+          $sql = "select cda.encuesta,count(*) as cant from $bd.cliente_dato cda where cda.mall='$mall' group by cda.encuesta";
         $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
         while ($mall = mysql_fetch_array($res)) {
 
