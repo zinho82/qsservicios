@@ -77,7 +77,7 @@ inner join enc_mplaza_cali.cliente_respuestas cre on cre.cliente_idcliente=cda.i
                     . "<td>".$expo['hencuesta']."</td>"
                     . "<td>".$expo['nps']."</td>"
                     ."<td>".utf8_encode($expo['encuesta'])."</td>"
-                    . "<td>".utf8_encode($expo['npspasivo'])."</td>"
+                    . "<td>".utf8_encode($expo['npsdtractor'])."</td>"
                     . "<td>".utf8_encode($conn->BuscaDatos($_SESSION['campana']['bd'],"areas", $expo['dim1'], "CodArea", "Area"))."</td>"
                     . "<td>".utf8_encode($conn->BuscaDatos($_SESSION['campana']['bd'],"causas", $expo['area1'], "CodCausa", "Causa"))."</td>"
                     . "<td>".utf8_encode($conn->BuscaDatos(__BASE_DATOS__, "config", $expo['sen1'], "idconfig", "texto"))."</td>"

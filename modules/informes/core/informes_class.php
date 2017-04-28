@@ -69,12 +69,12 @@ group by month(cda.fresp) ";
             $neu += $mall['qneu'];
             $pos += $mall['qpos'];
 //$nps=(($mall['qpos']/$mall['npst'])-($mall['qpos']/$mall['npst']));
-            $nps = (($mall['qpos'] / $mall['npst']) - ($mall['qneg'] / $mall['npst']));
+            $nps = (($mall['qpos'] / $mall['npst']) - ($mall['qneg'] / $mall['npst']))/100;
             $qtot = $mall['qneg'] + $mall['qpos'] + $mall['qneu'];
             $npsto = (($npspt / $npst) - ($npsn / $npst));
-            echo "['" . $conn->MesRecortado($mall['Mes']) . '-' . date('y') . "',-" . (($mall['qneg'] / $qtot) * 100) . "," . (($mall['qneu'] / $qtot) * 100) . "," . (($mall['qpos'] / $qtot) * 100) . "," . ($nps * 100) . "],";
+            echo "['" . $conn->MesRecortado($mall['Mes']) . '-' . date('y') . "',-" . (($mall['qneg'] / $qtot) * 100) . "," . (($mall['qneu'] / $qtot) * 100) . "," . (($mall['qpos'] / $qtot) * 100) . "," . (0 ) . "],";
         }
-        echo "['Acum',-" . (($neg / $qtott) * 100) . "," . (($neu / $qtott) * 100) . "," . (($pos / $qtott) * 100) . "," . ($npsto * 100) . "]";
+        echo "['Acum',-" . (($neg / $qtott) * 100) . "," . (($neu / $qtott) * 100) . "," . (($pos / $qtott) * 100) . "," . (0) . "]";
     }
     function TotalEncuestasRalizadasxMall($bd,$mall) {
         $conn = new config();

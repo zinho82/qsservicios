@@ -19,7 +19,7 @@ var_dump($_POST);
     <div class="panel-heading">Informes Mallplaza </div>
     <div class="panel-body">
         <div class="row">
-            <div class=" col-lg-12">
+            <div class=" col-lg-12"> 
                 
                 <div class="col-lg-6">
                     <div class="panel panel-info panel-body-mplaza">
@@ -30,7 +30,7 @@ var_dump($_POST);
                     </div>
                 </div>
             </div>
-            <div class=" col-md-12">
+           <!-- <div class=" col-md-12">
                 <div class="col-lg-6">
                     <div class="panel panel-info panel-body-mplaza">
                         <div class="panel-heading">Journey</div>
@@ -64,7 +64,7 @@ var_dump($_POST);
                             <div id="xDimensionNeu"  ></div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
@@ -166,10 +166,10 @@ $informes->TotalencuestasxDimensionxMall($_SESSION['campana']['bd'], 26, "dim1",
             legend: 'none'
         });
     }
-    google.charts.setOnLoadCallback(xDimension);
+   /* google.charts.setOnLoadCallback(xDimension);
     google.charts.setOnLoadCallback(xDimensionNeg);
     google.charts.setOnLoadCallback(xDimensionNeu);
-    google.charts.setOnLoadCallback(xItem);
+    google.charts.setOnLoadCallback(xItem);*/
     google.charts.setOnLoadCallback(drawChart);
 </script>
 <script src="<?php echo __BASE_URL__ . __MODULO_informes__ . 'js/informes_js.js'; ?>" ></script>
