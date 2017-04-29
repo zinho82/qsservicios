@@ -60,6 +60,43 @@ $NomMall=$_POST['Mall'];
                         </div>
                     </div>
                 </div>
+            <div class="col-lg-9">
+                    <div class="panel panel-info panel-body-mplaza">
+                        <div class="panel-heading">Dimensiones <strong>Mall <?php echo $NomMall?></strong></div>
+                        <div class="panel-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th colspan="5">Negativo</th>
+                                        <th colspan="5">Positivo</th>
+                                    </tr>
+                                <tr>
+                                    <th>Dimension</th>
+                                    <th>Detractor</th>
+                                    <th>Neutro</th>
+                                    <th>Promotor</th>
+                                    <th>Total Negativo %</th>
+                                    <th>Total Negativo</th>
+                                    <th>Detractor</th>
+                                    <th>Neutro</th>
+                                    <th>Promotor</th>
+                                    <th>Total Negativo %</th>
+                                    <th>Total Negativo</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+             <div class="col-lg-3">
+                    <div class="panel panel-info panel-body-mplaza">
+                        <div class="panel-heading">Division por Genero <strong>Mall <?php echo $NomMall?></strong></div>
+                        <div class="panel-body">
+                            <div id="xDimensionNeu"  ></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
