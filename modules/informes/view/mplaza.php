@@ -5,71 +5,76 @@ $conn = new config();
 $conn->CargaCampanaSession(4);
 ?>
 
-<div class="panel panel-primary">
-    <div class="panel-heading">Informes Mall plaza <img src="<?php echo __BASE_URL__ . __MODULO_IMAGENES__ ?>logo_mplaza2.jpg" width="50"></div>
-    <div class="panel-body">
-        <div class="row">
-            <div class=" col-lg-12">
-                <div class="col-lg-6">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">Encuestas por Mall</div>
-                        <div class="panel-body ">
-                            <table class="table table-hover" >
-                                <thead>
-                                <th>Mall</th>
-                                <th>Q Encuestas</th>
-                                <th>Q Negativo</th>
-                                <th>Q Promotor</th>
-                                <th>Q Neutro</th>
-                                <th>Q Encuestas Realizadas</th>
-                                </thead>
-                                <?php  $informes->EncxMall($_SESSION['campana']['bd'], "cliente_dato", "", "group by mall") ?>
-                            </table>
 
+<div class="row">
+    <?php require_once '../../config/sidebarmplaza.php'; ?>
+    <div class="col-lg-10">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Informes Mall plaza <img src="<?php echo __BASE_URL__ . __MODULO_IMAGENES__ ?>logo_mplaza2.jpg" width="50"></div>
+            <div class="panel-body">
+                    <div class=" col-lg-10">
+                        <div class="col-lg-6">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">Encuestas por Mall</div>
+                                <div class="panel-body ">
+                                    <table class="table table-hover" >
+                                        <thead>
+                                        <th>Mall</th>
+                                        <th>Q Encuestas</th>
+                                        <th>Q Negativo</th>
+                                        <th>Q Promotor</th>
+                                        <th>Q Neutro</th>
+                                        <th>Q Encuestas Realizadas</th>
+                                        </thead>
+                                        <?php $informes->EncxMall($_SESSION['campana']['bd'], "cliente_dato", "", "group by mall") ?>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-info panel-body-mplaza">
+                                <div class="panel-heading">Calificaciones Totales</div>
+                                <div class="panel-body">
+                                    <div id="containers"  ></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-info panel-body-mplaza">
-                        <div class="panel-heading">Calificaciones Totales</div>
-                        <div class="panel-body">
-                            <div id="containers"  ></div>
+                    <div class=" col-md-12">
+                        <div class="col-lg-6">
+                            <div class="panel panel-info panel-body-mplaza">
+                                <div class="panel-heading">Journey</div>
+                                <div class="panel-body">
+                                    <div id="xItem"  ></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-info panel-body-mplaza">
+                                <div class="panel-heading">NPS Calificados Positivos</div>
+                                <div class="panel-body">
+                                    <div id="xDimension"  ></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class=" col-md-12">
-                <div class="col-lg-6">
-                    <div class="panel panel-info panel-body-mplaza">
-                        <div class="panel-heading">Journey</div>
-                        <div class="panel-body">
-                            <div id="xItem"  ></div>
+                    <div class=" col-md-12">
+                        <div class="col-lg-6">
+                            <div class="panel panel-info panel-body-mplaza">
+                                <div class="panel-heading">NPS Calificados Negativos</div>
+                                <div class="panel-body">
+                                    <div id="xDimensionNeg"  ></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-info panel-body-mplaza">
-                        <div class="panel-heading">NPS Calificados Positivos</div>
-                        <div class="panel-body">
-                            <div id="xDimension"  ></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" col-md-12">
-                <div class="col-lg-6">
-                    <div class="panel panel-info panel-body-mplaza">
-                        <div class="panel-heading">NPS Calificados Negativos</div>
-                        <div class="panel-body">
-                            <div id="xDimensionNeg"  ></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-info panel-body-mplaza">
-                        <div class="panel-heading">NPS Calificados Neutral</div>
-                        <div class="panel-body">
-                            <div id="xDimensionNeu"  ></div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-info panel-body-mplaza">
+                                <div class="panel-heading">NPS Calificados Neutral</div>
+                                <div class="panel-body">
+                                    <div id="xDimensionNeu"  ></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -82,8 +87,10 @@ $conn->CargaCampanaSession(4);
 *
 *************************************************-->
 <script language="JavaScript">
-    google.charts.load('current', {packages: ['corechart']});
+
     /*
+     google.charts.load('current', {packages: ['corechart']});
+     /*
      * GRAFICO TOTAL NPS
      * @return {undefined}
      * 
@@ -177,7 +184,7 @@ $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim1", 'sen
     google.charts.setOnLoadCallback(xDimensionNeg);
     google.charts.setOnLoadCallback(xDimensionNeu);
     google.charts.setOnLoadCallback(xItem);
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawChart); * /
 </script>
 <script src="<?php echo __BASE_URL__ . __MODULO_SPONSOR__ . 'js/sponsor_js.js'; ?>" ></script>
 <?php require_once '../../config/footer.php'; ?>

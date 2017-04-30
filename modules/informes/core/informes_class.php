@@ -13,6 +13,68 @@
  */
 class informes_class {
 
+    function DetractoresTbl($mall) {
+        $conn = new config();
+//        #BORRANDO TBL TEMPORAL
+        $sq1 = "drop temporary table IF EXISTS enc_mplaza_cali.tmp1 ";
+#CREANDO TBL TEMPORAL
+        $sql2 = "create temporary table enc_mplaza_cali.tmp1 (total int, area text,mes int,sentido int);";
+#INSERTANDO CAMPOS SEN1
+        $dim1 = "insert into enc_mplaza_cali.tmp1
+select count(*),ar.Area,month(cr.fechaenc) as Mes,cr.sen1 from enc_mplaza_cali.cliente_respuestas cr 
+inner join enc_mplaza_cali.areas ar on ar.CodArea=cr.dim1 and cr.sen1=26
+group by cr.fechaenc,cr.dim1
+order by count(*) desc";
+#insertando campos SEN 2
+        $dim2 = "insert into enc_mplaza_cali.tmp1
+select count(*),ar.Area,month(cr.fechaenc) as Mes,sen2 from enc_mplaza_cali.cliente_respuestas cr 
+inner join enc_mplaza_cali.areas ar on ar.CodArea=cr.dim2 and cr.sen2=26
+group by cr.fechaenc,cr.dim2
+order by count(*) desc";
+#Insertando sentido 3
+        $dim3 = "
+insert into enc_mplaza_cali.tmp1
+select count(*),ar.Area,month(cr.fechaenc) as Mes,sen3 from enc_mplaza_cali.cliente_respuestas cr 
+inner join enc_mplaza_cali.areas ar on ar.CodArea=cr.dim3 and cr.sen3=26
+group by cr.fechaenc,cr.dim3
+order by count(*) desc";
+        $sql4 = "select sum(total) as total,area
+from enc_mplaza_cali.tmp1  
+group by area,mes
+order by area asc;";
+        ;
+        echo "['test',1]";
+        mysql_query($sql1, $conn->conectar()) ;
+        mysql_query($sql2, $conn->conectar());
+        mysql_query($dim1, $conn->conectar());
+        mysql_query($dim2, $conn->conectar());
+        mysql_query($dim3, $conn->conectar());
+        $res = mysql_query($sql4, $conn->conectar());
+        while ($tabla = mysql_fetch_assoc($res)) {
+            
+             echo "['" .$tabla['area']. "'],";
+         
+        }
+
+        return ;
+    }
+    function xGeneroxMal($mall) {
+        $conn=new config();
+        
+        $sql="select count(*) as cant ,cd.sexo from enc_mplaza_cali.cliente_dato cd where cd.mall='$mall' group by cd.sexo";
+        $sql1="select count(*) as cant ,cd.sexo from enc_mplaza_cali.cliente_dato cd where cd.mall='$mall' ";
+            $ress=mysql_query($sql1,$conn->conectar());
+            $tsexo=mysql_fetch_assoc($ress);
+       $res=mysql_query($sql,$conn->conectar());
+         while($malls=mysql_fetch_assoc($res)){
+             if($malls['sexo']==""){
+                 $sexo="N/E";
+             }
+ else {$sexo=$malls['sexo'];}
+        echo "['" .$sexo. "'," . (($malls['cant']/$tsexo['cant'])*100) . "],";
+        }
+    }
+
     function ListaMalls() {
         $conn = new config();
         $m = "<option value='-1' selected=''>Selecione un mall</option>";
@@ -165,27 +227,27 @@ group by month(cda.fresp) ";
 
     function TotalencuestasxDimensionxMall($bd, $SentidoID, $NomDimension, $nomSentido, $orden, $mall) {
         $conn = new config();
-         $sql1 = "drop temporary table IF EXISTS enc_mplaza_cali.tmp1 ;";
-          $sql2 = "create temporary table enc_mplaza_cali.tmp1 (total int, dim int);";
-           $sql3 = "insert into enc_mplaza_cali.tmp1 SELECT COUNT(dim1), dim1
+        $sql1 = "drop temporary table IF EXISTS enc_mplaza_cali.tmp1 ;";
+        $sql2 = "create temporary table enc_mplaza_cali.tmp1 (total int, dim int);";
+        $sql3 = "insert into enc_mplaza_cali.tmp1 SELECT COUNT(dim1), dim1
 	FROM enc_mplaza_cali.cliente_respuestas cr 
 	inner join enc_mplaza_cali.cliente_dato cd on cd.idcliente=cliente_idcliente
 	WHERE sen1=$SentidoID  and cd.mall='$mall'
 	GROUP BY cr.dim1;";
 
-          $sql4 = "insert into enc_mplaza_cali.tmp1 SELECT COUNT(dim2), dim2
+        $sql4 = "insert into enc_mplaza_cali.tmp1 SELECT COUNT(dim2), dim2
 	FROM enc_mplaza_cali.cliente_respuestas cr 
         inner join enc_mplaza_cali.cliente_dato cd on cd.idcliente=cliente_idcliente
 	WHERE sen2=$SentidoID  and cd.mall='$mall'
 	GROUP BY cr.dim2;";
 
-             $sql5 = "insert into enc_mplaza_cali.tmp1 SELECT COUNT(dim3), dim3
+        $sql5 = "insert into enc_mplaza_cali.tmp1 SELECT COUNT(dim3), dim3
 	FROM enc_mplaza_cali.cliente_respuestas cr 
         inner join enc_mplaza_cali.cliente_dato cd on cd.idcliente=cliente_idcliente
 	WHERE sen3=$SentidoID and cd.mall='$mall'
 	GROUP BY cr.dim3;";
 
-           $sql6 = "select ar.Area,sum(tmp1.total) as cant from enc_mplaza_cali.tmp1
+        $sql6 = "select ar.Area,sum(tmp1.total) as cant from enc_mplaza_cali.tmp1
     inner join " . $bd . ".areas ar on ar.CodArea=tmp1.dim group by tmp1.dim order by sum(tmp1.total) desc  ";
         mysql_query($sql1, $conn->conectar()) or die(mysql_error());
         mysql_query($sql2, $conn->conectar()) or die(mysql_error());
