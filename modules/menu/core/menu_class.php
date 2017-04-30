@@ -58,8 +58,8 @@ inner join $bd.acceso_menu acm on acm.idusuario=$usuario and acm.idmenu=mnu.idme
         $sql = "select * from $bd.$tabla where idusuario!=1";
         $res = mysql_query($sql, $conn->conectar());
         while ($acc = mysql_fetch_array($res)) {
-            echo "<tr><td>".$conn->BuscaDatos("usuario",  $acc['idusuario'],"idusuario", "usuario")."</td>"
-                    . "<td>".$conn->BuscaDatos("menu",  $acc['idmenu'],"idmenu", "item")."</td>"
+            echo "<tr><td>".$conn->BuscaDatos(__BASE_DATOS__,"usuario",  $acc['idusuario'],"idusuario", "usuario")."</td>"
+                    . "<td>".$conn->BuscaDatos(__BASE_DATOS__,"menu",  $acc['idmenu'],"idmenu", "item")."</td>"
                     . "</tr>";
         }
     }

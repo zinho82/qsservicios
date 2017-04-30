@@ -23,8 +23,8 @@ class campana_class {
             . "<td>" . $spon['codigo'] . "</td>"
             . "<td>" . $spon['finicio'] . "</td>"
             . "<td>" . $spon['ftermino'] . "</td>"
-            . "<td>" . $conn->BuscaDatos("sponsor", $spon['sponsor'], "idsponsor", "nombre") . "</td>"
-            . "<td>" . $conn->BuscaDatos("config", $spon['estado'], "idconfig", "texto") . "</td>"
+            . "<td>" . $conn->BuscaDatos(__BASE_DATOS__,"sponsor", $spon['sponsor'], "idsponsor", "nombre") . "</td>"
+            . "<td>" . $conn->BuscaDatos(__BASE_DATOS__,"config", $spon['estado'], "idconfig", "texto") . "</td>"
             . "</tr>";
         }
         return $tbl;
