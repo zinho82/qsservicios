@@ -1,6 +1,6 @@
 <?php
 require_once '../../config/superior.php';
-$informes = new informes_class();
+$informes = new informes_class(); 
 $conn = new config();
 $conn->CargaCampanaSession(4);
 $NomMall = $_POST['Mall'];
