@@ -44,7 +44,8 @@
             }
         </style>
     </head>
-    <body >
+    <body style="background-color: #000;" >
+        <div id="wrapper">
         <?php
         $reque = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         if (( $reque !== __BASE_URL__ . __MODULO_LOGIN__ . "view/login_index.php") and ( $_SESSION['usuario']['islog'] == 1)) {
@@ -59,3 +60,4 @@
             }
         }
         ?>
+

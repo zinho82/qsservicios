@@ -11,7 +11,9 @@ if (!$_POST['mes']) {
 <div class="wrapper">
 
     <div class="col-lg-12">
+        <div class="col-lg-2">
         <?php require_once 'sidebarAdmin.php'; ?>
+        </div>
             <div class="col-lg-10">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
