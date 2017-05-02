@@ -55,5 +55,11 @@ class panel_class {
         }
         echo $cabecera;
     }
+    function EncuestasTotalesMes() {
+        $conn=new config();
+        $sql="select * from ";
+        
+        
+    }
 
 }
