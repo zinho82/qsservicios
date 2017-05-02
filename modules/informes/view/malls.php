@@ -7,7 +7,7 @@ $NomMall = $_POST['Mall'];
 ?>    
 <div class="row">
     <div class="col-lg-2">
-        <?php require_once '../../config/sidebarmplaza.php'; ?>
+        <?php require_once 'sidebarmplaza.php'; ?>
     </div>
     <div class="col-lg-10">
         <div class="panel panel-primary">
