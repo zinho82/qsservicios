@@ -67,7 +67,7 @@ $NomMall = $_POST['Mall'];
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-10">
+                        <!--<div class="col-lg-10">
                             <div class="panel panel-info panel-body-mplaza">
                                 <div class="panel-heading">Detractores Negativos <strong>Mall <?php echo $NomMall ?></strong></div>
                                 <div class="panel-body">
@@ -93,12 +93,12 @@ $NomMall = $_POST['Mall'];
                                         <tbody>
                                             <?php //echo $informes->DetractoresTbl();?>
                                         </tbody>
-                                    </table>-->
+                                    </table>
                                     
                                     <div id="xDetractoresNeg"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-lg-2">
                             <div class="panel panel-info panel-body-mplaza">
                                 <div class="panel-heading">Division por Genero <strong>Mall <?php echo $NomMall ?></strong></div>
