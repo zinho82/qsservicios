@@ -19,6 +19,18 @@ if (!$_POST['mes']) {
                  <div class="panel panel-primary">
                   <div class="panel-heading">Avances Sistema</div>
                   <div class="panel-body">
+                      <form method="post">
+                          <select class="form-control success" name="tareas" onchange="this.form.submit()">
+                              <option value="-1" selected="">Seleccione una tarea</option>
+                              <?php 
+                              $sql="select * from ".__BASE_DATOS__.".gantt where tareaanterior is null";
+                              $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
+                              while($tar=mysql_fetch_assoc($res)){
+                                  echo "<option value=".$tar['idgantt'].">".$tar['tarea']."</option>";
+                              }
+                              ?>
+                          </select>
+                      </form>
                       <div id="gantt"></div>
                   </div>
               </div> 
@@ -56,7 +68,7 @@ if (!$_POST['mes']) {
 *, datediff(ftermino,finicio) as diasdura 
 ,(select count(*) from gantt ga where ga.tareaanterior=g.idgantt) as subt
 ,(select count(*) from gantt ga where ga.tareaanterior=g.idgantt and ga.estado=1) as subtter
-from gantt g ";
+from gantt g where idgantt='".$_POST['tareas']."' or tareaanterior='".$_POST['tareas']."'";
           $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
           while($ga=mysql_fetch_assoc($res)){
               $finicio= explode("-", $ga['finicio']);
