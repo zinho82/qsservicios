@@ -23,7 +23,10 @@ if (!$_POST['mes']) {
                           <select class="form-control success" name="tareas" onchange="this.form.submit()">
                               <option value="-1" selected="">Seleccione una tarea</option>
                               <?php 
-                              $sql="select * from ".__BASE_DATOS__.".gantt where tareaanterior is null";
+                              if($_SESSION['usuario']['id']==1){
+                              $sql="select * from ".__BASE_DATOS__.".gantt where tareaanterior is null or estado is null";   
+                              }else{
+                              $sql="select * from ".__BASE_DATOS__.".gantt where tareaanterior is null";}
                               $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
                               while($tar=mysql_fetch_assoc($res)){
                                   echo "<option value=".$tar['idgantt'].">".$tar['tarea']."</option>";
