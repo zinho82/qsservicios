@@ -15,7 +15,7 @@ $conn=new config();
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- $sql="update ".$_SESSION['campana']['bd'].".$tabla set id_acceso=".$_POST['EjAsigna']." where cod_carga='".$_POST['codCamReg']."' and id_acceso=".$_POST['EjQuita']."  limit ".$_POST['Cantidad'];
+ $sql="update ".$_SESSION['campana']['bd'].".".$_SESSION['campana']['tabla']." set id_acceso=".$_POST['EjAsigna']." where cod_carga='".$_POST['codCamReg']."' and id_acceso=".$_POST['EjQuita']."  limit ".$_POST['Cantidad'];
 if(mysql_query($sql,$conn->conectar())){
     echo "Registros Asignados";
 } else {

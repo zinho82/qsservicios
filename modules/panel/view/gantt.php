@@ -67,20 +67,25 @@ if (!$_POST['mes']) {
       data.addRows([
           <?php
           $conn=new config();
-          $sql="select 
+           $sql="select 
 *, datediff(ftermino,finicio) as diasdura 
-,(select count(*) from gantt ga where ga.tareaanterior=g.idgantt) as subt
-,(select count(*) from gantt ga where ga.tareaanterior=g.idgantt and ga.estado=1) as subtter
-from gantt g where idgantt='".$_POST['tareas']."' or tareaanterior='".$_POST['tareas']."'";
+,(select count(*) from ".__BASE_DATOS__.".gantt ga where ga.tareaanterior=g.idgantt) as subt
+,(select count(*) from ".__BASE_DATOS__.".gantt ga where ga.tareaanterior=g.idgantt and ga.estado=1) as subtter
+from ".__BASE_DATOS__.".gantt g where g.idgantt='".$_POST['tareas']."' or g.tareaanterior='".$_POST['tareas']."'";
           $res=mysql_query($sql,$conn->conectar()) or die(mysql_error());
           while($ga=mysql_fetch_assoc($res)){
               $finicio= explode("-", $ga['finicio']);
               $ftermino= explode("-", $ga['ftermino']);
-              $porcentajeTermino=$ga['subtter']/$ga['subt']*100;
+              if(($ga['subbter']>0) and ($ga['subt']>0)){
+              $porcentajeTermino=($ga['subtter']/$ga['subt'])*100;
+              }
+              else{
+                  $porcentajeTermino=0;
+              }
+                  
               echo "['".$ga['idgantt']."','".$ga['tarea']."',new Date(".$finicio[0].",".($finicio[1]-1).",".$finicio[2]."),new Date(".$ftermino[0].",".($ftermino[1]-1).",".$ftermino[2]."),daysToMilliseconds(".$ga['diasdura']."),$porcentajeTermino,'".$ga['tareaanterior']."'],";
           }
           ?>
-     
       ]);
 
       var options = {

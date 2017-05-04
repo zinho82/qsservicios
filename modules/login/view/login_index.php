@@ -10,17 +10,10 @@
                     <input type="text" class="form-control" placeholder="Usuario" name="Usr" required autofocus>
                 <input type="password" name="Pass" class="form-control" placeholder="Password" required>
                 <button id="BtnIngresar" class="btn btn-lg btn-primary btn-block" type="button">Ingresar</button>
-                <!--<label class="checkbox pull-left">
-                    <input type="checkbox" value="remember-me">
-                    Remember me
-                </label>-->
-                <!--<a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>-->
                 </form>
             </div>
-           <!-- <a href="#" class="text-center new-account">Create an account </a>-->
         </div>
     </div>
 </div>
 <script src="<?php echo __BASE_URL__.__MODULO_LOGIN__?>js/login_js.js"></script>
-<?php 
-require_once 'modules/config/footer.php';
+<?php require_once '../../config/footer.php';?>

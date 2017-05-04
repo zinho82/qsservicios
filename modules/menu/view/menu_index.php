@@ -40,28 +40,6 @@ $mnu->CrearMenu(__BASE_DATOS__, 1, $_SESSION['usuario']['id']);
 
 
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <!--  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                  <li class="<?php echo $m1 ?>"><a href="<?php echo __BASE_URL__ . __MODULO_CARGAR__ . 'view/cargas_index.php?mnu=carga' ?> ">Centro de Archivos</a></li>
-                  <li class="<?php echo $m2 ?>"><a href="<?php echo __BASE_URL__ . __MODULO_SEGUROS__ . 'view/seguros_index.php?mnu=seguro' ?> ">Procesar Carga X Semana </a></li>
-                  <li class="<?php echo $m4 ?>"><a href="<?php echo __BASE_URL__ . __MODULO_SEMANALES__ . 'view/semanales_index.php?mnu=mensual' ?> ">Procesar Carga X Mes </a></li>
-                  <li class="<?php echo $m5 ?>"><a href="<?php echo __BASE_URL__ . __MODULO_TARIFAS__ . 'view/tarifas_index.php?mnu=tarifas' ?> ">Listado Tarifas </a></li>
-                  <li class="dropdown <?php echo $m6 ?>">
-                    <a href="#" class="dropdown-toggle  " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Procesar <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li ><a href="<?php echo __BASE_URL__ . __MODULO_MALLPLAZA__ . 'view/mallplaza_index.php?mnu=procesar' ?> ">Mall Plaza </a></li>
-                    </ul>
-                  </li>
-                </ul>
-            -->
-
-            <!-- <form class="navbar-form navbar-left">
-               <div class="form-group">
-                 <input type="text" class="form-control" placeholder="Search">
-               </div>
-               <button type="submit" class="btn btn-default">Submit</button>
-             </form>-->
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user">  <?php echo $_SESSION['usuario']['nombre'] ?></i> <span class="caret"></span></a>

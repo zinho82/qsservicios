@@ -18,7 +18,7 @@ class supervisor_class {
         $conn = new config();
         $conn->CargaCampanaSession($campana);
         //$sql = "select count(*) as cant,emp.cod_carga,emp.id_acceso,(select count(*) from " . $_SESSION['campana']['bd'] . ".$tabla em where em.estado!=1 and em.cod_carga=emp.cod_carga and em.id_acceso=emp.id_acceso) as recorrido  from " . $_SESSION['campana']['bd'] . ".$tabla  emp group by emp.cod_carga,emp.id_acceso order by emp.cod_carga desc";
-        $sql = "select count(*) as cant,emp.cod_carga,emp.id_acceso  from " . $_SESSION['campana']['bd'] . ".".$_SESSION['campana']['tabla']."  emp group by emp.cod_carga,emp.id_acceso order by emp.cod_carga desc";
+   echo      $sql = "select count(*) as cant,emp.cod_carga,emp.id_acceso  from " . $_SESSION['campana']['bd'] . ".".$_SESSION['campana']['tabla']."  emp group by emp.cod_carga,emp.id_acceso order by emp.cod_carga desc";
         $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
         while ($tbl = mysql_fetch_assoc($res)) {
             $TblDatos .= "<tr>"

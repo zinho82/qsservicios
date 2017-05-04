@@ -41,7 +41,7 @@ if (!$_POST['mes']) {
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">
                                         <?php
-                                        $sql = "select count(*) from enc_mplaza_cali.cliente_dato cd where month(cd.fencuesta)=$mes and estado=21 ";
+                                        $sql = "select count(*) from qsschile_enc_mplaza_cali.cliente_dato cd where month(cd.fencuesta)=$mes and estado=21 ";
                                         $sql1 = "select count(*) from qsschile_qs_encuestas.qs_encuestascli_sodimac_emp cd where month(cd.fec_termino)=$mes and  (cd.status1_llamada='7' or cd.status2_llamada='7' or cd.status3_llamada='7' or cd.status4_llamada='7' or cd.status5_llamada='7')";
                                         $res = mysql_query($sql, $conn->conectar());
                                         $res1 = mysql_query($sql1, $conn->conectar());

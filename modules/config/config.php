@@ -1,28 +1,30 @@
-<?php
-session_start();
-//define("__SERVIDOR_DATOS__", "201.239.170.83");
-define("__SERVIDOR_DATOS__", "190.100.117.172");
-define("__ROOT__", "/var/www/html/qsservicios/");
-define("__BASE_URL__", "http://" . __SERVIDOR_DATOS__ . "/qsservicios/");
-define("__BASE_DATOS__", "qsservicios");
-define("__MODULO_ACCESORIOS__", "archivos/");
+<?php 
+session_start(); 
+ob_start();
+////define("__SERVIDOR_DATOS__", "201.239.170.83");
+define("__SERVIDOR_DATOS__", "www.qsservicios.cl/intranet/"); 
+define("__ROOT__",$_SERVER['DOCUMENT_ROOT']."/intranet/");  
+define("__ATRAS__",'../');
+define("__BASE_URL__", "http://" . __SERVIDOR_DATOS__ );
+define("__BASE_DATOS__", "qsschile_qsservicios");
+//define("__MODULO_ACCESORIOS__", "archivos/");  
 define("__MODULO_MENU__", "modules/menu/");
-define("__MODULO_CARGAR__", "modules/cargas/");
-define("__MODULO_SEGUROS__", "modules/seguros/");
-define("__MODULO_PAGOS__", "modules/pagos/");
-define("__MODULO_TARIFAS__", "modules/tarifas/");
-define("__MODULO_SEMANALES__", "modules/semanales/");
+//define("__MODULO_CARGAR__", "modules/cargas/");
+//define("__MODULO_SEGUROS__", "modules/seguros/");
+//define("__MODULO_PAGOS__", "modules/pagos/");
+//define("__MODULO_TARIFAS__", "modules/tarifas/");
+//define("__MODULO_SEMANALES__", "modules/semanales/"); 
 define("__MODULO_LOGIN__", "modules/login/");
-define("__MODULO_MALLPLAZA__", "modules/mallplaza/");
-define("__MODULO_SPONSOR__", "modules/sponsor/");
-define("__MODULO_CAMPANA__", "modules/campana/");
+//define("__MODULO_MALLPLAZA__", "modules/mallplaza/");
+//define("__MODULO_SPONSOR__", "modules/sponsor/");
+//define("__MODULO_CAMPANA__", "modules/campana/"); 
 define("__MODULO_IMAGENES__", "images/");
-define("__MODULO_informes__", "modules/informes/");
-define("__MODULO_Encuestas__", "modules/encuestas/");
-define("__MODULO_SUPERVISOR__", "modules/supervisor/");
-define("__MODULO_PANEL__", "modules/panel/");
+//define("__MODULO_informes__", "modules/informes/");
+//define("__MODULO_Encuestas__", "modules/encuestas/");
+//define("__MODULO_SUPERVISOR__", "modules/supervisor/");
+define("__MODULO_PANEL__", "modules/panel/"); 
 define("__MODULO_CLIENTE__", "modules/cliente/");
-
+//
 class config {
 
     function CargaSponsor() {
@@ -41,6 +43,8 @@ class config {
             case 7:$_SESSION['campana']['tabla'] = "qs_encuestascli_sodimac_emp";
                 break;
             case 8:$_SESSION['campana']['tabla'] = "qs_encuestascli_sodimac_emp";
+                break;
+            case 9:$_SESSION['campana']['tabla'] = "qs_encuestascli_sodimac_ind";
                 break;
             
         }
@@ -71,7 +75,7 @@ class config {
     }
 
     function conectar() {
-        $link = mysql_connect('localhost', 'root', 'zinho1982')
+        $link = mysql_connect('localhost', 'qsschile2017', 'Quality!2017')
                 or die('No se pudo conectar: ' . mysql_error());
         mysql_select_db(__BASE_DATOS__);
 //echo 'Connected successfully'; 
@@ -91,6 +95,7 @@ class config {
         $_SESSION['campana']['bd'] = $sesscam['bd'];
         $_SESSION['campana']['id'] = $sesscam['idcampana'];
         $_SESSION['campana']['nombre'] = $sesscam['nombre'];
+        $this->CargaTablaSession($idCampana);
     }
     
 
@@ -165,14 +170,15 @@ class config {
 
 }
 
-//require_once MODULO_SEGUROS.'core/seguros_class.php';
-require_once __ROOT__ . __MODULO_LOGIN__ . 'core/login_class.php';
-require_once __ROOT__ . __MODULO_MALLPLAZA__ . 'core/mallplaza_class.php';
-require_once __ROOT__ . __MODULO_SPONSOR__ . 'core/sponsor_class.php';
-require_once __ROOT__ . __MODULO_CAMPANA__ . 'core/campana_class.php';
+//
+////require_once MODULO_SEGUROS.'core/seguros_class.php';
+require_once    __ROOT__. __MODULO_LOGIN__ . 'core/login_class.php';
+//require_once __ROOT__ . __MODULO_MALLPLAZA__ . 'core/mallplaza_class.php';
+//require_once __ROOT__ . __MODULO_SPONSOR__ . 'core/sponsor_class.php';
+//require_once __ROOT__ . __MODULO_CAMPANA__ . 'core/campana_class.php';
 require_once __ROOT__ . __MODULO_MENU__ . 'core/menu_class.php';
-require_once __ROOT__ . __MODULO_informes__ . 'core/informes_class.php';
-require_once __ROOT__ . __MODULO_Encuestas__ . 'core/encuestas_class.php';
-require_once __ROOT__ . __MODULO_SUPERVISOR__ . 'core/supervisor_class.php';
-require_once __ROOT__ . __MODULO_PANEL__ . 'core/panel_class.php';
+//require_once __ROOT__ . __MODULO_informes__ . 'core/informes_class.php';
+//require_once __ROOT__ . __MODULO_Encuestas__ . 'core/encuestas_class.php';
+//require_once __ROOT__ . __MODULO_SUPERVISOR__ . 'core/supervisor_class.php';
+//require_once __ROOT__ . __MODULO_PANEL__ . 'core/panel_class.php';
 ?>

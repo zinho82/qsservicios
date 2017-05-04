@@ -11,6 +11,7 @@ switch ($_POST['id']){
     case 4:$tabla ="cliente_dato";        break;
     case 7:$tabla="qs_encuestascli_sodimac_emp";        break;
     case 8:$tabla="qs_encuestascli_sodimac_emp";        break;
+    case 9:$tabla="qs_encuestascli_sodimac_ind";        break;
 }
 echo $conn->CargaCodCarga($tabla);
 
