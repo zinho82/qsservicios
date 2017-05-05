@@ -6,7 +6,7 @@ require_once '../../config/config.php';
  * and open the template in the editor.
  */
 $conn=new config();
-var_dump($_POST);
+echo "<option value='-1' selected=''>Seleccione Causa</option>";
  $sql="SELECT * from ".$_SESSION['campana']['bd'].".qs_causas WHERE CodArea = '".$_POST['id']."'";
 $res=mysql_query($sql,$conn->conectar());
 while($sal=mysql_fetch_array($res)){

@@ -2,11 +2,11 @@
 session_start(); 
 ob_start();
 error_reporting(E_ERROR | E_PARSE);
-////define("__SERVIDOR_DATOS__", "201.239.170.83");
-define("__SERVIDOR_DATOS__", "www.qsservicios.cl/intranet/"); 
+define("__SERVIDOR_DATOS__", "201.239.170.83./intranet/");
+//define("__SERVIDOR_DATOS__", "www.qsservicios.cl/intranet/"); 
 define("__ROOT__",$_SERVER['DOCUMENT_ROOT']."/intranet/");  
 define("__ATRAS__",'../');
-define("__BASE_URL__", "http://" . __SERVIDOR_DATOS__ );
+define("__BASE_URL__", "http://" . __SERVIDOR_DATOS__);
 define("__BASE_DATOS__", "qsschile_qsservicios");
 define("__MODULO_ACCESORIOS__", "archivos/");  
 define("__MODULO_MENU__", "modules/menu/");
