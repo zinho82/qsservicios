@@ -6,8 +6,7 @@
 
 
 $(document).ready(function () { 
-    alert("ENC IND");
-    $("#Agenda").click(function(){
+    $("#Agenda").click(function(){ 
         window.open('Agenda.php'); 
     });
     $("#VerEncuesta").css("display", "none");

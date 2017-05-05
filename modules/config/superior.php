@@ -13,11 +13,13 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
         <script src="https://use.fontawesome.com/f228cd14da.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+        <!-- DATABLES-->
+        <script src="<?php echo __BASE_URL__.__MODULO_ACCESORIOS__ ?>assets/datatables/Buttons/js/dataTables.buttons.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
         <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
         <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
-        <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+        <script src="<?php echo __BASE_URL__.__MODULO_ACCESORIOS__ ?>assets/datatables/Buttons/js/buttons.html5.min.js"></script>
+        <!-- DATATABLES -->
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
         <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
