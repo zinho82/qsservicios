@@ -1,27 +1,28 @@
 <?php 
 session_start(); 
 ob_start();
+error_reporting(E_ERROR | E_PARSE);
 ////define("__SERVIDOR_DATOS__", "201.239.170.83");
 define("__SERVIDOR_DATOS__", "www.qsservicios.cl/intranet/"); 
 define("__ROOT__",$_SERVER['DOCUMENT_ROOT']."/intranet/");  
 define("__ATRAS__",'../');
 define("__BASE_URL__", "http://" . __SERVIDOR_DATOS__ );
 define("__BASE_DATOS__", "qsschile_qsservicios");
-//define("__MODULO_ACCESORIOS__", "archivos/");  
+define("__MODULO_ACCESORIOS__", "archivos/");  
 define("__MODULO_MENU__", "modules/menu/");
-//define("__MODULO_CARGAR__", "modules/cargas/");
-//define("__MODULO_SEGUROS__", "modules/seguros/");
-//define("__MODULO_PAGOS__", "modules/pagos/");
-//define("__MODULO_TARIFAS__", "modules/tarifas/");
-//define("__MODULO_SEMANALES__", "modules/semanales/"); 
+define("__MODULO_CARGAR__", "modules/cargas/");
+define("__MODULO_SEGUROS__", "modules/seguros/");
+define("__MODULO_PAGOS__", "modules/pagos/");
+define("__MODULO_TARIFAS__", "modules/tarifas/");
+define("__MODULO_SEMANALES__", "modules/semanales/"); 
 define("__MODULO_LOGIN__", "modules/login/");
-//define("__MODULO_MALLPLAZA__", "modules/mallplaza/");
-//define("__MODULO_SPONSOR__", "modules/sponsor/");
-//define("__MODULO_CAMPANA__", "modules/campana/"); 
+define("__MODULO_MALLPLAZA__", "modules/mallplaza/");
+define("__MODULO_SPONSOR__", "modules/sponsor/");
+define("__MODULO_CAMPANA__", "modules/campana/"); 
 define("__MODULO_IMAGENES__", "images/");
-//define("__MODULO_informes__", "modules/informes/");
-//define("__MODULO_Encuestas__", "modules/encuestas/");
-//define("__MODULO_SUPERVISOR__", "modules/supervisor/");
+define("__MODULO_informes__", "modules/informes/");
+define("__MODULO_Encuestas__", "modules/encuestas/");
+define("__MODULO_SUPERVISOR__", "modules/supervisor/");
 define("__MODULO_PANEL__", "modules/panel/"); 
 define("__MODULO_CLIENTE__", "modules/cliente/");
 //
@@ -83,9 +84,16 @@ class config {
     }
 
     function BuscaDatos($bd, $Tabla, $DatoBuscar, $CampoComparar, $CampoMostrar) {
-        $sql = "select $CampoMostrar as dato from $bd.$Tabla where $CampoComparar='$DatoBuscar'";
+       
+          $sql = "select $CampoMostrar as dato from $bd.$Tabla where $CampoComparar='$DatoBuscar'";
         $res = mysql_query($sql, $this->conectar());
-        return mysql_result($res, 0);
+        $dev=mysql_result($res, 0);
+        if(!$dev){
+            return 'N/A';
+        }
+        else{
+            return mysql_result($res, 0);
+        }
     }
 
     function CargaCampanaSession($idCampana) {
@@ -167,18 +175,18 @@ class config {
         }
         return $mes;
     }
-
+            
 }
 
-//
-////require_once MODULO_SEGUROS.'core/seguros_class.php';
+
+//require_once MODULO_SEGUROS.'core/seguros_class.php';
 require_once    __ROOT__. __MODULO_LOGIN__ . 'core/login_class.php';
-//require_once __ROOT__ . __MODULO_MALLPLAZA__ . 'core/mallplaza_class.php';
-//require_once __ROOT__ . __MODULO_SPONSOR__ . 'core/sponsor_class.php';
-//require_once __ROOT__ . __MODULO_CAMPANA__ . 'core/campana_class.php';
+require_once __ROOT__ . __MODULO_MALLPLAZA__ . 'core/mallplaza_class.php';
+require_once __ROOT__ . __MODULO_SPONSOR__ . 'core/sponsor_class.php';
+require_once __ROOT__ . __MODULO_CAMPANA__ . 'core/campana_class.php';
 require_once __ROOT__ . __MODULO_MENU__ . 'core/menu_class.php';
-//require_once __ROOT__ . __MODULO_informes__ . 'core/informes_class.php';
-//require_once __ROOT__ . __MODULO_Encuestas__ . 'core/encuestas_class.php';
-//require_once __ROOT__ . __MODULO_SUPERVISOR__ . 'core/supervisor_class.php';
-//require_once __ROOT__ . __MODULO_PANEL__ . 'core/panel_class.php';
+require_once __ROOT__ . __MODULO_informes__ . 'core/informes_class.php';
+require_once __ROOT__ . __MODULO_Encuestas__ . 'core/encuestas_class.php';
+require_once __ROOT__ . __MODULO_SUPERVISOR__ . 'core/supervisor_class.php';
+require_once __ROOT__ . __MODULO_PANEL__ . 'core/panel_class.php';
 ?>

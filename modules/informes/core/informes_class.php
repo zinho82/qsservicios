@@ -61,8 +61,8 @@ order by area asc;";
     function xGeneroxMal($mall) {
         $conn=new config();
         
-        $sql="select count(*) as cant ,cd.sexo from enc_mplaza_cali.cliente_dato cd where cd.mall='$mall' group by cd.sexo";
-        $sql1="select count(*) as cant ,cd.sexo from enc_mplaza_cali.cliente_dato cd where cd.mall='$mall' ";
+        $sql="select count(*) as cant ,cd.sexo from ".$_SESSION['campana']['bd'].".cliente_dato cd where cd.mall='$mall' group by cd.sexo";
+        $sql1="select count(*) as cant ,cd.sexo from ".$_SESSION['campana']['bd'].".cliente_dato cd where cd.mall='$mall' ";
             $ress=mysql_query($sql1,$conn->conectar());
             $tsexo=mysql_fetch_assoc($ress);
        $res=mysql_query($sql,$conn->conectar());
@@ -117,44 +117,15 @@ from $bd.cliente_dato cd group by mall";
         $conn = new config();
         $sql = "select 
 month(cda.fresp) as Mes
-,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where cd.nps between 0 and 6  and month(cd.fresp)=month(cda.fresp) and year(cd.fresp)=year(cda.fresp) ) as qneg
-,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where cd.nps between 9 and 10 and month(cd.fresp)=month(cda.fresp) and year(cd.fresp)=year(cda.fresp) ) as qpos
-,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where cd.nps between 7 and 8  and month(cd.fresp)=month(cda.fresp) and year(cd.fresp)=year(cda.fresp)) as qneu
+,(select sum(cd.nps) from ".$_SESSION['campana']['bd'].".cliente_dato cd where cd.nps between 0 and 6  and month(cd.fresp)=month(cda.fresp) and year(cd.fresp)=year(cda.fresp) ) as qneg
+,(select sum(cd.nps) from ".$_SESSION['campana']['bd'].".cliente_dato cd where cd.nps between 9 and 10 and month(cd.fresp)=month(cda.fresp) and year(cd.fresp)=year(cda.fresp) ) as qpos
+,(select sum(cd.nps) from ".$_SESSION['campana']['bd'].".cliente_dato cd where cd.nps between 7 and 8  and month(cd.fresp)=month(cda.fresp) and year(cd.fresp)=year(cda.fresp)) as qneu
 ,sum(cda.nps) as npst
-from enc_mplaza_cali.cliente_dato cda  
+from ".$_SESSION['campana']['bd'].".cliente_dato cda  
 group by month(cda.fresp) ";
         $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
         while ($mall = mysql_fetch_array($res)) {
-            $npspt += $mall['qpos'];
-            $npsn += $mall['qpneg'];
-            $npst += $mall['npst'];
-            $qtott += $mall['npst'];
-            $neg += $mall['qneg'];
-            $neu += $mall['qneu'];
-            $pos += $mall['qpos'];
-//$nps=(($mall['qpos']/$mall['npst'])-($mall['qpos']/$mall['npst']));
-            $nps = (($mall['qpos'] / $mall['npst']) - ($mall['qneg'] / $mall['npst'])) / 100;
-            $qtot = $mall['qneg'] + $mall['qpos'] + $mall['qneu'];
-            $npsto = (($npspt / $npst) - ($npsn / $npst));
-            echo "['" . $conn->MesRecortado($mall['Mes']) . '-' . date('y') . "',-" . (($mall['qneg'] / $qtot) * 100) . "," . (($mall['qneu'] / $qtot) * 100) . "," . (($mall['qpos'] / $qtot) * 100) . "," . (0 ) . "],";
-        }
-        echo "['Acum',-" . (($neg / $qtott) * 100) . "," . (($neu / $qtott) * 100) . "," . (($pos / $qtott) * 100) . "," . (0) . "]";
-    }
-
-    function TotalEncuestasRalizadasxMall($bd, $mall) {
-        $conn = new config();
-        $sql = "select 
-month(cda.fresp) as Mes
-,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where cd.nps between 0 and 6  and month(cd.fresp)=month(cda.fresp)  and cd.mall=cda.mall and year(cd.fresp)=year(cda.fresp) ) as qneg
-,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where cd.nps between 9 and 10 and month(cd.fresp)=month(cda.fresp)  and cd.mall=cda.mall and year(cd.fresp)=year(cda.fresp) ) as qpos
-,(select sum(cd.nps) from enc_mplaza_cali.cliente_dato cd where cd.nps between 7 and 8  and month(cd.fresp)=month(cda.fresp) and cd.mall=cda.mall and year(cd.fresp)=year(cda.fresp)) as qneu
-,sum(cda.nps) as npst
-from enc_mplaza_cali.cliente_dato cda  
-where mall='$mall'
-group by month(cda.fresp) ";
-        $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
-        while ($mall = mysql_fetch_array($res)) {
-            $npspt += $mall['qpos'];
+           $npspt += $mall['qpos'];
             $npsn += $mall['qpneg'];
             $npst += $mall['npst'];
             $qtott += $mall['npst'];
@@ -165,7 +136,35 @@ group by month(cda.fresp) ";
             $qtot = $mall['qneg'] + $mall['qneu'] + $mall['qpos'];
             $qtotalAc += $qtot;
             $npsAc = (($npspt / $qtott) - ($npsn / $qtott)) * 100;
-//            $npsto = (($npspt / $npst) - ($npsn / $npst));
+            echo "['" . $conn->MesRecortado($mall['Mes']) . '-' . date('y') . "',-" . (($mall['qneg'] / $qtot) * 100) . "," . (($mall['qneu'] / $qtot) * 100) . "," . (($mall['qpos'] / $qtot) * 100) . "," . ($nps*100 ) . "],";
+        }
+        echo "['Acum',-" . (($neg / $qtott) * 100) . "," . (($neu / $qtott) * 100) . "," . (($pos / $qtott) * 100) . "," . ($npsAc) . "]";
+    }
+
+    function TotalEncuestasRalizadasxMall($bd, $mall) {
+        $conn = new config();
+         $sql = "select 
+month(cda.fresp) as Mes
+,(select sum(cd.nps) from ".$_SESSION['campana']['bd'].".cliente_dato cd where cd.nps between 0 and 6  and month(cd.fresp)=month(cda.fresp)  and cd.mall=cda.mall and year(cd.fresp)=year(cda.fresp) ) as qneg
+,(select sum(cd.nps) from ".$_SESSION['campana']['bd'].".cliente_dato cd where cd.nps between 9 and 10 and month(cd.fresp)=month(cda.fresp)  and cd.mall=cda.mall and year(cd.fresp)=year(cda.fresp) ) as qpos
+,(select sum(cd.nps) from ".$_SESSION['campana']['bd'].".cliente_dato cd where cd.nps between 7 and 8  and month(cd.fresp)=month(cda.fresp) and cd.mall=cda.mall and year(cd.fresp)=year(cda.fresp)) as qneu
+,sum(cda.nps) as npst
+from ".$_SESSION['campana']['bd'].".cliente_dato cda  
+where mall='$mall'
+group by month(cda.fresp) ";
+        $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
+        while ($mall = mysql_fetch_array($res)) {
+          $npspt += $mall['qpos'];
+            $npsn += $mall['qpneg'];
+            $npst += $mall['npst'];
+            $qtott += $mall['npst'];
+            $neg += $mall['qneg'];
+            $neu += $mall['qneu'];
+            $pos += $mall['qpos'];
+            $nps = (($mall['qpos'] / $mall['npst']) - ($mall['qne'] / $mall['npst']));
+            $qtot = $mall['qneg'] + $mall['qneu'] + $mall['qpos'];
+            $qtotalAc += $qtot;
+            $npsAc = (($npspt / $qtott) - ($npsn / $qtott)) * 100;
             echo "['" . $conn->MesRecortado($mall['Mes']) . '-' . date('y') . "',-" . (($mall['qneg'] / $qtot) * 100) . "," . (($mall['qneu'] / $qtot) * 100) . "," . (($mall['qpos'] / $qtot) * 100) . "," . ($nps * 100) . "],";
         }
         echo "['Acum',-" . (($neg / $qtotalAc) * 100) . "," . (($neu / $qtotalAc) * 100) . "," . (($pos / $qtotalAc) * 100) . ",$npsAc]";
@@ -194,25 +193,25 @@ group by month(cda.fresp) ";
     function TotalencuestasxDimension($bd, $SentidoID, $NomDimension, $nomSentido, $orden) {
         $conn = new config();
 
-        $sql1 = "drop temporary table IF EXISTS tmp1 ;";
-        $sql2 = "create temporary table enc_mplaza_cali.tmp1 (total int, dim int);";
-        $sql3 = "insert into tmp1 SELECT COUNT(dim1), dim1
-	FROM enc_mplaza_cali.cliente_respuestas cr 
+        $sql1 = "drop temporary table IF EXISTS $bd.tmp1 ;";
+        $sql2 = "create temporary table $bd.tmp1 (total int, dim int);";
+        $sql3 = "insert into $bd.tmp1 SELECT COUNT(dim1), dim1
+	FROM $bd.cliente_respuestas cr 
 	WHERE sen1=$SentidoID and sen2=$SentidoID and sen3=$SentidoID
 	GROUP BY cr.dim1;";
 
-        $sql4 = "insert into enc_mplaza_cali.tmp1 SELECT COUNT(dim2), dim2
-	FROM enc_mplaza_cali.cliente_respuestas cr 
+        $sql4 = "insert into $bd.tmp1 SELECT COUNT(dim2), dim2
+	FROM ".$_SESSION['campana']['bd'].".cliente_respuestas cr 
 	WHERE sen1=$SentidoID and sen2=$SentidoID and sen3=$SentidoID
 	GROUP BY cr.dim2;";
 
-        $sql5 = "insert into enc_mplaza_cali.tmp1 SELECT COUNT(dim3), dim3
-	FROM enc_mplaza_cali.cliente_respuestas cr 
+        $sql5 = "insert into $bd.tmp1 SELECT COUNT(dim3), dim3
+	FROM ".$_SESSION['campana']['bd'].".cliente_respuestas cr 
 	WHERE sen1=$SentidoID and sen2=$SentidoID and sen3=2$SentidoID5
 	GROUP BY cr.dim3;";
 
-        $sql6 = "select ar.Area,sum(tmp1.total) as cant from enc_mplaza_cali.tmp1
-    inner join " . $bd . ".areas ar on ar.CodArea=tmp1.dim group by tmp1.dim order by sum(tmp1.total) desc  ";
+        $sql6 = "select ar.Area,sum(tmp1.total) as cant from $bd.tmp1
+    inner join $bd.areas ar on ar.CodArea=tmp1.dim group by tmp1.dim order by sum(tmp1.total) desc  ";
         mysql_query($sql1, $conn->conectar()) or die(mysql_error());
         mysql_query($sql2, $conn->conectar()) or die(mysql_error());
         mysql_query($sql3, $conn->conectar()) or die(mysql_error());
@@ -227,27 +226,27 @@ group by month(cda.fresp) ";
 
     function TotalencuestasxDimensionxMall($bd, $SentidoID, $NomDimension, $nomSentido, $orden, $mall) {
         $conn = new config();
-        $sql1 = "drop temporary table IF EXISTS enc_mplaza_cali.tmp1 ;";
-        $sql2 = "create temporary table enc_mplaza_cali.tmp1 (total int, dim int);";
-        $sql3 = "insert into enc_mplaza_cali.tmp1 SELECT COUNT(dim1), dim1
-	FROM enc_mplaza_cali.cliente_respuestas cr 
-	inner join enc_mplaza_cali.cliente_dato cd on cd.idcliente=cliente_idcliente
+        $sql1 = "drop temporary table IF EXISTS ".$_SESSION['campana']['bd'].".tmp1 ;";
+        $sql2 = "create temporary table ".$_SESSION['campana']['bd'].".tmp1 (total int, dim int);";
+        $sql3 = "insert into ".$_SESSION['campana']['bd'].".tmp1 SELECT COUNT(dim1), dim1
+	FROM ".$_SESSION['campana']['bd'].".cliente_respuestas cr 
+	inner join ".$_SESSION['campana']['bd'].".cliente_dato cd on cd.idcliente=cliente_idcliente
 	WHERE sen1=$SentidoID  and cd.mall='$mall'
 	GROUP BY cr.dim1;";
 
-        $sql4 = "insert into enc_mplaza_cali.tmp1 SELECT COUNT(dim2), dim2
-	FROM enc_mplaza_cali.cliente_respuestas cr 
-        inner join enc_mplaza_cali.cliente_dato cd on cd.idcliente=cliente_idcliente
+        $sql4 = "insert into ".$_SESSION['campana']['bd'].".tmp1 SELECT COUNT(dim2), dim2
+	FROM ".$_SESSION['campana']['bd'].".cliente_respuestas cr 
+        inner join ".$_SESSION['campana']['bd'].".cliente_dato cd on cd.idcliente=cliente_idcliente
 	WHERE sen2=$SentidoID  and cd.mall='$mall'
 	GROUP BY cr.dim2;";
 
-        $sql5 = "insert into enc_mplaza_cali.tmp1 SELECT COUNT(dim3), dim3
-	FROM enc_mplaza_cali.cliente_respuestas cr 
-        inner join enc_mplaza_cali.cliente_dato cd on cd.idcliente=cliente_idcliente
+        $sql5 = "insert into ".$_SESSION['campana']['bd'].".tmp1 SELECT COUNT(dim3), dim3
+	FROM ".$_SESSION['campana']['bd'].".cliente_respuestas cr 
+        inner join ".$_SESSION['campana']['bd'].".cliente_dato cd on cd.idcliente=cliente_idcliente
 	WHERE sen3=$SentidoID and cd.mall='$mall'
 	GROUP BY cr.dim3;";
 
-        $sql6 = "select ar.Area,sum(tmp1.total) as cant from enc_mplaza_cali.tmp1
+        $sql6 = "select ar.Area,sum(tmp1.total) as cant from ".$_SESSION['campana']['bd'].".tmp1
     inner join " . $bd . ".areas ar on ar.CodArea=tmp1.dim group by tmp1.dim order by sum(tmp1.total) desc  ";
         mysql_query($sql1, $conn->conectar()) or die(mysql_error());
         mysql_query($sql2, $conn->conectar()) or die(mysql_error());

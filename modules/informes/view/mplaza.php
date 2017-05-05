@@ -15,7 +15,7 @@ $conn->CargaCampanaSession(4);
             <div class="panel-heading">Informes Mall plaza <img src="<?php echo __BASE_URL__ . __MODULO_IMAGENES__ ?>logo_mplaza2.jpg" width="50"></div>
             <div class="panel-body">
                     <div class=" col-lg-10">
-                        <div class="col-lg-6">
+                        <div class="col-lg-10">
                             <div class="panel panel-info">
                                 <div class="panel-heading">Encuestas por Mall</div>
                                 <div class="panel-body ">
@@ -34,7 +34,7 @@ $conn->CargaCampanaSession(4);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-10">
                             <div class="panel panel-info panel-body-mplaza">
                                 <div class="panel-heading">Calificaciones Totales</div>
                                 <div class="panel-body">
@@ -90,7 +90,6 @@ $conn->CargaCampanaSession(4);
 *************************************************-->
 <script language="JavaScript">
 
-    /*
      google.charts.load('current', {packages: ['corechart']});
      /*
      * GRAFICO TOTAL NPS
@@ -106,9 +105,7 @@ $conn->CargaCampanaSession(4);
 
         ]);
         var options = {
-            title: '',
-            width: 550,
-            heigth: 400,
+            
             colors: ['#ff0000', '#EBEF1B', '#00ff00', '#0000ff'],
             isStacked: true,
             seriesType: "bars",
@@ -125,8 +122,6 @@ $conn->CargaCampanaSession(4);
 <?php $informes->TotalencuestasxItem($_SESSION['campana']['bd']) ?>
         ]);
         var options = {
-            width: 600,
-            height: 400,
             bar: {groupWidth: "95%"},
             legend: {position: "none"},
             isStacked: true
@@ -140,15 +135,12 @@ $conn->CargaCampanaSession(4);
         data.addColumn('string', 'Day');
         data.addColumn('number', 'Calificados');
         data.addRows([
-            ['Variedad de Tiendas y Productos', 33],
 <?php
 $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "desc");
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimension'));
         chart.draw(data, {
-            width: 700,
-            height: 350,
             legend: 'none'
         });
     }
@@ -161,8 +153,6 @@ $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 25, "desc");
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeu'));
         chart.draw(data, {
-            width: 700,
-            height: 350,
             legend: 'none'
         });
     }
@@ -177,8 +167,6 @@ $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim1", 'sen
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('xDimensionNeg'));
         chart.draw(data, {
-            width: 700,
-            height: 350,
             legend: 'none'
         });
     }
@@ -186,7 +174,7 @@ $informes->TotalencuestasxDimension($_SESSION['campana']['bd'], 26, "dim1", 'sen
     google.charts.setOnLoadCallback(xDimensionNeg);
     google.charts.setOnLoadCallback(xDimensionNeu);
     google.charts.setOnLoadCallback(xItem);
-    google.charts.setOnLoadCallback(drawChart); * /
+    google.charts.setOnLoadCallback(drawChart); 
 </script>
 <script src="<?php echo __BASE_URL__ . __MODULO_SPONSOR__ . 'js/sponsor_js.js'; ?>" ></script>
 <?php require_once '../../config/footer.php'; ?>

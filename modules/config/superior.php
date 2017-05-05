@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>..:AdminSystemQS:..</title>
         <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <link rel="shortcut icon" href="<?php echo __BASE_URL__.__MODULO_IMAGENES__ ?>CirculoQuality.ico">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
         <script src="https://use.fontawesome.com/f228cd14da.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

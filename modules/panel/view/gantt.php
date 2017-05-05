@@ -67,7 +67,7 @@ if (!$_POST['mes']) {
       data.addRows([
           <?php
           $conn=new config();
-           $sql="select 
+             $sql="select 
 *, datediff(ftermino,finicio) as diasdura 
 ,(select count(*) from ".__BASE_DATOS__.".gantt ga where ga.tareaanterior=g.idgantt) as subt
 ,(select count(*) from ".__BASE_DATOS__.".gantt ga where ga.tareaanterior=g.idgantt and ga.estado=1) as subtter

@@ -2,6 +2,7 @@
 <?php
 $conn = new config();
 $mplaza = new mallplaza_class();
+$conn->CargaCampanaSession(4);
 ?>
 
 

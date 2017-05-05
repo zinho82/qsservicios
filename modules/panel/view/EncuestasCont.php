@@ -28,19 +28,19 @@ $mes = $_GET['m'];
                                 <td>Mall Plaza</td>
                                 <td>
                                     <?php
-                                    $sql = "select count(*) from enc_mplaza_cali.cliente_dato cd where month(cd.fencuesta)=$mes ";
+                                     $sql = "select count(*) from qsschile_enc_mplaza_cali.cliente_dato cd where month(cd.fencuesta)=$mes ";
                                     $res = mysql_query($sql, $conn->conectar());
-                                    echo number_format(mysql_result($res, 0), 0, ',', '.');
+                                     echo number_format(mysql_result($res, 0), 0, ',', '.');
                                     ?>
                                 </td>
                                 <td><?php
-                                    $sql = "select count(*) from enc_mplaza_cali.cliente_dato cd where month(cd.fencuesta)=$mes and estado=21";
+                                    $sql = "select count(*) from qsschile_enc_mplaza_cali.cliente_dato cd where month(cd.fencuesta)=$mes and estado=21";
                                     $res = mysql_query($sql, $conn->conectar());
                                     echo number_format(mysql_result($res, 0), 0, ',', '.');
                                     ?></td>
                                 <td>
                                     <?php
-                                    $sql = "select count(*) from enc_mplaza_cali.cliente_dato cd where month(cd.fencuesta)=$mes and estado=21";
+                                    $sql = "select count(*) from qsschile_enc_mplaza_cali.cliente_dato cd where month(cd.fencuesta)=$mes and estado=21";
                                     $res = mysql_query($sql, $conn->conectar());
                                     echo number_format(mysql_result($res, 0), 0, ',', '.');
                                     ?>
