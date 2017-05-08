@@ -268,20 +268,57 @@ group by month(cda.fresp) ";
      * 
      * ************************************ */
 
+    function TipoEmpresaChart($campana) {
+        $conn = new config();
+        $conn->CargaTablaSession($campana);
+        $conn->CargaCampanaSession($campana);
+         $sql = "select count(*) as cant,em.TIPO
+from " . $_SESSION['campana']['bd'] . "." . $_SESSION['campana']['tabla'] . " em 
+where year(em.fec_termino)=year(now()) 
+group by em.TIPO";
+        $res = mysql_query($sql, $conn->conectar());
+        while ($tabla = mysql_fetch_assoc($res)) {
+             $enc.="['" . utf8_encode($tabla['TIPO']) . "'," . $tabla['cant'] . "],";
+        }
+        return $enc;
+    }
+
     function TblEncuestas($campana) {
         $conn = new config();
         $conn->CargaTablaSession($campana);
         $conn->CargaCampanaSession($campana);
-             $sql = "select count(*) as cant,month(em.fec_termino) as mes,(select count(*) from  ".$_SESSION['campana']['bd'].".".$_SESSION['campana']['tabla']." e where month(e.fec_termino)=month(em.fec_termino) and e.estado=7 ) as contes from " . $_SESSION['campana']['bd'] . "." . $_SESSION['campana']['tabla'] . " em where year(em.fec_termino)=year(now()) group by month(em.fec_termino)";
-            $res = mysql_query($sql, $conn->conectar()) or die(mysql_error());
-            while ($cam = mysql_fetch_assoc($res)) {
-                $tabla .= "<tr>"
-                        . "<td>" . $conn->MesRecortado($cam['mes']) . "</td>"
-                        ."<td>".$cam['cant']."</td>"
-                        ."<td>".$cam['contes']."</td>"
-                        . "</tr>";
+        $sql = "select count(*) as cant,month(em.fec_termino) as mes,(select count(*) from  " . $_SESSION['campana']['bd'] . "." . $_SESSION['campana']['tabla'] . " e where month(e.fec_termino)=month(em.fec_termino) and e.estado=7 ) as contes from " . $_SESSION['campana']['bd'] . "." . $_SESSION['campana']['tabla'] . " em where year(em.fec_termino)=year(now()) and month(fec_termino)=4 group by month(em.fec_termino)";
+        $res = mysql_query($sql, $conn->conectar()) ;
+        while ($cam = mysql_fetch_assoc($res)) {
+            $tabla .= "<tr>"
+                    . "<td>" . $conn->MesRecortado($cam['mes']) . "</td>"
+                    . "<td>" . $cam['cant'] . "</td>"
+                    . "<td>" . $cam['contes'] . "</td>"
+                    . "</tr>";
         }
         return $tabla;
+    }
+    function TotalPregunta($campana,$pregunta,$mes) {
+        $conn=new config();
+        $conn->CargaTablaSession($campana);
+        $conn->CargaCampanaSession($campana);
+         $sql1="select count(*) as cant,er.$pregunta
+from ".$_SESSION['campana']['bd'].".".$_SESSION['campana']['tabla']." em 
+inner join ".$_SESSION['campana']['bd'].".qs_encuesta_sodimac_emp er on er.id_encuesta=em.id_encuesta
+where year(em.fec_termino)=year(now()) and month(fec_termino)=$mes and $pregunta!=''
+";
+    $rr=mysql_query($sql1,$conn->conectar());
+$total=mysql_result($rr,0);
+           $sql="select count(*) as cant,er.$pregunta
+
+from ".$_SESSION['campana']['bd'].".".$_SESSION['campana']['tabla']." em 
+inner join ".$_SESSION['campana']['bd'].".qs_encuesta_sodimac_emp er on er.id_encuesta=em.id_encuesta
+where year(em.fec_termino)=year(now()) and month(fec_termino)=$mes and $pregunta!=''
+group by er.$pregunta order by count(*) desc";
+        $res=mysql_query($sql,$conn->conectar());
+        while($row=mysql_fetch_assoc($res)){
+             echo "['" . utf8_encode($row[$pregunta]) . "'," . ($row['cant']/$total)*100 . '],';
+        }
     }
 
 }
