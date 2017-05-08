@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+alert("INFORMES");
     /***************************************
      * Deshabilita campos del formulario
      * 
@@ -19,10 +19,21 @@ $(document).ready(function () {
         ]
 
     });
-//    $("#Mall").change(function(){
-//        alert("cambio mall");
-//                var FormMall=$("#FormMall").serialize();
-//                FormMall.submit();
-//                
-//    });
+    $("#Sponsor").change(function(){
+        var Id=$("#Sponsor").val();
+         $.ajax({
+                type: "post",
+                datatype: "json",
+                data:'id='+ Id,
+                url: "genera_select.php",
+                success: function (Id) {
+                    $("#Campana").attr("disabled", false);
+                    $("#Campana").html(Id);
+
+                },
+                error: function () {
+                    alert(" Error no se puede obtener informacion");
+                }
+            });
+    });
 });

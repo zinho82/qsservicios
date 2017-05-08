@@ -39,7 +39,7 @@ class config {
 
     function CargaTablaSession($campana) {
         switch ($campana) {
-            case 4:$_SESSION['campana']['tabla'] = "cliente_dato";
+            case 4:$_SESSION['campana']['tabla'] = "qs_encuestascli_sodimac_emp"; 
                 break;
             case 7:$_SESSION['campana']['tabla'] = "qs_encuestascli_sodimac_emp";
                 break;
