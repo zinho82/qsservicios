@@ -1,5 +1,4 @@
-$(document).ready(function () {
-alert("INFORMES");
+$(document).ready(function () { 
     /***************************************
      * Deshabilita campos del formulario
      * 
@@ -27,7 +26,7 @@ alert("INFORMES");
                 data:'id='+ Id,
                 url: "genera_select.php",
                 success: function (Id) {
-                    $("#Campana").attr("disabled", false);
+                    $("#Campana").attr("disabled", false); 
                     $("#Campana").html(Id);
 
                 },
