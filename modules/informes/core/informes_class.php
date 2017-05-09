@@ -293,7 +293,7 @@ group by em.TIPO";
             $tabla .= "<tr>"
                     . "<td>" . $conn->MesRecortado($cam['mes']) . "</td>"
                     . "<td>" . $cam['cant'] . "</td>"
-                    . "<td>" . $cam['contes'] . "</td>"
+                    . "<td>" . $cam['contes'] . "</td>" 
                     . "</tr>";
         }
         return $tabla;

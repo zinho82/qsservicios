@@ -48,33 +48,6 @@ $ano=$_POST['ano'];
                     <div class="panel-body">
                         <div class="col-lg-10">
                             <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="panel panel-info">
-                                        <div class="panel-heading">Encuestas</div>
-                                        <div class="panel-body">
-                                            <table class="table table-hover">
-                                                <thead>
-                                                <th>Mes</th>
-                                                <th>Encuestas</th>
-                                                <th>Contestadas</th>
-                                                </thead>
-                                                <tbody>
-                                                    <?php echo $informes->TblEncuestas($_POST['Campana'],$mes,$ano) ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="panel panel-info">
-                                        <div class="panel-heading">Tipos de Empresa Encuestadas</div>
-                                        <div class="panel-body">
-                                            <div id="tipo"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="panel panel-info">
                                         <div class="panel-heading">Pregunta 1<BR>que tanto recomendaria a <span>Sodimac Venta Empresa</div>
@@ -234,21 +207,7 @@ $ano=$_POST['ano'];
      * @return {undefined}
      * 
      */
-    function xItem() {
-        // Define the chart to be drawn.
-        var data = google.visualization.arrayToDataTable([
-            ['Item', 'Cantidad'],
-<?php echo $informes->TipoEmpresaChart($_POST['Campana']) ?>
-        ]);
-        var options = {
-            bar: {groupWidth: "95%"},
-            legend: {position: "none"},
-            isStacked: true
-        };
-        // Instantiate and draw the chart.
-        var chart = new google.visualization.ColumnChart(document.getElementById('tipo'));
-        chart.draw(data, options);
-    }
+  
     function xDimension() {
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Day');
@@ -506,7 +465,6 @@ $ano=$_POST['ano'];
     google.charts.setOnLoadCallback(xDimension35c);
     google.charts.setOnLoadCallback(xDimension4);
     
-    google.charts.setOnLoadCallback(xItem);
 </script>
 
 <script src="<?php echo __BASE_URL__ . __MODULO_informes__ . 'js/informes_js.js'; ?>" ></script>
