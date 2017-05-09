@@ -2,6 +2,8 @@
 require_once '../../config/superior.php';
 $informes = new informes_class();
 $conn = new config();
+$mes=$_POST['mes'];
+$ano=$_POST['ano'];
 ?>
 
 
@@ -17,6 +19,22 @@ $conn = new config();
                     <div class="panel-heading">
                         Encuestas
                         <form method="post">
+                            <select name="ano">
+                                <option selected="" value="ano" id="ano">Seleccione un Año</option>
+                                <?php 
+                                    for($i=2010;$i<2021;$i++){
+                                        echo "<option value=$i>$i</option>";
+                                    }
+                                ?>
+                            </select> 
+                            <select name="mes" id="mes">
+                                <option value="mes" selected="">Seleccione um mes</option>
+                                <?php 
+                                    for($i=1;$i<13;$i++){
+                                        echo "<option value=$i>".$conn->MesEntero($i)."</option>";
+                                    }
+                                ?>
+                            </select>
                             <select name="Sponsor" id="Sponsor">
                                 <option selected="">Seleecione Sponsor</option>
                                 <?php echo $conn->CargaSponsor() ?>
@@ -41,7 +59,7 @@ $conn = new config();
                                                 <th>Contestadas</th>
                                                 </thead>
                                                 <tbody>
-                                                    <?php echo $informes->TblEncuestas($_POST['Campana']) ?>
+                                                    <?php echo $informes->TblEncuestas($_POST['Campana'],$mes,$ano) ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -237,7 +255,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg1',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg1',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg1'));
@@ -251,7 +269,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_1a',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_1a',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg3a'));
@@ -265,7 +283,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_1b',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_1b',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg3b'));
@@ -279,7 +297,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_1c',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_1c',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg3c'));
@@ -293,7 +311,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_1d',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_1d',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg3d'));
@@ -307,7 +325,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_2a',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_2a',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg32a'));
@@ -321,7 +339,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_2b',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_2b',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg32b'));
@@ -335,7 +353,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_2c',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_2c',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg32c'));
@@ -349,7 +367,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_3a',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_3a',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg33a'));
@@ -363,7 +381,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_3b',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_3b',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg33b'));
@@ -377,7 +395,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_4a',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_4a',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg34a'));
@@ -391,7 +409,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_4b',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_4b',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg34b'));
@@ -405,7 +423,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_4c',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_4c',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg34c'));
@@ -419,7 +437,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_5a',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_5a',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg35a'));
@@ -433,7 +451,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_5b',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_5b',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg35b'));
@@ -447,7 +465,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg3_5c',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg3_5c',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg35c'));
@@ -462,7 +480,7 @@ $conn = new config();
         data.addColumn('number', 'Nota');
         data.addRows([
 <?php
- $informes->TotalPregunta($_POST['Campana'],'preg4',3);
+ $informes->TotalPregunta($_POST['Campana'],'preg4',$mes,$ano);
 ?>
         ]);
         var chart = new google.visualization.AreaChart(document.getElementById('preg4'));

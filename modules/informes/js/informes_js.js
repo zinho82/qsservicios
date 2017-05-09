@@ -1,5 +1,4 @@
 $(document).ready(function () {
-alert("INFORMES");
     /***************************************
      * Deshabilita campos del formulario
      * 

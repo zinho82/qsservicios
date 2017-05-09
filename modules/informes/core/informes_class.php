@@ -268,7 +268,7 @@ group by month(cda.fresp) ";
      * 
      * ************************************ */
 
-    function TipoEmpresaChart($campana) {
+    function TipoEmpresaChart($campana,$mes,$ano) {
         $conn = new config();
         $conn->CargaTablaSession($campana);
         $conn->CargaCampanaSession($campana);
@@ -283,11 +283,11 @@ group by em.TIPO";
         return $enc;
     }
 
-    function TblEncuestas($campana) {
+    function TblEncuestas($campana,$mes,$ano) {
         $conn = new config();
         $conn->CargaTablaSession($campana);
         $conn->CargaCampanaSession($campana);
-        $sql = "select count(*) as cant,month(em.fec_termino) as mes,(select count(*) from  " . $_SESSION['campana']['bd'] . "." . $_SESSION['campana']['tabla'] . " e where month(e.fec_termino)=month(em.fec_termino) and e.estado=7 ) as contes from " . $_SESSION['campana']['bd'] . "." . $_SESSION['campana']['tabla'] . " em where year(em.fec_termino)=year(now()) and month(fec_termino)=4 group by month(em.fec_termino)";
+        $sql = "select count(*) as cant,month(em.fec_termino) as mes,(select count(*) from  " . $_SESSION['campana']['bd'] . "." . $_SESSION['campana']['tabla'] . " e where month(e.fec_termino)=month(em.fec_termino) and e.estado=7 ) as contes from " . $_SESSION['campana']['bd'] . "." . $_SESSION['campana']['tabla'] . " em where year(em.fec_termino)=$ano and month(fec_termino)=4 group by month(em.fec_termino)";
         $res = mysql_query($sql, $conn->conectar()) ;
         while ($cam = mysql_fetch_assoc($res)) {
             $tabla .= "<tr>"
@@ -298,14 +298,14 @@ group by em.TIPO";
         }
         return $tabla;
     }
-    function TotalPregunta($campana,$pregunta,$mes) {
+    function TotalPregunta($campana,$pregunta,$mes,$ano) {
         $conn=new config();
         $conn->CargaTablaSession($campana);
         $conn->CargaCampanaSession($campana);
          $sql1="select count(*) as cant,er.$pregunta
 from ".$_SESSION['campana']['bd'].".".$_SESSION['campana']['tabla']." em 
 inner join ".$_SESSION['campana']['bd'].".qs_encuesta_sodimac_emp er on er.id_encuesta=em.id_encuesta
-where year(em.fec_termino)=year(now()) and month(fec_termino)=$mes and $pregunta!=''
+where year(em.fec_termino)=$ano and month(fec_termino)=$mes and $pregunta!=''
 ";
     $rr=mysql_query($sql1,$conn->conectar());
 $total=mysql_result($rr,0);
