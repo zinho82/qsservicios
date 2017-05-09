@@ -26,7 +26,7 @@ $(document).ready(function () {
                 data:'id='+ Id,
                 url: "genera_select.php",
                 success: function (Id) {
-                    $("#Campana").attr("disabled", false);
+                    $("#Campana").attr("disabled", false); 
                     $("#Campana").html(Id);
 
                 },

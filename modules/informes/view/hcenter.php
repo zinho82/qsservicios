@@ -498,7 +498,7 @@ $ano=$_POST['ano'];
     google.charts.setOnLoadCallback(xDimension32c);
     google.charts.setOnLoadCallback(xDimension33a);
     google.charts.setOnLoadCallback(xDimension33b);
-    google.charts.setOnLoadCallback(xDimension34a);
+    google.charts.setOnLoadCallback(xDimension34a); 
     google.charts.setOnLoadCallback(xDimension34b);
     google.charts.setOnLoadCallback(xDimension34c);
     google.charts.setOnLoadCallback(xDimension35a);

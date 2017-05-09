@@ -35,7 +35,7 @@ $ano=$_POST['ano'];
                                     }
                                 ?>
                             </select>
-                            <select name="Sponsor" id="Sponsor">
+                            <select name="Sponsor" id="Sponsor"> 
                                 <option selected="">Seleecione Sponsor</option>
                                 <?php echo $conn->CargaSponsor() ?>
                             </select>
